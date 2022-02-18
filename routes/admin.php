@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,7 +39,7 @@ Route::get('admin/forget_password', function () {
 })->name('forget_password');
 
 Route::get('admin/home', function () {
-    return view('admin/admin/home');
+    return view('admin/home');
 })->name('admin/home');
 
 Route::get('admin/users_list', function () {
