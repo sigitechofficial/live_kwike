@@ -11,12 +11,12 @@
 
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <!-- VENDOR CSS -->
-    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/vendor/font-awesome/css/font-awesome.min.css')}}">
 
     <!-- MAIN CSS -->
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/color_skins.css">
+    <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/color_skins.css')}}">
 </head>
 
 <body class="theme-orange">
@@ -69,10 +69,9 @@
                                     <span>Remember me</span>
                                 </label>
                             </div>
-                            <a href="{{route('home')}}" type="submit" class="btn btn-primary btn-lg btn-block" style="background: linear-gradient(-60deg, #3DA9FC 50%, #FF8C67 50%); border: none;">LOGIN</a>
+                            <a href="{{route('admin/home')}}" type="submit" class="btn btn-primary btn-lg btn-block" style="background: linear-gradient(-60deg, #3DA9FC 50%, #FF8C67 50%); border: none;">LOGIN</a>
                             <div class="bottom">
-                                <span class="helper-text m-b-10"><i class="fa fa-lock"></i><a href="{{route('forget_password')}}">Forgot password?</a></span>
-                                {{--                                <span>Don't have an account? <a href="page-register.html">Register</a></span>--}}
+                                <span class="helper-text m-b-10"><i class="fa fa-lock"></i><a href="{{route('forget_password')}}">Forgot password?</a></span>   
                             </div>
                         </form>
                     </div>
@@ -83,9 +82,9 @@
 </div>
 <!-- END WRAPPER -->
 
-<script src="assets/bundles/libscripts.bundle.js"></script>
-<script src="assets/bundles/vendorscripts.bundle.js"></script>
+<script src="{{asset('assets/bundles/libscripts.bundle.js')}}"></script>
+<script src="{{asset('assets/bundles/vendorscripts.bundle.js')}}"></script>
 
-<script src="assets/bundles/mainscripts.bundle.js"></script>
+<script src="{{asset('assets/bundles/mainscripts.bundle.js')}}"></script>
 </body>
 </html>
