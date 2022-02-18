@@ -11,12 +11,12 @@
 
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <!-- VENDOR CSS -->
-    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/vendor/font-awesome/css/font-awesome.min.css')}}">
 
     <!-- MAIN CSS -->
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/color_skins.css">
+    <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/color_skins.css')}}">
 </head>
 
 <body class="theme-orange">
@@ -25,15 +25,6 @@
 <div id="wrapper" class="auth-main">
     <div class="container">
         <div class="row clearfix">
-            {{--            <div class="col-12">--}}
-            {{--                <nav class="navbar navbar-expand-lg">--}}
-            {{--                    <a class="navbar-brand" href="javascript:void(0);"><img src="../assets/images/icon-light.svg" width="30" height="30" class="d-inline-block align-top mr-2" alt="">HexaBit</a>--}}
-            {{--                    <ul class="navbar-nav">--}}
-            {{--                        <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Documentation</a></li>--}}
-            {{--                        <li class="nav-item"><a class="nav-link" href="page-register.html">Sign Up</a></li>--}}
-            {{--                    </ul>--}}
-            {{--                </nav>--}}
-            {{--            </div>--}}
             <div class="col-lg-8">
                 <div class="auth_detail">
                     <h2 class="text-monospace">
@@ -59,7 +50,7 @@
             <div class="col-lg-4">
                 <div class="card">
                     <div class="header text-center">
-                        <img class="img-fluid" src="assets/images/logo/samie_dallas_logo.png" style="width: 50%;">
+                        <img class="img-fluid" src="{{asset('logo.png')}}" style="width: 50%;">
                         <p class="lead">Recover my password</p>
                     </div>
                     <div class="body">
@@ -81,10 +72,10 @@
 </div>
 <!-- END WRAPPER -->
 
-<script src="assets/bundles/libscripts.bundle.js"></script>
-<script src="assets/bundles/vendorscripts.bundle.js"></script>
+<script src="{{asset('assets/bundles/libscripts.bundle.js')}}"></script>
+<script src="{{asset('assets/bundles/vendorscripts.bundle.js')}}"></script>
 
-<script src="assets/bundles/mainscripts.bundle.js"></script>
+<script src="{{asset('assets/bundles/mainscripts.bundle.js')}}"></script>
 </body>
 </html>
 

@@ -1,13 +1,9 @@
-@extends('welcome')
+@extends('admin//welcome')
 @section('content')
-
-
 
     <div class="page-content">
         <div class="main-wrapper">
-
             <!--form layout-->
-
             <div class="row">
                 <div class="col">
                     <h5 class="card-title">Settings</h5>

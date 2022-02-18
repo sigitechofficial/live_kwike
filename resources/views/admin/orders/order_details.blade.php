@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('admin/welcome')
 @section('content')
 
 
@@ -19,20 +19,6 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row mt-5">
-
-
-                            {{--                            <div class="col-md-6 col-lg-6">--}}
-                            {{--                                <label for="formFile" class="form-label">Approval</label>--}}
-                            {{--                                <select class="form-select shadow-sm" id="autoSizingSelect">--}}
-                            {{--                                    <option selected="">Choose...</option>--}}
-                            {{--                                    <option value="1">Admin</option>--}}
-                            {{--                                    <option value="2">Super Admin</option>--}}
-                            {{--                                </select>--}}
-                            {{--                            </div>--}}
-
-
-                        </div>
                         <div class="row">
 
                             <div class="col-md-12 col-lg-12">
