@@ -10,14 +10,14 @@ class CategoryController extends Controller
     public function load_sub(Request $request){
         $parent_ids = Category::where('active','1')->where('parent_id','=',null)->pluck('id')->toarray();
         $categories = Category::where('active','1')->wherein('id',$parent_ids)->with('sub_category')->get();
-        return view('admin/categorymanagement/load_sub_category')->with('categories',$categories);
+        return view('admin.pages.categorymanagement.load_sub_category')->with('categories',$categories);
     }
     public function view_sub(Request $request){
         $parent_ids = Category::where('active','1')->where('parent_id','=',null)->pluck('id')->toarray();
         $categories = Category::where('active','1')->wherein('id',$parent_ids)->with('sub_category')->get();
         
         $sub_categories = Category::where('parent_id',$request->cate_id)->with('sub_category')->get();
-        return view('admin/categorymanagement/load_sub_category')->with('categories',$categories)->with('sub_categories',$sub_categories);
+        return view('admin.pages.categorymanagement.load_sub_category')->with('categories',$categories)->with('sub_categories',$sub_categories);
     }
     /**
      * Display a listing of the resource.
@@ -28,7 +28,7 @@ class CategoryController extends Controller
     {
         $parent_ids = Category::where('active','1')->where('parent_id','=',null)->pluck('id')->toarray();
         $categories = Category::where('active','1')->wherein('id',$parent_ids)->with('sub_category')->get();
-        return view('admin/categorymanagement/all_category')->with('categories',$categories);
+        return view('admin.pages.categorymanagement.all_category')->with('categories',$categories);
     }
 
     /**
@@ -38,17 +38,17 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin/categorymanagement/add_category');
+        return view('admin.pages.categorymanagement.add_category');
     }
     public function create_sub()
     {
         $all_categories = Category::where('parent_id','=',null)->where('active','1')->get();
-        return view('admin/categorymanagement/add_sub_category')->with('all_categories',$all_categories);
+        return view('admin.pages.categorymanagement.add_sub_category')->with('all_categories',$all_categories);
     }
     public function create_sub_sub()
     {
         $all_categories = Category::where('parent_id','=',null)->where('active','1')->get();
-        return view('admin/categorymanagement/add_sub_sub_category')->with('all_categories',$all_categories);
+        return view('admin.pages.categorymanagement.add_sub_sub_category')->with('all_categories',$all_categories);
     }
     public function get_sub_category(Request $request){
         
@@ -99,7 +99,7 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         $sub_categories = Category::where('parent_id',$category->id)->with('sub_category')->get();
-        return view('admin/categorymanagement/sub_category')->with('category',$category)->with('sub_categories',$sub_categories);
+        return view('admin.pages.categorymanagement.sub_category')->with('category',$category)->with('sub_categories',$sub_categories);
     }
     
     public function show_sub($category,$sub_category)
@@ -107,7 +107,7 @@ class CategoryController extends Controller
         $category = Category::find($category);
         $sub_category = Category::find($sub_category);
         $sub_sub_categories = Category::where('parent_id',$sub_category->id)->with('sub_category')->get();
-        return view('admin/categorymanagement/sub_sub_category')->with('category',$category)->with('sub_category',$sub_category)->with('sub_sub_categories',$sub_sub_categories);
+        return view('admin.pages.categorymanagement.sub_sub_category')->with('category',$category)->with('sub_category',$sub_category)->with('sub_sub_categories',$sub_sub_categories);
     }
 
     /**
@@ -120,7 +120,7 @@ class CategoryController extends Controller
     {
         $category = Category::where('id',$category->id)->with('parent_category')->first();
         $all_categories = Category::all();
-        return view('admin/categorymanagement/edit_category')->with('category',$category)->with('all_categories',$all_categories);
+        return view('admin.pages.categorymanagement.edit_category')->with('category',$category)->with('all_categories',$all_categories);
     }
 
     /**

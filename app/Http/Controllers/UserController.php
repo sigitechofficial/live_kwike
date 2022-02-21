@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::where('id','>','0')->with('user_role.role')->get();
-        return view('admin/users/all_user')->with('users',$users);
+        return view('admin.pages.users.all_user')->with('users',$users);
     }
 
     /**
@@ -25,23 +25,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin/users/add_user');
+        return view('admin.pages.users.add_user');
     }
 
 
-    // public function change_user_status(Request $request){
-    //     $id = $request->id;
-    //     $user = User::find($id);
-    //     if($user->status == 'active'){
-    //         $user->status = "blocked";
-    //     }
-    //     else{
-    //         $user->status = "active";
-    //     }
-    //     $user->save();
-    //     return redirect()->back()->with('success','Status Updated Sucessfully!');
-    // }
-    
     /**
      * Store a newly created resource in storage.
      *
@@ -62,7 +49,7 @@ class UserController extends Controller
     public function show(Request $request)
     {
         $user = User::find($request->id);
-        return view('admin/users/view_userorderhistory')->with('user',$user);
+        return view('admin.pages.users.view_userorderhistory')->with('user',$user);
     }
 
     /**
@@ -75,7 +62,7 @@ class UserController extends Controller
     {
         $id = $request->id;
         $user = User::find($id);
-        return view('admin/users/edit_user')->with('user',$user);
+        return view('admin.pages.users.edit_user')->with('user',$user);
     }
 
     /**
