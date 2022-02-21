@@ -15,7 +15,7 @@ class DriverController extends Controller
     public function index()
     {
         $drivers = User::where('id','>','0')->whereHas('user_role.role', function ($query) {$query->where('name', '=', 'driver');})->with('user_role.role')->get();
-        return view('admin/drivermanagement/all_drivers')->with('drivers',$drivers);
+        return view('admin.pages.drivermanagement.all_drivers')->with('drivers',$drivers);
     }
 
     /**
@@ -47,7 +47,7 @@ class DriverController extends Controller
      */
     public function show(Request $request)
     {
-        return view('admin/drivermanagement/orders_by_drivers');
+        return view('admin.pages.drivermanagement.orders_by_drivers');
     }
 
     /**
@@ -59,7 +59,7 @@ class DriverController extends Controller
     public function edit(Request $request)
     {
         $driver = User::find($request->id);
-        return view('admin/drivermanagement/edit_driver')->with('driver',$driver);
+        return view('admin.pages.drivermanagement.edit_driver')->with('driver',$driver);
     }
 
     /**

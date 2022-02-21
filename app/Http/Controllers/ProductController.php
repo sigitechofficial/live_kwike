@@ -18,7 +18,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('admin/inventoryproducts/products')->with('products',$products);
+        return view('admin.pages.inventoryproducts.products')->with('products',$products);
     }
 
     /**
@@ -29,7 +29,7 @@ class ProductController extends Controller
     public function create()
     {
         $parent_categories = Category::where('parent_id','=',null)->where('active','1')->get();
-        return view('admin/inventoryproducts/addnewproducts')->with('parent_categories',$parent_categories);
+        return view('admin.pages.inventoryproducts.addnewproducts')->with('parent_categories',$parent_categories);
     }
 
     /**
@@ -78,7 +78,7 @@ class ProductController extends Controller
     public function edit(Request $request)
     {
         $product = Product::find($request->product);
-        return view('admin/inventoryproducts/edit_products')->with('product',$product);
+        return view('admin.pages.inventoryproducts.edit_products')->with('product',$product);
     }
 
     /**

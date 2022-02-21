@@ -20,7 +20,7 @@ class Controller extends BaseController
         $users = User::where('id','>','0')->count();
         $drivers = User::where('id','>','0')->whereHas('user_role.role', function ($query) {$query->where('name', '=', 'driver');})->with('user_role.role')->count();
         
-        return view('admin/home')
+        return view('admin.pages.home')
                         ->with('drivers',$drivers)
                         ->with('users',$users)
                         ->with('products',$products)
