@@ -48,7 +48,12 @@
                                         <td>{{ $user->last_name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->phone }}</td>
-                                        <td>{{ $user->user_role->first()->role->name ?? "" }}</td>
+                                        <td>
+                                            @foreach($user->roles as $role)
+                                                {{ $role->name }}
+                                                <br>
+                                            @endforeach
+                                        </td>
                                         <td>
                                             <div style="display: flex;">
                                                 <a href="{{route('user.show',['id'=>$user->id])}}" class="btn btn-primary"><i class="fa fa-eye"></i></a>

@@ -46,6 +46,13 @@
                     <ul id="main-menu" class="metismenu">
                         <li class="active"><a href="{{route('admin/home')}}"><i class="icon-home"></i><span>Dashboard</span></a></li>
                         <li>
+                            <a href="#forms" class="has-arrow mb-1"><i class="fa fa-users"></i><span>&nbsp; Users </span></a>
+                            <ul>
+                                <li><a href="{{ route('user.create') }}">Add Users</a></li>
+                                <li><a href="{{ route('user.index') }}">All Users</a></li>
+                            </ul>
+                        </li>
+                        <li>
                             <a href="#uiElements" class="has-arrow mb-1"><i class="icon-users"></i><span>Retailer Management</span></a>
                             <ul>
                                 <li><a href=""> Add Retail</a></li>
@@ -54,19 +61,12 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#forms" class="has-arrow mb-1"><i class="fa fa-users"></i><span>&nbsp; Users </span></a>
-                            <ul>
-                                <li><a href="">Add Users</a></li>
-                                <li><a href="">All Users</a></li>
-                            </ul>
-                        </li>
-                        <li>
                             <a href="#forms" class="has-arrow mb-1"><i class="icon-pencil"></i><span>Category Management</span></a>
                             <ul>
-                                <li><a href="">Main Categories</a></li>
-                                <li><a href="">Add Category</a></li>
-                                <li><a href="">Add Sub Category</a></li>
-                                <li><a href="">Add Sub Sub Category</a></li>
+                                <li><a href="{{ route('category.index') }}">Main Categories</a></li>
+                                <li><a href="{{ route('category.create') }}">Add Category</a></li>
+                                <li><a href="{{ route('category.create.sub') }}">Add Sub Category</a></li>
+                                <li><a href="{{ route('category.create.sub.sub') }}">Add Sub Sub Category</a></li>
                                 <li><a href="">View Sub Category</a></li>
                             </ul>
                         </li>
@@ -74,7 +74,7 @@
                             <a href="#forms" class="has-arrow mb-1"><i class="fa fa-car"></i><span>Driver Management</span></a>
                             <ul>
                                 <li ><a href="">Adds Driver</a></li>
-                                <li><a href="">All Drivers</a></li>
+                                <li><a href="{{ route('driver.index') }}">All Drivers</a></li>
                                 <li><a href="">Pending Requests</a></li>
                             </ul>
                         </li>

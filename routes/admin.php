@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DriverController;
+use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -32,48 +36,46 @@ Route::get('/admin', function () {
 
 Route::get('admin/login', function () {
     return view('admin.pages.auth.login');
-})->name('login');
+})->name('admin/login');
 
 Route::get('admin/forget_password', function () {
     return view('admin.pages.auth.forget_password');
 })->name('forget_password');
 
-Route::get('admin/home', function () {
-    return view('admin.pages.home');
-})->name('admin/home');
+Route::get('admin/home', [HomeController::class,'index'])->name('admin/home');
 
 Route::get('admin/users_list', function () {
     return view('admin.pages.users.users_list');
 })->name('users_list');
 
 
-Route::get('admin/all_user', [App\Http\Controllers\UserController::class, "index"])->name('all_user');
-Route::get('admin/user', [App\Http\Controllers\UserController::class, "show"])->name('user.show');
-Route::get('admin/user_edit', [App\Http\Controllers\UserController::class, "edit"])->name('user.edit');
-Route::get('admin/add_user', [App\Http\Controllers\UserController::class, "create"])->name('add_user');
-Route::post('admin/update_user/{id}', [App\Http\Controllers\UserController::class, "update"])->name('user.update');
+Route::get('admin/users', [UserController::class, "index"])->name('user.index');
+Route::get('admin/user', [UserController::class, "show"])->name('user.show');
+Route::get('admin/user/edit/{id}', [UserController::class, "edit"])->name('user.edit');
+Route::get('admin/user/create', [UserController::class, "create"])->name('user.create');
+Route::post('admin/update_user/{id}', [UserController::class, "update"])->name('user.update');
 
-Route::get('admin/change_user_status', [App\Http\Controllers\UserController::class, 'change_user_status'])->name('change_user_status');
+Route::get('admin/change_user_status', [UserController::class, 'change_user_status'])->name('change_user_status');
 
-Route::get('admin/all_drivers', [App\Http\Controllers\DriverController::class, "index"])->name('all_drivers');
-Route::get('admin/edit_driver', [App\Http\Controllers\DriverController::class, "edit"])->name('edit_driver');
-Route::get('admin/orders_by_drivers', [App\Http\Controllers\DriverController::class, "show"])->name('orders_by_drivers');
-Route::post('admin/update_driver/{id}', [App\Http\Controllers\DriverController::class, "update"])->name('driver.update');
+Route::get('admin/drivers', [DriverController::class, "index"])->name('driver.index');
+Route::get('admin/edit_driver', [DriverController::class, "edit"])->name('edit_driver');
+Route::get('admin/orders_by_drivers', [DriverController::class, "show"])->name('orders_by_drivers');
+Route::post('admin/update_driver/{id}', [DriverController::class, "update"])->name('driver.update');
 
-Route::get('admin/category', [App\Http\Controllers\CategoryController::class, "index"])->name('category.index');
+Route::get('admin/category', [CategoryController::class, "index"])->name('category.index');
 
-Route::get('admin/category/create', [App\Http\Controllers\CategoryController::class, "create"])->name('category.create');
-Route::get('admin/category/create/sub', [App\Http\Controllers\CategoryController::class, "create_sub"])->name('category.create.sub');
-Route::get('admin/category/create/sub/sub', [App\Http\Controllers\CategoryController::class, "create_sub_sub"])->name('category.create.sub.sub');
-Route::get('admin/category_get', [App\Http\Controllers\CategoryController::class, "get_sub_category"])->name('category.get');
+Route::get('admin/category/create', [CategoryController::class, "create"])->name('category.create');
+Route::get('admin/category/create/sub', [CategoryController::class, "create_sub"])->name('category.create.sub');
+Route::get('admin/category/create/sub/sub', [CategoryController::class, "create_sub_sub"])->name('category.create.sub.sub');
+Route::get('admin/category_get', [CategoryController::class, "get_sub_category"])->name('category.get');
 
-Route::post('admin/category/store', [App\Http\Controllers\CategoryController::class, "store"])->name('category.store');
-Route::get('admin/load_sub_category', [App\Http\Controllers\CategoryController::class, "load_sub"])->name('category.load_sub');
-Route::post('admin/view_sub_category', [App\Http\Controllers\CategoryController::class, "view_sub"])->name('category.view_sub');
-Route::get('admin/category/edit/{category}', [App\Http\Controllers\CategoryController::class, "edit"])->name('category.edit');
-Route::post('admin/category/update/{category}', [App\Http\Controllers\CategoryController::class, "update"])->name('category.update');
-Route::get('admin/category/{category}', [App\Http\Controllers\CategoryController::class, "show"])->name('category.show');
-Route::get('admin/category/{category}/{sub_category}', [App\Http\Controllers\CategoryController::class, "show_sub"])->name('category.show.sub');
+Route::post('admin/category/store', [CategoryController::class, "store"])->name('category.store');
+Route::get('admin/load_sub_category', [CategoryController::class, "load_sub"])->name('category.load_sub');
+Route::post('admin/view_sub_category', [CategoryController::class, "view_sub"])->name('category.view_sub');
+Route::get('admin/category/edit/{category}', [CategoryController::class, "edit"])->name('category.edit');
+Route::post('admin/category/update/{category}', [CategoryController::class, "update"])->name('category.update');
+Route::get('admin/category/{category}', [CategoryController::class, "show"])->name('category.show');
+Route::get('admin/category/{category}/{sub_category}', [CategoryController::class, "show_sub"])->name('category.show.sub');
 
 Route::get('admin/all_retailer', [App\Http\Controllers\StoreController::class, "index"])->name('all_retailer');
 

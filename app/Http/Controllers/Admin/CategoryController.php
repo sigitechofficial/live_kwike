@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,7 @@ class CategoryController extends Controller
     public function index()
     {
         $parent_ids = Category::where('active','1')->where('parent_id','=',null)->pluck('id')->toarray();
-        $categories = Category::where('active','1')->wherein('id',$parent_ids)->with('sub_category')->get();
+        $categories = Category::where('active','1')->wherein('id',$parent_ids)->with('subCategories')->get();
         return view('admin.pages.categorymanagement.all_category')->with('categories',$categories);
     }
 

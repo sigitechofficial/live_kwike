@@ -15,7 +15,7 @@
 
     <div class="page-content">
         <div class="main-wrapper">
-            <a class="btn btn-success mb-2" href="{{ route('all_user') }}">Back</a>
+            <a class="btn btn-success mb-2" href="{{ route('user.index') }}">Back</a>
             <div class="row">
                 <div class="col-md-3 col-lg-3">
                     <div class="card">
@@ -61,7 +61,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">All Orders (Pending)</h5>
-                                <table id="zero-conf" class="display" style="width: 100%;">
+                                <table class="table table-bordered table-hover js-basic-example dataTable table-custom">
                                     <thead>
                                         <tr>
                                             <th>#</th>

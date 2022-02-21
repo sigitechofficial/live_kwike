@@ -8,7 +8,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Drivers</h5>
                             <div class="table-responsive">
-                                @if(isset($drivers) && $drivers->count() > 0)
+                                @if(sizeof($drivers) > 0)
                                     <table class="table table-bordered table-hover js-basic-example dataTable table-custom">
                                         <thead>
                                             <tr>

@@ -97,7 +97,7 @@
                                 <div class="row align-items-center mb-2 d-flex">
                                     <div class="col-8">
                                         <h2 class="d-flex align-items-center mb-0">
-                                            3,243
+                                            --- Pending ---
                                         </h2>
                                     </div>
                                     <!--<div class="col-4 text-right">-->
@@ -120,7 +120,7 @@
                                 <div class="row align-items-center mb-2 d-flex">
                                     <div class="col-8">
                                         <h2 class="d-flex align-items-center mb-0">
-                                            15.070
+                                            {{ $total_users }}
                                         </h2>
                                     </div>
                                 </div>
@@ -140,7 +140,7 @@
                                 <div class="row align-items-center mb-2 d-flex">
                                     <div class="col-8">
                                         <h2 class="d-flex align-items-center mb-0">
-                                            578
+                                            --- Pending ---
                                         </h2>
                                     </div>
                                 </div>
@@ -160,7 +160,7 @@
                                 <div class="row align-items-center mb-2 d-flex">
                                     <div class="col-8">
                                         <h2 class="d-flex align-items-center mb-0">
-                                            $11.61
+                                            --- Pending ---
                                         </h2>
                                     </div>
                                 </div>
@@ -184,7 +184,7 @@
                                     <div class="row align-items-center mb-2 d-flex">
                                         <div class="col-8">
                                             <h2 class="d-flex align-items-center mb-0">
-                                                $3,243
+                                                --- Pending ---
                                             </h2>
                                         </div>
                                     </div>
@@ -204,7 +204,7 @@
                                     <div class="row align-items-center mb-2 d-flex">
                                         <div class="col-8">
                                             <h2 class="d-flex align-items-center mb-0">
-                                                 $11062
+                                                --- Pending ---
                                             </h2>
                                         </div>
                                     </div>
@@ -224,7 +224,7 @@
                                     <div class="row align-items-center mb-2 d-flex">
                                         <div class="col-8">
                                             <h2 class="d-flex align-items-center mb-0">
-                                                578
+                                                --- Pending ---
                                             </h2>
                                         </div>
                                     </div>
@@ -244,7 +244,7 @@
                                     <div class="row align-items-center mb-2 d-flex">
                                         <div class="col-8">
                                             <h2 class="d-flex align-items-center mb-0">
-                                                21
+                                                --- Pending ---
                                             </h2>
                                         </div>
                                     </div>

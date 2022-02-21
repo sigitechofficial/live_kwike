@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -14,8 +15,15 @@ class DriverController extends Controller
      */
     public function index()
     {
-        $drivers = User::where('id','>','0')->whereHas('user_role.role', function ($query) {$query->where('name', '=', 'driver');})->with('user_role.role')->get();
-        return view('admin.pages.drivermanagement.all_drivers')->with('drivers',$drivers);
+        $data = (array) null;
+        $drivers = User::where('id','>','0')->has('roles')->get();
+        foreach($drivers as $driver){
+            if($driver->hasRole('Driver')){
+                $data[] = $driver;
+            }
+        }
+
+        return view('admin.pages.drivermanagement.all_drivers')->with('drivers',$data);
     }
 
     /**
@@ -47,7 +55,7 @@ class DriverController extends Controller
      */
     public function show(Request $request)
     {
-        return view('admin.pages.drivermanagement.orders_by_drivers');
+        
     }
 
     /**

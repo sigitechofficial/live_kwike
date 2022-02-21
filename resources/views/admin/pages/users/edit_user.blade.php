@@ -13,7 +13,7 @@
 
     <div class="page-content">
         <div class="main-wrapper">
-            <a class="btn btn-success mb-2" href="{{ route('all_user') }}">Back</a>
+            <a class="btn btn-success mb-2" href="{{ route('user.index') }}">Back</a>
             <!--form layout-->
 
             <div class="row">
