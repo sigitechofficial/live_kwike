@@ -24,7 +24,7 @@ Route::group(['middleware' => [VerifyAPIAccess::class, 'throttle:60,1']], functi
 
     Route::prefix('guest/user')->group(function () {
 
-        Route::post('home', [StoreController::class, 'home']);
+        Route::post('home', [StoreController::class, 'homeCategories']);
         Route::get('product/detail/{product_store_id}', [StoreController::class, 'productDetail']);
         Route::post('category/products', [StoreController::class, 'subCategoriesProduct']);
 
@@ -34,6 +34,12 @@ Route::group(['middleware' => [VerifyAPIAccess::class, 'throttle:60,1']], functi
         Route::prefix('favorites')->group(function (){
             Route::post('/', [StoreController::class, 'favorites']);
             Route::post('add', [StoreController::class, 'addToFavorite']);
+            Route::post('remove', [StoreController::class, 'removeFavorite']);
+        });
+        Route::prefix('address')->group(function (){
+            Route::get('/', [UserController::class, 'userAddress']);
+            Route::post('add', [UserController::class, 'addAddress']);
+            Route::post('remove', [UserController::class, 'removeAddress']);
         });
         Route::prefix('cart')->group(function (){
             Route::get('/',[StoreController::class,'cart']);
@@ -45,7 +51,7 @@ Route::group(['middleware' => [VerifyAPIAccess::class, 'throttle:60,1']], functi
         Route::prefix('stripe')->group(function () {
             Route::get('card/list', [StripeController::class, 'cardList']);
             Route::post('add/card', [StripeController::class, 'addCard']);
-            Route::post('removeCard', [StripeController::class, 'removeCard']);
+            Route::post('remove/card', [StripeController::class, 'removeCard']);
         });
     });
 });

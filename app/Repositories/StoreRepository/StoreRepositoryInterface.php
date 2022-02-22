@@ -13,6 +13,7 @@ interface StoreRepositoryInterface {
     public function productDetail($store_product_id);
     public function favorites($request);
     public function addToFavorite($request);
+    public function removeFavorite($request);
     public function addToCart($request);
     public function Cart();
     public function order($request);

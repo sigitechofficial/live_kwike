@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AddCardRequest;
+use App\Http\Requests\StripeCardRequest;
 use App\Repositories\StripeRepository\StripeRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Resources\StripeCardResource;
@@ -27,18 +27,17 @@ class StripeController extends Controller
         ResponseNow(0, 'Something went wrong.!', 'No card found',200);
 
     }
-    public function addCard(AddCardRequest $request)
+    public function addCard(StripeCardRequest $request)
     {
         $response = $this->stripe->addCard($request);
         ResponseNow('1', 'Card added successfully', null, 200);
 
     }
 
-    public function removeCard(Request $request){
+    public function removeCard(StripeCardRequest $request){
         $response = $this->stripe->removeCard($request);
         if($response){
-            return response()->success(1, 'Card removed successfully', null);
+            ResponseNow(1, 'Card removed successfully', null,200);
         }
-        return response()->error(0, null, 'Something went wrong. Please try again later');
     }
 }

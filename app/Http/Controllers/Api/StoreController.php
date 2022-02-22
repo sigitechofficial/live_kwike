@@ -17,7 +17,7 @@ class  StoreController extends Controller
         $this->store=$store;
     }
 
-    public function home(HomeRequest $request){
+    public function homeCategories(HomeRequest $request){
         $data = $this->store->getNearestStore($request);
         ResponseNow('1', 'welcome to '.$data['store']->name, $data, 200);
     }
@@ -40,6 +40,12 @@ class  StoreController extends Controller
         $data = $this->store->AddToFavorite($request);
         if ($data){
             ResponseNow('1', 'favorite successfully added', null, 200);
+        }
+    }
+    public function removeFavorite(Request $request){
+        $data = $this->store->removeFavorite($request);
+        if ($data){
+            ResponseNow('1', 'favorite successfully remove', null, 200);
         }
     }
     public function cart(){

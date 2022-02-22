@@ -121,6 +121,17 @@ class StoreRepository implements StoreRepositoryInterface
         auth()->user()->favorites()->attach($request->get('product_store_id'));
         return 1;
     }
+    public function removeFavorite($request)
+    {
+        if ($request->get('product_store_id') == null) {
+            errorResponse('0', 'Something went wrong.!', ['product store id is required'], 200);
+        }
+        if (!UserFavorite::where(['user_id' => auth()->id(), 'product_store_id' => $request->get('product_store_id')])->exists()) {
+            errorResponse('0', 'Something went wrong.!', ['Store product id not exist'], 200);
+        }
+        auth()->user()->favorites()->detach($request->get('product_store_id'));
+        return 1;
+    }
 
     public function cart()
     {
