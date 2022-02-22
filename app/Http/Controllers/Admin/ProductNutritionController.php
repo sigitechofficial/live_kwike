@@ -21,7 +21,7 @@ class ProductNutritionController extends Controller
             'Energy',
             'Sugar',
             ];
-        $product_nutritions = ProductNutrition::where('product_id',$product->id)->get();
+        $product_nutritions = ProductNutrition::where('product_id',$product->id)->get();        
         return view('admin.pages.product_nutrition.index')->with('product',$product)->with('product_nutritions',$product_nutritions)->with('nutritions',$nutritions);
     }
 

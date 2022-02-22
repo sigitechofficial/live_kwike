@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DriverController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductNutritionController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -77,16 +79,18 @@ Route::post('admin/category/update/{category}', [CategoryController::class, "upd
 Route::get('admin/category/{category}', [CategoryController::class, "show"])->name('category.show');
 Route::get('admin/category/{category}/{sub_category}', [CategoryController::class, "show_sub"])->name('category.show.sub');
 
+Route::get('admin/products', [ProductController::class, "index"])->name('products');
+Route::get('admin/products_create', [ProductController::class, "create"])->name('products.create');
+Route::post('admin/products_store', [ProductController::class, "store"])->name('products.store');
+Route::get('admin/edit_products', [ProductController::class, "edit"])->name('edit_products');
+
+Route::get('admin/products_nutrition/{product}', [ProductNutritionController::class, "index"])->name('nutrition.index');
+Route::post('admin/products_nutrition/store', [ProductNutritionController::class, "store"])->name('nutrition.store');
+Route::post('admin/products_nutrition/destroy', [ProductNutritionController::class, "destroy"])->name('nutrition.destroy');
+
 Route::get('admin/all_retailer', [App\Http\Controllers\StoreController::class, "index"])->name('all_retailer');
 
-Route::get('admin/products', [App\Http\Controllers\ProductController::class, "index"])->name('products');
-Route::get('admin/products_create', [App\Http\Controllers\ProductController::class, "create"])->name('products.create');
-Route::post('admin/products_store', [App\Http\Controllers\ProductController::class, "store"])->name('products.store');
-Route::get('admin/edit_products', [App\Http\Controllers\ProductController::class, "edit"])->name('edit_products');
 
-Route::get('admin/products_nutrition/{product}', [App\Http\Controllers\ProductNutritionController::class, "index"])->name('nutrition.index');
-Route::post('admin/products_nutrition/store', [App\Http\Controllers\ProductNutritionController::class, "store"])->name('nutrition.store');
-Route::post('admin/products_nutrition/destroy', [App\Http\Controllers\ProductNutritionController::class, "destroy"])->name('nutrition.destroy');
 
 Route::get('admin/edit_user', function () {
     return view('admin.pages.users.edit_user');

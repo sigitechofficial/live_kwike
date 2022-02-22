@@ -8,7 +8,7 @@
                         @if(Session::has('message'))
                         <p class="alert alert-{{ Session::get('alert') }}">{{ Session::get('message') }}</p>
                         @endif
-                        <a href="{{ url()->previous() }}" class="btn btn-success">Back</a>
+                        <a href="{{ route('category.index') }}" class="btn btn-success">Back</a>
                         <h5>Edit Category</h5>
                         <form action="{{ route('category.update',['category'=>$category]) }}" method="post">
                             @csrf

@@ -67,7 +67,14 @@
                                 <li><a href="{{ route('category.create') }}">Add Category</a></li>
                                 <li><a href="{{ route('category.create.sub') }}">Add Sub Category</a></li>
                                 <li><a href="{{ route('category.create.sub.sub') }}">Add Sub Sub Category</a></li>
-                                <li><a href="">View Sub Category</a></li>
+                                <li><a href="{{ route('category.load_sub') }}">View Sub Category</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#forms" class="has-arrow mb-1"><i class="icon-pencil"></i><span>Product Management</span></a>
+                            <ul>
+                                <li><a href="{{ route('products') }}">Products</a></li>
+                                <li><a href="{{ route('products.create') }}">Add Product</a></li>
                             </ul>
                         </li>
                         <li>

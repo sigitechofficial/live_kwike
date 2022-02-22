@@ -10,7 +10,7 @@ class Category extends Model
     use HasFactory;
     protected $guarded = [];
 
-    protected $fillable=['name','image','background_color','is_parent','active'];
+    protected $fillable=['name','image','background_color','parent_id','active'];
 //    protected $casts=['id'=>'integer','name'=>'string','image'=>'string','background_color'=>'string','is_parent'=>'boolean'];
 
     public function subCategories()
