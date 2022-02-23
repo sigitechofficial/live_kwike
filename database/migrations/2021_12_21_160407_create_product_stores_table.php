@@ -16,9 +16,9 @@ class CreateProductStoresTable extends Migration
         Schema::create('product_stores', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('store_id');
-            $table->foreign('store_id')->references('id')->on('stores');
+            $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
             $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->float('price');
             $table->integer('min_order');
             $table->integer('stock');

@@ -6,9 +6,6 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        @if(Session::has('message'))
-                        <p class="alert alert-{{ Session::get('alert') }}">{{ Session::get('message') }}</p>
-                        @endif
                         <div class="row mt-2">
                             <div class="d-flex align-items-center"><b>View Sub-Category of: &nbsp;</b></div>
                             <form action="{{route('category.view_sub')}}" method="post" class="d-flex">
@@ -48,7 +45,7 @@
                                                     @if(isset($sub_category->sub_category) && $sub_category->sub_category->count() > 0)
                                                         <a href="{{route('category.show.sub',['category'=>$category->id,'sub_category'=>$sub_category->id])}}" class="btn btn-primary">View</a>
                                                     @endif
-                                                    <a href="{{route('category.edit',['category'=>$sub_category])}}" class="btn btn-primary">Edit</a>
+                                                    <a href="{{route('category.edit',['category'=>$sub_category->id])}}" class="btn btn-primary">Edit</a>
                                                 </td>
                                             </tr>
                                         @endforeach

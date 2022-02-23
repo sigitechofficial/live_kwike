@@ -66,6 +66,7 @@ Route::get('admin/orders_by_drivers', [DriverController::class, "show"])->name('
 Route::post('admin/update_driver/{id}', [DriverController::class, "update"])->name('driver.update');
 
 Route::get('admin/category', [CategoryController::class, "index"])->name('category.index');
+Route::get('admin/category/change/{id}', [CategoryController::class, "change"])->name('category.change.status');
 
 Route::get('admin/category/create', [CategoryController::class, "create"])->name('category.create');
 Route::get('admin/category/create/sub', [CategoryController::class, "create_sub"])->name('category.create.sub');
@@ -86,6 +87,9 @@ Route::post('admin/products_store', [ProductController::class, "store"])->name('
 Route::get('admin/edit_products', [ProductController::class, "edit"])->name('edit_products');
 
 Route::get('admin/nutritions', [NutritionController::class, "index"])->name('nutritions.index');
+Route::get('admin/nutritions/deleted', [NutritionController::class, "deleted"])->name('nutritions.deleted');
+Route::post('admin/nutritions/restore/{id}', [NutritionController::class, "restore"])->name('nutritions.restore');
+Route::post('admin/nutritions/delete/{id}', [NutritionController::class, "hardDelete"])->name('nutritions.hard.delete');
 Route::get('admin/nutritions/create', [NutritionController::class, "create"])->name('nutritions.create');
 Route::post('admin/nutritions/store', [NutritionController::class, "store"])->name('nutritions.store');
 Route::get('admin/nutritions/edit/{id}', [NutritionController::class, "edit"])->name('nutritions.edit');

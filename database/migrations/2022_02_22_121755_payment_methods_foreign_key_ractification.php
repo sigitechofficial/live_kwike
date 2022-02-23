@@ -27,7 +27,7 @@ class PaymentMethodsForeignKeyRactification extends Migration
     public function down()
     {
         Schema::table('payment_methods', function (Blueprint $table) {
-            $table->dropForeign('payment_method_id');
+            $table->dropForeign(['payment_method_id']);
             $table->dropColumn('payment_method_id');
         });
     }

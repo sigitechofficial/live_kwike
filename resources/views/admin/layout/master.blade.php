@@ -92,13 +92,6 @@
                                 <li><a href="">Pending Requests</a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="#forms" class="has-arrow mb-1"><i class="fa fa-cubes"></i><span>Inventory Products</span></a>
-                            <ul>
-                                <li><a href="">Products</a></li>
-                                <li><a href="">Add Product</a></li>
-                            </ul>
-                        </li>
                     </ul>
                 </nav>
             </div>

@@ -6,9 +6,6 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        @if(Session::has('message'))
-                        <p class="alert alert-{{ Session::get('alert') }}">{{ Session::get('message') }}</p>
-                        @endif
                         <div class="row">
                             <div class="col-md-4 col-lg-4">
                             <a class="btn btn-primary" href="{{ route('category.create') }}">
@@ -36,15 +33,15 @@
                                                 <td>{{ $category->id }}</td>
                                                 <td>{{ $category->name }}</td>
                                                 <td>
-                                                    <!--@if ($category->status == '1')-->
-                                                        <!--<a href="{{route('change_user_status',['id'=>$category->id])}}" class="btn btn-primary">-->
-                                                        <!--    Active-->
-                                                        <!--</a>-->
-                                                    <!--@else    -->
-                                                        <a href="{{route('change_user_status',['id'=>$category->id])}}" class="btn btn-secondary">
+                                                    @if ($category->active == '1')
+                                                        <a href="{{route('category.change.status',['id'=>$category->id])}}" class="btn btn-primary">
+                                                            Active
+                                                        </a>
+                                                    @else    
+                                                        <a href="{{route('category.change.status',['id'=>$category->id])}}" class="btn btn-secondary">
                                                             Disable
                                                         </a>
-                                                    <!--@endif    -->
+                                                    @endif    
                                                     </td>
                                                 </td>
                                                 <td>

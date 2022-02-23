@@ -8,6 +8,23 @@ use Illuminate\Http\Request;
 
 class NutritionController extends Controller
 {
+    /** Display a listing of all deleted resource */
+    public function deleted(){
+        $nutritions = Nutrition::onlyTrashed()->get();
+        return view('admin.pages.nutritions.deleted')->with('nutritions',$nutritions);
+    }
+
+    /** Restore deleted resource */
+    public function restore($id){
+        $nutrition = Nutrition::withTrashed()->find($id);
+        if($nutrition->restore()){
+            return redirect()->back()->with('info','New Nutrition Added');
+        }
+        else{
+            return redirect()->back()->with('danger','Something went wrong');
+        }
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -102,6 +119,15 @@ class NutritionController extends Controller
     {
         $nutrition = Nutrition::find($id);
         if($nutrition->delete()){
+            return redirect()->back()->with('info','Nutrition Deleted');
+        }
+    }
+    
+    /** Permanently Delete the Resource */
+    public function hardDelete($id)
+    {
+        $nutrition = Nutrition::withTrashed()->find($id);
+        if($nutrition->forceDelete()){
             return redirect()->back()->with('info','Nutrition Deleted');
         }
     }
