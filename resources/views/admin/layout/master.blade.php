@@ -78,6 +78,13 @@
                             </ul>
                         </li>
                         <li>
+                            <a href="#forms" class="has-arrow mb-1"><i class="icon-pencil"></i><span>Nutrition Management</span></a>
+                            <ul>
+                                <li><a href="{{ route('nutritions.index') }}">Nutritions</a></li>
+                                <li><a href="{{ route('nutritions.create') }}">Add Nutrition</a></li>
+                            </ul>
+                        </li>
+                        <li>
                             <a href="#forms" class="has-arrow mb-1"><i class="fa fa-car"></i><span>Driver Management</span></a>
                             <ul>
                                 <li ><a href="">Adds Driver</a></li>

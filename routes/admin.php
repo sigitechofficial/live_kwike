@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DriverController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\NutritionController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductNutritionController;
 use App\Http\Controllers\Admin\UserController;
@@ -83,6 +84,13 @@ Route::get('admin/products', [ProductController::class, "index"])->name('product
 Route::get('admin/products_create', [ProductController::class, "create"])->name('products.create');
 Route::post('admin/products_store', [ProductController::class, "store"])->name('products.store');
 Route::get('admin/edit_products', [ProductController::class, "edit"])->name('edit_products');
+
+Route::get('admin/nutritions', [NutritionController::class, "index"])->name('nutritions.index');
+Route::get('admin/nutritions/create', [NutritionController::class, "create"])->name('nutritions.create');
+Route::post('admin/nutritions/store', [NutritionController::class, "store"])->name('nutritions.store');
+Route::get('admin/nutritions/edit/{id}', [NutritionController::class, "edit"])->name('nutritions.edit');
+Route::post('admin/nutritions/update/{id}', [NutritionController::class, "update"])->name('nutritions.update');
+Route::post('admin/nutritions/destroy/{id}', [NutritionController::class, "destroy"])->name('nutritions.destroy');
 
 Route::get('admin/products_nutrition/{product}', [ProductNutritionController::class, "index"])->name('nutrition.index');
 Route::post('admin/products_nutrition/store', [ProductNutritionController::class, "store"])->name('nutrition.store');

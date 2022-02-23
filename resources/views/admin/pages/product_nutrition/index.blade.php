@@ -25,7 +25,7 @@
                 
                 <div class="card">
                     <div class="card-body">
-                        @if(isset($nutritions) && sizeof($nutritions) > 0)
+                        @if(isset($nutritions) && $nutritions->count() > 0)
                         <div class="row">
                             <div class="col-md-3 col-3">
                                 <label class="form-label">Typical Values</label>
@@ -47,7 +47,7 @@
                                     <div class="row m-2">
                                         <div class="col-md-3 col-3">
                                             <input name="product_id" type="hidden" value="{{ $product->id }}">
-                                            <input name="typical_values" type="text" value="{{ $nutrition }}" class="form-control" required>
+                                            <input name="typical_values" type="text" value="{{ $nutrition->typical_values }}" class="form-control" required>
                                         </div>
                                         <div class="col-md-3 col-3">
                                             <input name="per_100g_of_product" type="text" class="form-control" required>

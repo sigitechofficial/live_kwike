@@ -4,22 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Nutrition;
-use App\Models\ProductNutrition;
-use App\Models\Product;
 use Illuminate\Http\Request;
 
-class ProductNutritionController extends Controller
+class NutritionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Product $product)
+    public function index()
     {
         $nutritions = Nutrition::all();
-        $product_nutritions = ProductNutrition::where('product_id',$product->id)->get();        
-        return view('admin.pages.product_nutrition.index')->with('product',$product)->with('product_nutritions',$product_nutritions)->with('nutritions',$nutritions);
+        return view('admin.pages.nutritions.index')->with('nutritions',$nutritions);
     }
 
     /**
@@ -29,7 +26,7 @@ class ProductNutritionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.nutritions.create');
     }
 
     /**
@@ -42,9 +39,9 @@ class ProductNutritionController extends Controller
     {
         // dd($request->all());
         $data = $request->except(['_token']);
-        $product_nutrition = ProductNutrition::create($data);
+        $product_nutrition = Nutrition::create($data);
         if($product_nutrition){
-            return redirect()->back()->with('info','New Product Nutrition Added');
+            return redirect()->back()->with('info','New Nutrition Added');
         }
         else{
             return redirect()->back()->with('danger','Something went wrong');
@@ -54,10 +51,10 @@ class ProductNutritionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ProductNutrition  $productNutrition
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(ProductNutrition $productNutrition)
+    public function show($id)
     {
         //
     }
@@ -65,40 +62,47 @@ class ProductNutritionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ProductNutrition  $productNutrition
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ProductNutrition $productNutrition)
+    public function edit($id)
     {
-        //
+        $nutrition = Nutrition::find($id);
+        return view('admin.pages.nutritions.edit')->with('nutrition',$nutrition); 
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ProductNutrition  $productNutrition
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProductNutrition $productNutrition)
+    public function update(Request $request, $id)
     {
-        //
+        // dd($request->all());
+        $data = $request->except(['_token']);
+        $nutrition = Nutrition::find($id);
+        $nutrition->update($data);
+        if($nutrition){
+            return redirect()->back()->with('info','New Nutrition Updated');
+        }
+        else{
+            return redirect()->back()->with('danger','Something went wrong');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ProductNutrition  $productNutrition
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        $productNutrition = ProductNutrition::find($request->id);
-        if($productNutrition->delete()){
-            return redirect()->back()->with('info','Product Nutrition Deleted');
-        }
-        else{
-            return redirect()->back()->with('danger','Something went wrong');
+        $nutrition = Nutrition::find($id);
+        if($nutrition->delete()){
+            return redirect()->back()->with('info','Nutrition Deleted');
         }
     }
 }
