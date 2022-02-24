@@ -10,7 +10,7 @@ use App\Models\Category;
 use App\Repositories\StoreRepository\StoreRepositoryInterface;
 use Illuminate\Http\Request;
 
-class StoreController extends Controller
+class  StoreController extends Controller
 {
     public $store;
     public function __construct(StoreRepositoryInterface $store){
