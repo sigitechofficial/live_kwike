@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\NutritionController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductNutritionController;
+use App\Http\Controllers\Admin\ProductTagController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -65,6 +67,13 @@ Route::get('admin/edit_driver', [DriverController::class, "edit"])->name('edit_d
 Route::get('admin/orders_by_drivers', [DriverController::class, "show"])->name('orders_by_drivers');
 Route::post('admin/update_driver/{id}', [DriverController::class, "update"])->name('driver.update');
 
+Route::get('admin/tags',[TagController::class, "index"])->name('tags.index');
+Route::get('admin/tags/create',[TagController::class, "create"])->name('tags.create');
+Route::get('admin/tags/edit/{id}',[TagController::class, "edit"])->name('tags.edit');
+Route::post('admin/tags/update/{id}',[TagController::class, "update"])->name('tags.update');
+Route::post('admin/tags/destroy/{id}',[TagController::class, "destroy"])->name('tags.destroy');
+Route::post('admin/tags/store',[TagController::class, "store"])->name('tags.store');
+
 Route::get('admin/category', [CategoryController::class, "index"])->name('category.index');
 Route::get('admin/category/change/{id}', [CategoryController::class, "change"])->name('category.change.status');
 
@@ -84,6 +93,7 @@ Route::get('admin/category/{category}/{sub_category}', [CategoryController::clas
 Route::get('admin/products', [ProductController::class, "index"])->name('products');
 Route::get('admin/products_create', [ProductController::class, "create"])->name('products.create');
 Route::post('admin/products_store', [ProductController::class, "store"])->name('products.store');
+Route::post('admin/products_store/destroy/{id}', [ProductController::class, "destroy"])->name('products.destroy');
 Route::get('admin/edit_products', [ProductController::class, "edit"])->name('edit_products');
 
 Route::get('admin/nutritions', [NutritionController::class, "index"])->name('nutritions.index');
@@ -99,6 +109,10 @@ Route::post('admin/nutritions/destroy/{id}', [NutritionController::class, "destr
 Route::get('admin/products_nutrition/{product}', [ProductNutritionController::class, "index"])->name('nutrition.index');
 Route::post('admin/products_nutrition/store', [ProductNutritionController::class, "store"])->name('nutrition.store');
 Route::post('admin/products_nutrition/destroy', [ProductNutritionController::class, "destroy"])->name('nutrition.destroy');
+
+Route::get('admin/products_tag/{product}', [ProductTagController::class, "index"])->name('tag.index');
+Route::post('admin/products_tag/store', [ProductTagController::class, "store"])->name('tag.store');
+Route::post('admin/products_tag/destroy', [ProductTagController::class, "destroy"])->name('tag.destroy');
 
 Route::get('admin/all_retailer', [App\Http\Controllers\StoreController::class, "index"])->name('all_retailer');
 

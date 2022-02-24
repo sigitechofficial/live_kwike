@@ -20,17 +20,7 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Add Retailer</h5>
-                            <!--<div class="row">-->
-                            <!--    <div class="col-md-6 col-lg-6">-->
-                            <!--        <label for="formFile" class="form-label">Default file input example</label>-->
-                            <!--        <input class="form-control shadow-sm" type="file" id="formFile">-->
-                            <!--    </div>-->
-                            <!--    <div class="col-md-6 col-lg-6">-->
-                            <!--        <label for="formFile" class="form-label">Default file input example</label>-->
-                            <!--        <input class="form-control shadow-sm" type="file" id="formFile">-->
-                            <!--    </div>-->
-                            <!--</div>-->
+                            <h5 class="card-title">Add User</h5>
 
                             <div class="row mt-5">
                                 <div class="col-md-6 col-lg-6">
@@ -42,13 +32,6 @@
                                     <input type="text" class="form-control shadow-sm" placeholder="" aria-label="">
                                 </div>
                             </div>
-                            <!--<div class="row mt-5">-->
-                            <!--    <div class="col-md-12 col-lg-12">-->
-                            <!--        <label for="formFile" class="form-label">Description *</label>-->
-                            <!--        <textarea type="" class="form-control shadow-sm" placeholder="" aria-label="First name"></textarea>-->
-                            <!--    </div>-->
-
-                            <!--</div>-->
                             <div class="row mt-5">
                                 <div class="col-md-6 col-lg-6">
                                     <label for="formFile" class="form-label">Email</label>
@@ -59,19 +42,6 @@
                                     <input type="password" class="form-control shadow-sm" placeholder="" aria-label="">
                                 </div>
                             </div>
-                            <!--<div class="row mt-5">-->
-                            <!--    <div class="col-md-6 col-ld-6">-->
-                            <!--        <label for="formFile" class="form-label">Store Type</label>-->
-                            <!--        <select class="form-select shadow-sm" id="autoSizingSelect">-->
-                            <!--            <option selected>Choose...</option>-->
-                            <!--            <option value="1">One</option>-->
-                            <!--            <option value="2">Two</option>-->
-                            <!--            <option value="3">Three</option>-->
-                            <!--        </select>-->
-                            <!--    </div>-->
-
-                            <!--</div>-->
-
 
                             <div class="row mt-5">
                                 <div class="col-md-6 col-lg-6">

@@ -53,14 +53,6 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#uiElements" class="has-arrow mb-1"><i class="icon-users"></i><span>Retailer Management</span></a>
-                            <ul>
-                                <li><a href=""> Add Retail</a></li>
-                                <li><a href=""> Pending Retailer</a></li>
-                                <li><a href=""> All Retailers</a></li>
-                            </ul>
-                        </li>
-                        <li>
                             <a href="#forms" class="has-arrow mb-1"><i class="icon-pencil"></i><span>Category Management</span></a>
                             <ul>
                                 <li><a href="{{ route('category.index') }}">Main Categories</a></li>
@@ -82,6 +74,13 @@
                             <ul>
                                 <li><a href="{{ route('nutritions.index') }}">Nutritions</a></li>
                                 <li><a href="{{ route('nutritions.create') }}">Add Nutrition</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#forms" class="has-arrow mb-1"><i class="icon-pencil"></i><span>Tags Management</span></a>
+                            <ul>
+                                <li><a href="{{ route('tags.index') }}">Tags</a></li>
+                                <li><a href="{{ route('tags.create') }}">Add Tag</a></li>
                             </ul>
                         </li>
                         <li>

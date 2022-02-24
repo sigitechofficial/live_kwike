@@ -28,7 +28,9 @@ class Product extends Model
         'expiration_date',
         'disclaimer',
         'active',
-        'is_18_plus'
+        'is_18_plus',
+        'discount',
+        'discount_price',
     ];
     protected $casts = [
         'id' => 'integer',

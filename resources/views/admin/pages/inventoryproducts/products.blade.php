@@ -46,7 +46,9 @@
                                         <tr>
                                             <td>{{ $count }}</td>
                                             <td>{{ $product->title }}</td>
-                                            <td>{{ $product->image }}</td>
+                                            <td>
+                                                <img src="{{ asset($product->image) }}" class="img-fluid" width="120">
+                                            </td>
                                             <td>{{ $product->price }}</td>
                                             <td>{{ $product->discount }}</td>
                                             <td>{{ $product->discount_price }}</td>
@@ -57,9 +59,14 @@
                                             <td>{{ $product->country_of_origin }}</td>
                                             <td>{{ $product->manufacturer }}</td>
                                             <td>
-                                                <div style="display: flex;">&nbsp;
-                                                    <a href="{{route('nutrition.index',['product'=>$product])}}" class="btn btn-primary">Add Nutritions</a>&nbsp;
+                                                <div style="display: flex;">
+                                                    <a href="{{route('nutrition.index',['product'=>$product])}}" class="btn btn-primary">Add Nutritions</a>
+                                                    <a href="{{route('tag.index',['product'=>$product])}}" class="btn btn-primary">Add Tags</a>
                                                     <a href="{{ route('edit_products',['product'=>$product]) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                                                    <form action="{{ route('products.destroy',['id'=>$product->id]) }}" method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                                    </form>
                                                 </div>
                                             </td>
                                     </tr>

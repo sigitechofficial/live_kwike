@@ -41,11 +41,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->except(['_token','image','category_id']);
+        $data = $request->except(['_token','category_id']);
         $data['slug'] = Str::slug($request->title);
-        $data['image'] = Str::slug($request->title).".png";
+
+        
         $product = Product::create($data);
-        if($product){
+        
+        $image = $product->id."image-".time().'.'.$request->image->extension();  
+        $request->image->move(public_path('productimage'),$image);
+        $product->image = 'productimage/'.$image;
+        
+        if($product->save()){
             $category_id = $request->category_id;
             $product_id = $product->id;
             CategoryProduct::create([
@@ -100,8 +106,15 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        unlink($product->image);
+        if($product->delete()){
+            return redirect()->back()->with('info','product deleted');
+        }
+        else{
+            return redirect()->back()->with('danger','something went wrong');
+        }
     }
 }
