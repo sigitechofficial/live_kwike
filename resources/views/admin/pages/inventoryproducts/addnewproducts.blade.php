@@ -6,7 +6,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5>Add New Product</h5>
-                        <form action="{{route('products.store')}}" method="post">
+                        <form action="{{route('products.store')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row mt-5">
                                 <div class="mb-2 col-md-6 col-lg-6 col-12">
@@ -116,7 +116,7 @@
                                 <div class="mb-2">
                                     <label class="form-label">Category</label>
                                     <select id="main_category" class="form-control" required>
-                                        <option>None</option>
+                                        <option value="">None</option>
                                         @foreach($parent_categories as $parent_category)
                                         <option value="{{ $parent_category->id }}">{{ $parent_category->name }}</option>
                                         @endforeach
@@ -134,9 +134,11 @@
                                     </select>
                                 </div>
                                 <p id="working" style="display:none;">Working...</p>
+                                <button type="submit" class="btn btn-primary">Add Product</button>
+                            @else
+                                <div class="alert alert-danger">Category not created,  Cannot be submitted without categories</div>
                             @endif
                             
-                            <button type="submit" class="btn btn-primary">Add Product</button>
                         </form>
                     </div>
                 </div>
@@ -165,7 +167,7 @@
                     options += data[x].name;
                     options += "</option>";
                 }
-                document.getElementById('sub_category').innerHTML = "<option>None</option>";
+                document.getElementById('sub_category').innerHTML = "<option value=''>None</option>";
                 document.getElementById('sub_category').innerHTML += options;
                 working.style.display = "none";
             }
@@ -193,7 +195,7 @@
                     options += data[x].name;
                     options += "</option>";
                 }
-                document.getElementById('sub_sub_category').innerHTML = "<option>None</option>";
+                document.getElementById('sub_sub_category').innerHTML = "<option value=''>None</option>";
                 document.getElementById('sub_sub_category').innerHTML += options;
                 working.style.display = "none";
             }

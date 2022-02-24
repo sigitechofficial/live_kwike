@@ -15,6 +15,7 @@ return array(
     'App\\Http\\Controllers\\Admin\\ProductController' => $baseDir . '/app/Http/Controllers/Admin/ProductController.php',
     'App\\Http\\Controllers\\Admin\\ProductNutritionController' => $baseDir . '/app/Http/Controllers/Admin/ProductNutritionController.php',
     'App\\Http\\Controllers\\Admin\\StoreController' => $baseDir . '/app/Http/Controllers/Admin/StoreController.php',
+    'App\\Http\\Controllers\\Admin\\TagController' => $baseDir . '/app/Http/Controllers/Admin/TagController.php',
     'App\\Http\\Controllers\\Admin\\UserController' => $baseDir . '/app/Http/Controllers/Admin/UserController.php',
     'App\\Http\\Controllers\\Api\\AuthController' => $baseDir . '/app/Http/Controllers/Api/AuthController.php',
     'App\\Http\\Controllers\\Api\\StoreController' => $baseDir . '/app/Http/Controllers/Api/StoreController.php',
