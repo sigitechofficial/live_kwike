@@ -10,8 +10,8 @@
                                 <a href="{{route('nutritions.create')}}" class="btn btn-primary" >
                                     Add Nutrition
                                 </a>
-                                <a href="{{route('nutritions.deleted')}}" class="btn btn-primary" >
-                                    View Deleted
+                                <a href="{{route('nutritions.index')}}" class="btn btn-primary" >
+                                    All Nutritions
                                 </a>
                             </div>
                         </div>
@@ -41,13 +41,13 @@
                                             <td>{{ $nutrition->typical_values }}</td>
                                             <td>
                                                 <div style="display: flex;">
-                                                    <a href="{{ route('nutritions.edit',['id'=>$nutrition->id]) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-                                                    {{-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button> --}}
-                                                    <form action="{{ route('nutritions.destroy',['id'=>$nutrition->id]) }}" method="post">
+                                                    <form action="{{ route('nutritions.hard.delete',['id'=>$nutrition->id]) }}" method="post">
                                                         @csrf
-                                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                                        <button class="btn btn-danger" type="submit">Permanent Delete</button>
+                                                    </form>
+                                                    <form action="{{ route('nutritions.restore',['id'=>$nutrition->id]) }}" method="post">
+                                                        @csrf
+                                                        <button class="btn btn-success" type="submit">Restore</button>
                                                     </form>
                                                 </div>
                                             </td>

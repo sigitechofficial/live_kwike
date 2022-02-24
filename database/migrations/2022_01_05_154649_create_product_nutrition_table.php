@@ -16,7 +16,7 @@ class CreateProductNutritionTable extends Migration
         Schema::create('product_nutrition', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->string('typical_values');
             $table->string('per_100g_of_product');
             $table->string('ri_per_100g');

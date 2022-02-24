@@ -165,7 +165,8 @@
                     options += data[x].name;
                     options += "</option>";
                 }
-                document.getElementById('sub_category').innerHTML = options;
+                document.getElementById('sub_category').innerHTML = "<option>None</option>";
+                document.getElementById('sub_category').innerHTML += options;
                 working.style.display = "none";
             }
           };
@@ -192,7 +193,8 @@
                     options += data[x].name;
                     options += "</option>";
                 }
-                document.getElementById('sub_sub_category').innerHTML = options;
+                document.getElementById('sub_sub_category').innerHTML = "<option>None</option>";
+                document.getElementById('sub_sub_category').innerHTML += options;
                 working.style.display = "none";
             }
           };

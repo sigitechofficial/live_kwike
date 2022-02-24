@@ -16,8 +16,10 @@ class CreateUserStoreTable extends Migration
         Schema::create('user_store', function (Blueprint $table) {
             $table->id();
             $table->uuid('user_id');
-            $table->bigInteger('store_id');
-
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('store_id');
+            $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

@@ -8,6 +8,24 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    public function change($id){
+        $category = Category::find($id);
+        
+        if($category->active == 1){
+            $category->active = 0;
+        }
+        else{
+            $category->active = 1;
+        }
+
+        if($category->save()){
+            return redirect()->back()->with('alert','info')->with('message','Category Status Changed');
+        }
+        else{
+            return redirect()->back()->with('alert','danger')->with('message','Something Wrong');
+        }
+
+    }
     public function load_sub(Request $request){
         $parent_ids = Category::where('active','1')->where('parent_id','=',null)->pluck('id')->toarray();
         $categories = Category::where('active','1')->wherein('id',$parent_ids)->with('subCategories')->get();
@@ -27,8 +45,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $parent_ids = Category::where('active','1')->where('parent_id','=',null)->pluck('id')->toarray();
-        $categories = Category::where('active','1')->wherein('id',$parent_ids)->with('subCategories')->get();
+        $parent_ids = Category::where('parent_id','=',null)->pluck('id')->toarray();
+        $categories = Category::wherein('id',$parent_ids)->with('subCategories')->get();
         return view('admin.pages.categorymanagement.all_category')->with('categories',$categories);
     }
 
@@ -150,10 +168,10 @@ class CategoryController extends Controller
         }
         
         if($category->update($data)){
-            return redirect($request->back_url)->with('alert','info')->with('message','Category Updated');
+            return redirect()->route('category.load_sub')->with('alert','info')->with('message','Category Updated');
         }
         else{
-            return redirect($request->back_url)->with('alert','danger')->with('message','Something Wrong');
+            return redirect()->route('category.load_sub')->with('alert','danger')->with('message','Something Wrong');
         }
     }
 

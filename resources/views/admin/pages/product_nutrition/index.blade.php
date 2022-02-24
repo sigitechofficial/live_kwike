@@ -25,7 +25,7 @@
                 
                 <div class="card">
                     <div class="card-body">
-                        @if(isset($nutritions) && $nutritions->count() > 0)
+                        @if(isset($nutritions) && sizeof($nutritions) > 0)
                         <div class="row">
                             <div class="col-md-3 col-3">
                                 <label class="form-label">Typical Values</label>
