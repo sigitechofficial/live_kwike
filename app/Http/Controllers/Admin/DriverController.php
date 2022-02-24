@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 
-class UserController extends Controller
+class DriverController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,15 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('id','>','0')->get();
-        return view('admin.pages.users.all_user')->with('users',$users);
+        $data = (array) null;
+        $drivers = User::where('id','>','0')->has('roles')->get();
+        foreach($drivers as $driver){
+            if($driver->hasRole('Driver')){
+                $data[] = $driver;
+            }
+        }
+
+        return view('admin.pages.drivermanagement.all_drivers')->with('drivers',$data);
     }
 
     /**
@@ -26,9 +33,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.users.add_user');
+        //
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -49,8 +55,7 @@ class UserController extends Controller
      */
     public function show(Request $request)
     {
-        $user = User::find($request->id);
-        return view('admin.pages.users.view_userorderhistory')->with('user',$user);
+        
     }
 
     /**
@@ -61,9 +66,8 @@ class UserController extends Controller
      */
     public function edit(Request $request)
     {
-        $id = $request->id;
-        $user = User::find($id);
-        return view('admin.pages.users.edit_user')->with('user',$user);
+        $driver = User::find($request->id);
+        return view('admin.pages.drivermanagement.edit_driver')->with('driver',$driver);
     }
 
     /**
@@ -73,7 +77,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
         $user = User::find($id);
         $user->first_name = $request->first_name;

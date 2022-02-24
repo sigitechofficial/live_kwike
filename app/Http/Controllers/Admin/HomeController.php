@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
 
-class UserController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('id','>','0')->get();
-        return view('admin.pages.users.all_user')->with('users',$users);
+        $total_users = User::count();
+        
+        return view('admin.pages.home')
+            ->with('total_users',$total_users);
     }
 
     /**
@@ -26,9 +28,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.users.add_user');
+        //
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -47,10 +48,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($id)
     {
-        $user = User::find($request->id);
-        return view('admin.pages.users.view_userorderhistory')->with('user',$user);
+        //
     }
 
     /**
@@ -59,11 +59,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request)
+    public function edit($id)
     {
-        $id = $request->id;
-        $user = User::find($id);
-        return view('admin.pages.users.edit_user')->with('user',$user);
+        //
     }
 
     /**
@@ -75,18 +73,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
-        
-        if($user->save()){
-            return redirect()->back()->with('alert','success')->with('message',"User Record Updated");
-        }
-        else{
-            return redirect()->back()->with('alert','danger')->with('message',"Something Went Wrong");
-        }
+        //
     }
 
     /**

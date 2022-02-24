@@ -9,6 +9,11 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class CategoryProduct extends Model
 {
     use HasFactory;
+    protected $table = "category_product";
+    protected $fillable = [
+        'product_id',
+        'category_id',
+    ];
 
     public function product()
     {

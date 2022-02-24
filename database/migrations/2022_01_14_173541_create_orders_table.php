@@ -15,13 +15,16 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->uuid('user_id');
+            $table->string('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('store_id');
             $table->foreign('store_id')->references('id')->on('stores');
-            $table->unsignedBigInteger('payment_method_id');
             $table->string('is_paid')->nullable();
-            $table->foreign('payment_method_id')->references('id')->on('payment_methods');
+            
+            // below mentioned declaration assigned in another migration to avoid foreign key constraint in current migration
+            // $table->unsignedBigInteger('payment_method_id');
+            // $table->foreign('payment_method_id')->references('id')->on('payment_methods');
+            
             $table->double('tax')->nullable();
             $table->double('sub_total')->nullable();
             $table->double('total')->nullable();
