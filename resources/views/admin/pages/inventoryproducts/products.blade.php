@@ -47,7 +47,7 @@
                                             <td>{{ $count }}</td>
                                             <td>{{ $product->title }}</td>
                                             <td>
-                                                <img src="{{ asset($product->image) }}" class="img-fluid" width="120">
+                                                <img src="{{ asset('storage/app/public/images/'.$product->image) }}" class="img-fluid" width="120">
                                             </td>
                                             <td>{{ $product->price }}</td>
                                             <td>{{ $product->discount }}</td>

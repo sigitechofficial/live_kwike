@@ -13,7 +13,7 @@ class PaymentMethodsForeignKeyRactification extends Migration
      */
     public function up()
     {
-        Schema::table('payment_methods', function (Blueprint $table) {
+        Schema::table('orders', function (Blueprint $table) {
             $table->unsignedBigInteger('payment_method_id');
             $table->foreign('payment_method_id')->references('id')->on('payment_methods');
         });
@@ -26,7 +26,7 @@ class PaymentMethodsForeignKeyRactification extends Migration
      */
     public function down()
     {
-        Schema::table('payment_methods', function (Blueprint $table) {
+        Schema::table('orders', function (Blueprint $table) {
             $table->dropForeign(['payment_method_id']);
             $table->dropColumn('payment_method_id');
         });

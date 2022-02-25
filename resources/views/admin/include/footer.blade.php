@@ -53,31 +53,31 @@
 </script>
 
 <!-- Javascript -->
-<script src="{{asset('assets/bundles/libscripts.bundle.js')}}"></script>
-<script src="{{asset('assets/bundles/vendorscripts.bundle.js')}}"></script>
-<script src="{{asset('assets/bundles/mainscripts.bundle.js')}}"></script>
-<script src="{{asset('assets/js/index.js')}}"></script>
+<script src="{{asset('public/assets/bundles/libscripts.bundle.js')}}"></script>
+<script src="{{asset('public/assets/bundles/vendorscripts.bundle.js')}}"></script>
+<script src="{{asset('public/assets/bundles/mainscripts.bundle.js')}}"></script>
+<script src="{{asset('public/assets/js/index.js')}}"></script>
 
 
 <!--Table/Data Table JS-->
-<script src="{{asset('assets/bundles/datatablescripts.bundle.js')}}"></script>
-<script src="{{asset('assets/vendor/jquery-datatable/buttons/dataTables.buttons.min.js')}}"></script>
-<script src="{{asset('assets/vendor/jquery-datatable/buttons/buttons.bootstrap4.min.js')}}"></script>
-<script src="{{asset('assets/bundles/mainscripts.bundle.js')}}"></script>
-<script src="{{asset('assets/js/pages/tables/jquery-datatable.js')}}"></script>
+<script src="{{asset('public/assets/bundles/datatablescripts.bundle.js')}}"></script>
+<script src="{{asset('public/assets/vendor/jquery-datatable/buttons/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('public/assets/vendor/jquery-datatable/buttons/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{asset('public/assets/bundles/mainscripts.bundle.js')}}"></script>
+<script src="{{asset('public/assets/js/pages/tables/jquery-datatable.js')}}"></script>
 
 
 <!--Image Uplaod And View JS -->
-<script src="{{asset('assets/vendor/dropify/js/dropify.min.js')}}"></script>
-<script src="{{asset('assets/js/pages/forms/dropify.js')}}"></script>
+<script src="{{asset('public/assets/vendor/dropify/js/dropify.min.js')}}"></script>
+<script src="{{asset('public/assets/js/pages/forms/dropify.js')}}"></script>
 
 <!--Multi Select JS -->
-<script src="{{asset('assets/vendor/multi-select/js/jquery.multi-select.js')}}"></script><!-- Multi Select Plugin Js -->
-<script src="{{asset('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js')}}"></script>
+<script src="{{asset('public/assets/vendor/multi-select/js/jquery.multi-select.js')}}"></script><!-- Multi Select Plugin Js -->
+<script src="{{asset('public/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js')}}"></script>
 
 <!--Summer Notes JS -->
-<script src="{{asset('assets/bundles/mainscripts.bundle.js')}}"></script>
-<script src="{{asset('assets/vendor/summernote/dist/summernote.js')}}"></script>
+<script src="{{asset('public/assets/bundles/mainscripts.bundle.js')}}"></script>
+<script src="{{asset('public/assets/vendor/summernote/dist/summernote.js')}}"></script>
 
 <script>
     $(function () {

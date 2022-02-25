@@ -22,9 +22,9 @@ class StripeController extends Controller
         if(!is_null($response)){
             $default_card = StripeCardResource::make($response['default_card']);
             $otherCards = StripeCardResource::collection($response['cards']['data']);
-            ResponseNow(1, 'list of cards', ['default_card' => $default_card, 'other_cards' => $otherCards],200);
+            ResponseNow('1', 'list of cards', ['default_card' => $default_card, 'other_cards' => $otherCards],200);
         }
-        ResponseNow(0, 'Something went wrong.!', 'No card found',200);
+        ResponseNow('0', 'Something went wrong.!', 'No card found',200);
 
     }
     public function addCard(AddCardRequest $request)
@@ -37,8 +37,8 @@ class StripeController extends Controller
     public function removeCard(Request $request){
         $response = $this->stripe->removeCard($request);
         if($response){
-            return response()->success(1, 'Card removed successfully', null);
+            return response()->success('1', 'Card removed successfully', null);
         }
-        return response()->error(0, null, 'Something went wrong. Please try again later');
+        return response()->error('0', null, 'Something went wrong. Please try again later');
     }
 }

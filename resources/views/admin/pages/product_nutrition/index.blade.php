@@ -1,5 +1,14 @@
 @extends('admin.layout.master')
 @section('content')
+<style>
+    .form-control{
+        border: transparent!important;
+    }
+    .form-control:focus{
+        border: 1px solid blue!important;
+    }
+</style>
+
     <div class="page-content">
         <div class="main-wrapper">
             <div class="col">
@@ -26,73 +35,58 @@
                 <div class="card">
                     <div class="card-body">
                         @if(isset($nutritions) && sizeof($nutritions) > 0)
-                        <div class="row">
-                            <div class="col-md-3 col-3">
-                                <label class="form-label">Typical Values</label>
-                            </div>
-                            <div class="col-md-3 col-3">
-                                <label class="form-label">Per 100g of Product</label>
-                            </div>
-                            <div class="col-md-3 col-3">
-                                <label class="form-label">% RI Per 100g</label>
-                            </div>
-                            <div class="col-md-3 col-3"></div>
-                        </div>
-                            @foreach($nutritions as $nutrition)
-                            @if($product_nutritions->where('typical_values',$nutrition)->first())
-                            @else
-                                <form action="{{route('nutrition.store')}}" method="post">
-                                    @csrf
-                                    
-                                    <div class="row m-2">
-                                        <div class="col-md-3 col-3">
-                                            <input name="product_id" type="hidden" value="{{ $product->id }}">
-                                            <input name="typical_values" type="text" value="{{ $nutrition->typical_values }}" class="form-control" required>
-                                        </div>
-                                        <div class="col-md-3 col-3">
-                                            <input name="per_100g_of_product" type="text" class="form-control" required>
-                                        </div>
-                                        <div class="col-md-3 col-3">
-                                            <input name="ri_per_100g" type="text" class="form-control" required>
-                                        </div>
-                                        <div class="col-md-3 col-3">
-                                            <button type="submit" class="btn btn-primary">Add Product Nutrition</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            @endif
-                            @endforeach
-                        @endif
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        @if(isset($product_nutritions) && $product_nutritions->count() > 0)
-                        <table class="table table-bordered table-hover js-basic-example dataTable table-custom">
-                            <thead>
-                                <th>ID</th>
+                        <table class="table table-bordered">
+                            <tr>
                                 <th>Typical Values</th>
                                 <th>Per 100g of Product</th>
                                 <th>% RI Per 100g</th>
                                 <th>Action</th>
-                            </thead>
-                            <tbody>
-                                @foreach($product_nutritions as $product_nutrition)
-                                    <tr>
-                                        <td>{{ $product_nutrition->id }}</td>
-                                        <td>{{ $product_nutrition->typical_values }}</td>
-                                        <td>{{ $product_nutrition->per_100g_of_product }}</td>
-                                        <td>{{ $product_nutrition->ri_per_100g }}</td>
-                                        <td>
-                                            <form action="{{ route('nutrition.destroy') }}" method="post">
-                                                @csrf
-                                                <input type="hidden" name="id" value="{{ $product_nutrition->id }}">
-                                                <button class="btn btn-danger">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
+                            </tr>
+                            @foreach($nutritions as $nutrition)
+                            <tr>
+                                <form action="{{route('nutrition.store')}}" method="post" >
+                                    @csrf
+                                    
+                                    <td>
+                                        <input name="product_id" type="hidden" value="{{ $product->id }}">
+                                        <input name="typical_values" type="hidden" value="{{ $nutrition->typical_values }}" class="form-control" required>
+                                        {{ $nutrition->typical_values }}
+                                    </td>
+                                    
+                                    <td>
+                                        <input
+                                        name="per_100g_of_product"
+                                        type="text" 
+                                        value="{{ $product_nutritions->where('typical_values',$nutrition->typical_values)->where('product_id',$product->id)->first()->per_100g_of_product ?? "" }}"
+                                        class="form-control" 
+                                        required
+                                        >
+                                    </td>
+                                    
+                                    <td>
+                                    <input 
+                                    name="ri_per_100g"
+                                    type="text"
+                                    value="{{ $product_nutritions->where('typical_values',$nutrition->typical_values)->where('product_id',$product->id)->first()->ri_per_100g ?? "" }}"
+                                    class="form-control" 
+                                    required
+                                    >
+                                </td>
+                                <td>
+                                    <div class="d-flex">
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                        </form>&nbsp;
+                                        @if($product_nutritions->where('typical_values',$nutrition->typical_values)->where('product_id',$product->id)->first() != Null)
+                                        <form action="{{ route('nutrition.destroy') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" value="{{ $product_nutritions->where('typical_values',$nutrition->typical_values)->where('product_id',$product->id)->first()->id }}" name="id">
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                        @endif
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
                         </table>
                         @endif
                     </div>

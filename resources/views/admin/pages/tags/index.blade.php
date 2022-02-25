@@ -39,7 +39,7 @@
                                                 <td>{{ $count }}</td>
                                                 <td>{{$tag->name}}</td>
                                                 <td>
-                                                    <img src="{{ asset($tag->icon) }}" class="img-fluid" width="120">
+                                                    <img src="{{ asset('/storage/app/public/images/'.$tag->icon) }}" class="img-fluid" width="120">
                                                 </td>
                                                 <td>
                                                     {{$tag->created_at}}

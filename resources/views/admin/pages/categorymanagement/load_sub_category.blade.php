@@ -38,11 +38,13 @@
                                         @foreach($sub_categories as $sub_category)
                                             <tr>
                                                 <td>{{ $sub_category->id }}</td>
-                                                <td>{{ $sub_category->image }}</td>
+                                                <td>
+                                                    <img src="{{ asset('storage/app/public/images/'.$sub_category->image) }}" class="img-fluid" width="120">
+                                                </td>
                                                 <td>{{ $sub_category->name }}</td>
                                                 <td>{{ $sub_category->background_color }}</td>
                                                 <td>
-                                                    @if(isset($sub_category->sub_category) && $sub_category->sub_category->count() > 0)
+                                                    @if(isset($sub_category->subCategories) && $sub_category->subCategories->count() > 0)
                                                         <a href="{{route('category.show.sub',['category'=>$category->id,'sub_category'=>$sub_category->id])}}" class="btn btn-primary">View</a>
                                                     @endif
                                                     <a href="{{route('category.edit',['category'=>$sub_category->id])}}" class="btn btn-primary">Edit</a>

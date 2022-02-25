@@ -89,7 +89,9 @@ class CategoryController extends Controller
             $data['parent_id'] = $request->parent_id;
         }
         if(isset($request->image)){
-            $data['image'] = $request->image;
+            $image = "category-".time().'.'.$request->image->extension();  
+            $request->image->move(storage_path('app/public/images/categories'),$image);
+            $data['image'] = 'categories/'.$image;
         }
         if(isset($request->name)){
             $data['name'] = $request->name;
@@ -125,7 +127,7 @@ class CategoryController extends Controller
     {
         $category = Category::find($category);
         $sub_category = Category::find($sub_category);
-        $sub_sub_categories = Category::where('parent_id',$sub_category->id)->with('sub_category')->get();
+        $sub_sub_categories = Category::where('parent_id',$sub_category->id)->with('subCategories')->get();
         return view('admin.pages.categorymanagement.sub_sub_category')->with('category',$category)->with('sub_category',$sub_category)->with('sub_sub_categories',$sub_sub_categories);
     }
 

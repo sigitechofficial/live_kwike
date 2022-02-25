@@ -48,8 +48,8 @@ class ProductController extends Controller
         $product = Product::create($data);
         
         $image = $product->id."image-".time().'.'.$request->image->extension();  
-        $request->image->move(public_path('productimage'),$image);
-        $product->image = 'productimage/'.$image;
+        $request->image->move(storage_path('app/public/images/products'),$image);
+        $product->image = 'products/'.$image;
         
         if($product->save()){
             $category_id = $request->category_id;
