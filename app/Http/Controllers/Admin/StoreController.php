@@ -16,6 +16,7 @@ class StoreController extends Controller
     public function index()
     {
         $stores = Store::where('active','1')->get();
+        dd($stores);
         return view('admin.pages.retailmanagement.all_retailer')->with('stores',$stores);
     }
 

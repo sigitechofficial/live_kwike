@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -38,7 +39,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $user = User::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
+        if($user){
+            return redirect()->back()->with('info','user created');
+        }
+        else{
+            return redirect()->back()->with('danger','something went wrong');
+        }
     }
 
     /**

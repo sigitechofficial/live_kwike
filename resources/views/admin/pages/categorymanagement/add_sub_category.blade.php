@@ -10,7 +10,7 @@
                         @endif
                         <a href="{{ url()->previous() }}" class="btn btn-success">Back</a>
                         <h5>Add Sub Category</h5>
-                        <form action="{{ route('category.store') }}" method="post">
+                        <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12">

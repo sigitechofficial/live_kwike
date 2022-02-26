@@ -8,23 +8,23 @@
     <meta name="description" content="">
     <meta name="author" content="www.sigitechnologies.com">
 
-    <link rel="icon" href="{{asset('logo.png')}}" type="image/x-icon">
+    <link rel="icon" href="{{asset('public/logo.png')}}" type="image/x-icon">
     
         <!-- VENDOR CSS -->
-    <link rel="stylesheet" href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendor/font-awesome/css/font-awesome.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendor/charts-c3/plugin.css')}}"/>
-    <link rel="stylesheet" href="{{asset('assets/vendor/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendor/jquery-datatable/dataTables.bootstrap4.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendor/multi-select/css/multi-select.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendor/dropify/css/dropify.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('assets/vendor/summernote/dist/summernote.css')}}" />
+    <link rel="stylesheet" href="{{asset('public/assets/vendor/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/vendor/font-awesome/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/vendor/charts-c3/plugin.css')}}"/>
+    <link rel="stylesheet" href="{{asset('public/assets/vendor/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/vendor/jquery-datatable/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/vendor/multi-select/css/multi-select.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/vendor/dropify/css/dropify.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('public/assets/vendor/summernote/dist/summernote.css')}}" />
     
     
         <!-- MAIN CSS -->
-    <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/color_skins.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/css/main.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/css/color_skins.css')}}">
     
         <!--toastr-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

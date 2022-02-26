@@ -42,9 +42,26 @@ class ProductNutritionController extends Controller
     {
         // dd($request->all());
         $data = $request->except(['_token']);
-        $product_nutrition = ProductNutrition::create($data);
-        if($product_nutrition){
+
+        $product_id = $request->product_id;
+        $typical_values = $request->typical_values;
+        $per_100g_of_product = $request->per_100g_of_product;
+        $ri_per_100g = $request->ri_per_100g;
+
+        $old_data = ProductNutrition::where('product_id',$product_id)->where('typical_values',$typical_values)->first();
+        if($old_data != Null){
+            $old_data->per_100g_of_product = $per_100g_of_product;
+            $old_data->ri_per_100g = $ri_per_100g;
+        }
+        else{
+            $product_nutrition = ProductNutrition::create($data);
+        }
+        if(isset($product_nutrition)){
             return redirect()->back()->with('info','New Product Nutrition Added');
+        }
+        elseif($old_data->save()){
+            return redirect()->back()->with('info','Product Nutrition Updated');
+            
         }
         else{
             return redirect()->back()->with('danger','Something went wrong');

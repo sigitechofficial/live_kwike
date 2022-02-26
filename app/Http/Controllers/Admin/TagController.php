@@ -43,8 +43,8 @@ class TagController extends Controller
         $tag->save();
 
         $icon = $tag->id."icon-".time().'.'.$request->icon->extension();  
-        $request->icon->move(public_path('tagimage'),$icon);
-        $tag->icon = 'tagimage/'.$icon;
+        $request->icon->move(storage_path('app/public/images/tags'),$icon);
+        $tag->icon = 'tags/'.$icon;
 
         if($tag->save()){
             return redirect()->back()->with('info',"tag added");
@@ -94,8 +94,8 @@ class TagController extends Controller
                 unlink($tag->icon);
             }
             $icon = $tag->id."icon-".time().'.'.$request->icon->extension();  
-            $request->icon->move(public_path('tagimage'),$icon);
-            $tag->icon = 'tagimage/'.$icon;
+            $request->icon->move(storage_path('app/public/images/tags'),$icon);
+            $tag->icon = 'tags/'.$icon;
         }
 
         if($tag->save()){

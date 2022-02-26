@@ -7,8 +7,11 @@ use App\Http\Controllers\Admin\NutritionController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductNutritionController;
 use App\Http\Controllers\Admin\ProductTagController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\StoreController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\UserRoleController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -59,6 +62,17 @@ Route::get('admin/user', [UserController::class, "show"])->name('user.show');
 Route::get('admin/user/edit/{id}', [UserController::class, "edit"])->name('user.edit');
 Route::get('admin/user/create', [UserController::class, "create"])->name('user.create');
 Route::post('admin/update_user/{id}', [UserController::class, "update"])->name('user.update');
+Route::post('admin/user/store', [UserController::class, "store"])->name('user.store');
+
+Route::get('admin/roles', [RoleController::class, "index"])->name('roles.index');
+Route::get('admin/roles/create', [RoleController::class, "create"])->name('roles.create');
+Route::post('admin/roles/store', [RoleController::class, "store"])->name('roles.store');
+Route::get('admin/roles/edit/{id}', [RoleController::class, "edit"])->name('roles.edit');
+Route::post('admin/roles/update/{id}', [RoleController::class, "update"])->name('roles.update');
+Route::post('admin/roles/delete', [RoleController::class, "delete"])->name('roles.delete');
+
+Route::get('admin/user/roles/create', [UserRoleController::class, "create"])->name('userroles.create');
+Route::post('admin/user/roles/store', [UserRoleController::class, "store"])->name('userroles.store');
 
 Route::get('admin/change_user_status', [UserController::class, 'change_user_status'])->name('change_user_status');
 
@@ -114,7 +128,7 @@ Route::get('admin/products_tag/{product}', [ProductTagController::class, "index"
 Route::post('admin/products_tag/store', [ProductTagController::class, "store"])->name('tag.store');
 Route::post('admin/products_tag/destroy', [ProductTagController::class, "destroy"])->name('tag.destroy');
 
-Route::get('admin/all_retailer', [App\Http\Controllers\StoreController::class, "index"])->name('all_retailer');
+Route::get('admin/retailers', [StoreController::class, "index"])->name('retailers.index');
 
 
 

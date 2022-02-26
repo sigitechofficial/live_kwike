@@ -21,52 +21,47 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Add User</h5>
-
-                            <div class="row mt-5">
-                                <div class="col-md-6 col-lg-6">
-                                    <label for="formFile" class="form-label">First Name</label>
-                                    <input type="text" class="form-control shadow-sm" placeholder="" aria-label="">
-                                </div>
-                                <div class="col-md-6 col-lg-6">
-                                    <label for="formFile" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control shadow-sm" placeholder="" aria-label="">
-                                </div>
-                            </div>
-                            <div class="row mt-5">
-                                <div class="col-md-6 col-lg-6">
-                                    <label for="formFile" class="form-label">Email</label>
-                                    <input type="text" class="form-control shadow-sm" placeholder="" aria-label="First name">
-                                </div>
-                                <div class="col-md-6 col-lg-6">
-                                    <label for="formFile" class="form-label">Password</label>
-                                    <input type="password" class="form-control shadow-sm" placeholder="" aria-label="">
-                                </div>
-                            </div>
-
-                            <div class="row mt-5">
-                                <div class="col-md-6 col-lg-6">
-                                    <label for="formFile" class="form-label">Mobile No.</label>
-                                    <input type="text" class="form-control shadow-sm" placeholder="" aria-label="">
-                                </div>
-                            <div class="col-md-6 col-lg-6">
-                                    <label for="formFile" class="form-label">Image</label>
-                                    <input type="file" class="form-control shadow-sm" placeholder="" aria-label="">
-                                </div>
-
-                            </div>
-                            
-                            
-                            <div class="row mt-5">
-                                <div class="col-12">
-                                    <div style="float: right;">
-                                        <button class="btn btn-primary shadow" type="submit">Add</button>
-                                        <button class="btn btn-primary shadow" type="submit">Cancel</button>
+                            <form action="{{ route('user.store') }}" method="POST">
+                                @csrf
+                                <div class="row mt-5">
+                                    <div class="col-md-6 col-lg-6">
+                                        <label for="formFile" class="form-label">First Name</label>
+                                        <input type="text" class="form-control shadow-sm" placeholder="" aria-label="" name="first_name">
                                     </div>
-
+                                    <div class="col-md-6 col-lg-6">
+                                        <label for="formFile" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control shadow-sm" placeholder="" aria-label="" name="last_name">
+                                    </div>
                                 </div>
+                                <div class="row mt-5">
+                                    <div class="col-md-6 col-lg-6">
+                                        <label for="formFile" class="form-label">Email</label>
+                                        <input type="text" class="form-control shadow-sm" placeholder="" aria-label="First name" name="email">
+                                    </div>
+                                    <div class="col-md-6 col-lg-6">
+                                        <label for="formFile" class="form-label">Password</label>
+                                        <input type="password" class="form-control shadow-sm" placeholder="" aria-label="" name="password">
+                                    </div>
                                 </div>
-                            </div>
 
+                                <div class="row mt-5">
+                                    <div class="col-md-6 col-lg-6">
+                                        <label for="formFile" class="form-label">Mobile No.</label>
+                                        <input type="text" class="form-control shadow-sm" placeholder="" aria-label="" name="phone">
+                                    </div>
+                                </div>
+                                
+                                <div class="row mt-5">
+                                    <div class="col-12">
+                                        <div style="float: right;">
+                                            <button type="submit" class="btn btn-primary shadow" type="submit">Add</button>
+                                        </div>
+
+                                    </div>
+                                    </div>
+                                </div>
+                                
+                            </form>
                         </div>
                     </div>
                 </div>

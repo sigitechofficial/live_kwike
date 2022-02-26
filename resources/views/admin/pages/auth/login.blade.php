@@ -11,12 +11,12 @@
 
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <!-- VENDOR CSS -->
-    <link rel="stylesheet" href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendor/font-awesome/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/vendor/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/vendor/font-awesome/css/font-awesome.min.css')}}">
 
     <!-- MAIN CSS -->
-    <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/color_skins.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/css/main.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/css/color_skins.css')}}">
 </head>
 
 <body class="theme-orange">
@@ -82,9 +82,9 @@
 </div>
 <!-- END WRAPPER -->
 
-<script src="{{asset('assets/bundles/libscripts.bundle.js')}}"></script>
-<script src="{{asset('assets/bundles/vendorscripts.bundle.js')}}"></script>
+<script src="{{asset('public/assets/bundles/libscripts.bundle.js')}}"></script>
+<script src="{{asset('public/assets/bundles/vendorscripts.bundle.js')}}"></script>
 
-<script src="{{asset('assets/bundles/mainscripts.bundle.js')}}"></script>
+<script src="{{asset('public/assets/bundles/mainscripts.bundle.js')}}"></script>
 </body>
 </html>

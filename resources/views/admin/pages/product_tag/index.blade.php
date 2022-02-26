@@ -24,7 +24,7 @@
                         <div class="row">
                                 @foreach($product_tags as $product_tag)
                                     <div class="col-1">
-                                        <img src="{{ asset( $product_tag->tag->icon ?? "" ) }}" class="img-fluid" width="120">
+                                        <img src="{{ asset( 'storage/app/public/images/'.$product_tag->tag->icon ?? "" ) }}" class="img-fluid" width="120">
                                         <form action="{{ route('tag.destroy') }}" method="post">
                                             @csrf
                                             <input type="hidden" name="id" value="{{ $product_tag->id }}">
@@ -53,7 +53,7 @@
                                                 {{ $tag->name }}
                                             </div>
                                             <div class="col-md-3 col-3">
-                                                <img src="{{ asset($tag->icon) }}" class="img-fluid" width="120">
+                                                <img src="{{ asset('storage/app/public/images/'.$tag->icon) }}" class="img-fluid" width="120">
                                             </div>
                                             <div class="col-md-3 col-3"></div>
                                             <div class="col-md-3 col-3">

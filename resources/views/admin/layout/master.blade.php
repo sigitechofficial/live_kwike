@@ -3,7 +3,7 @@
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
-            <div class="m-t-30"><img src="{{asset('logo.png')}}" alt="Kwik E Mart"></div>
+            <div class="m-t-30"><img src="{{asset('public/logo.png')}}" alt="Kwik E Mart"></div>
             <p>Please wait...</p>
         </div>
     </div>
@@ -13,7 +13,7 @@
             <div class="container-fluid">
                 <div class="navbar-left">
                     <div class="navbar-btn">
-                        <a href=""><img src="{{asset('logo.png')}}" alt="Logo" class="img-fluid logo"></a>
+                        <a href=""><img src="{{asset('public/logo.png')}}" alt="Logo" class="img-fluid logo"></a>
                         <button type="button" class="btn-toggle-offcanvas"><i class="lnr lnr-menu fa fa-bars"></i></button>
                     </div>
                     <a href="javascript:void(0);" class="icon-menu btn-toggle-fullwidth"><i class="fa fa-arrow-left"></i></a>
@@ -38,7 +38,7 @@
 
         <div id="left-sidebar" class="sidebar">
             <div class="navbar-brand text-center">
-                <a href=""><img src="{{asset('logo.png')}}" alt="Kwik E Mart Logo" class="img-fluid" width="90"></a>
+                <a href=""><img src="{{asset('public/logo.png')}}" alt="Kwik E Mart Logo" class="img-fluid" width="90"></a>
                 <button type="button" class="btn-toggle-offcanvas btn btn-sm btn-default float-right"><i class="lnr lnr-menu fa fa-chevron-circle-left"></i></button>
             </div>
             <div class="sidebar-scroll">
@@ -84,11 +84,22 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#forms" class="has-arrow mb-1"><i class="fa fa-car"></i><span>Driver Management</span></a>
+                            <a href="#forms" class="has-arrow mb-1"><i class="icon-pencil"></i><span>Roles Management</span></a>
                             <ul>
-                                <li ><a href="">Adds Driver</a></li>
-                                <li><a href="{{ route('driver.index') }}">All Drivers</a></li>
-                                <li><a href="">Pending Requests</a></li>
+                                <li><a href="{{ route('roles.index') }}">Roles</a></li>
+                                <li><a href="{{ route('roles.create') }}">Add Role</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#forms" class="has-arrow mb-1"><i class="icon-pencil"></i><span>Users to Roles Management</span></a>
+                            <ul>
+                                <li><a href="{{ route('userroles.create') }}">Assign Role</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#forms" class="has-arrow mb-1"><i class="fa fa-car"></i><span>Retailer Management</span></a>
+                            <ul>
+                                <li><a href="{{ route('retailers.index') }}">Retailers</a></li>
                             </ul>
                         </li>
                     </ul>
