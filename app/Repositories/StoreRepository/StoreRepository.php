@@ -65,6 +65,22 @@ class StoreRepository implements StoreRepositoryInterface
                 }
             }
         }
+
+        $discount=  DB::table("product_stores")
+            ->select('product_stores.id as product_store_id',
+                'product_stores.store_id as store_id','products.title',
+                'products.image','products.unit','products.items_per_unit',
+                'products.price','products.min_order','products.discount',
+                'products.discount_price','product_stores.stock','products.is_18_plus')
+            ->Join('products','products.id','=','product_stores.product_id')
+            ->where(['store_id'=>$request->get('store_id')])
+            ->get();
+
+//        $discount->discount=[
+//            'products'=>$discount
+//        ];
+//        $categories->subCategories[0]=$discount;
+
         $categories = CategoryProductsResource::make($categories);
         return [
             'images_url'=>env('IMAGE_URL'),
