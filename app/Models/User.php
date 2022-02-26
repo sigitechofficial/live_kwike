@@ -26,6 +26,8 @@ class User extends Authenticatable
         'email',
         'password',
         'device_token',
+        'coins',
+        'refer_code'
     ];
     protected static function boot()
     {

@@ -32,6 +32,7 @@ class RegisterRequest extends FormRequest
             'email' => 'required|unique:users',
             'phone' => 'required|unique:users',
             'device_token'=>'required',
+            'refer_code'=>'nullable|min:6|max:6',
         ];
     }
 

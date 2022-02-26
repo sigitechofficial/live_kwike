@@ -42,7 +42,7 @@ class Product extends Model
         'discount'=>'string',
         'discount_price'=>'string',
         'unit' => 'string',
-        'items_per_unit' => 'integer',
+        'items_per_unit' => 'string',
         'weight' => 'float',
         'status' => 'boolean'];
 

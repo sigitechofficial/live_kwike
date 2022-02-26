@@ -21,8 +21,7 @@ class UserController extends Controller
     }
 
     public function store(RegisterRequest $request){
-
-        $data=$this->user->CreateUser($request->all());
+        $data=$this->user->CreateUser($request);
         ResponseNow('1','Account Created Successfully.',$data,200);
     }
     public function userAddress(){
