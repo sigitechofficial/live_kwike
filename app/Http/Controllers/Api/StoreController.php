@@ -71,6 +71,7 @@ class  StoreController extends Controller
 
     public function addToCart(CartRequest $request)
     {
+
         $data = $this->store->AddToCart($request);
         if ($data == 0) {
             errorResponse('0', 'Something went wrong', ['No product in the list'], 200);
