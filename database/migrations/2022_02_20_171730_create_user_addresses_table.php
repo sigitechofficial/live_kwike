@@ -20,7 +20,11 @@ class CreateUserAddressesTable extends Migration
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('flat_no')->nullable();
+            $table->string('postal_code')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
