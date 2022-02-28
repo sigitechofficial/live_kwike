@@ -29,16 +29,27 @@ class StripeController extends Controller
     }
     public function addCard(AddCardRequest $request)
     {
-        $response = $this->stripe->addCard($request);
-        ResponseNow('1', 'Card added successfully', null, 200);
+        $date = explode('/', $request->input('exp')); // 12/22
+        $month = $date[0];
+        $year = $date[1];
+        
+        // return response()->json([$month,$year]);
+        $data = $request;
+        $data['exp_month'] = $month;
+        $data['exp_year'] = $year;
+        
+        // return $data;
+        
+        $response = $this->stripe->addCard($data);
+        ResponseNow('1', 'Card added successfully', [], 200);
 
     }
 
     public function removeCard(Request $request){
         $response = $this->stripe->removeCard($request);
         if($response){
-            return response()->success('1', 'Card removed successfully', null);
+            return response()->success('1', 'Card removed successfully', []);
         }
-        return response()->error('0', null, 'Something went wrong. Please try again later');
+        return response()->error('0', [], 'Something went wrong. Please try again later');
     }
 }

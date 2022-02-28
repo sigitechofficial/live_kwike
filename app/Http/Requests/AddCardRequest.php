@@ -26,9 +26,10 @@ class AddCardRequest extends FormRequest
     {
         return [
             'card_number'   =>  'required',
-            'exp_month'     =>  'required',
-            'exp_year'      =>  'required',
-            'cvc'           =>  'required'
+            //'exp_month'     =>  'required',
+            //'exp_year'      =>  'required',
+            'cvc'           =>  'required',
+            'exp'           =>  'required'
         ];
     }
     public function failedValidation(Validator $validator)
