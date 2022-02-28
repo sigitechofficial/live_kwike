@@ -70,12 +70,12 @@
                                         <input class="form-control" type="text" name="name">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                     <div class="mb-2">
                                         <label class="form-label">Image</label>
                                         <input class="form-control" type="file" name="image">
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             
                             

@@ -25,7 +25,7 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Image</th>
+                                            {{-- <th>Image</th> --}}
                                             <th>Name</th>
                                             <th>Color</th>
                                             <th>Action</th>
@@ -35,9 +35,9 @@
                                         @foreach($sub_sub_categories as $sub_sub_category)
                                             <tr>
                                                 <td>{{ $sub_sub_category->id }}</td>
-                                                <td>
+                                                {{-- <td>
                                                     <img src="{{ asset('storage/app/public/images/'.$sub_sub_category->image) }}" class="img-fluid" width="120">
-                                                </td>
+                                                </td> --}}
                                                 <td>{{ $sub_sub_category->name }}</td>
                                                 <td>{{ $sub_sub_category->background_color }}</td>
                                                 <td>
@@ -52,7 +52,7 @@
                                     <tfoot>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Image</th>
+                                            {{-- <th>Image</th> --}}
                                             <th>Name</th>
                                             <th>Color</th>
                                             <th>Action</th>

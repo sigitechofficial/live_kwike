@@ -29,18 +29,7 @@ class StripeController extends Controller
     }
     public function addCard(AddCardRequest $request)
     {
-        $date = explode('/', $request->input('exp')); // 12/22
-        $month = $date[0];
-        $year = $date[1];
-        
-        // return response()->json([$month,$year]);
-        $data = $request;
-        $data['exp_month'] = $month;
-        $data['exp_year'] = $year;
-        
-        // return $data;
-        
-        $response = $this->stripe->addCard($data);
+        $response = $this->stripe->addCard($request);
         ResponseNow('1', 'Card added successfully', [], 200);
 
     }

@@ -9,6 +9,9 @@ use App\Http\Resources\ProductResource;
 use App\Models\Banner;
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\CartItem;
+use App\Models\PaymentMethod;
+use App\Models\Voucher;
 use App\Models\Order;
 use App\Models\Product;
 
@@ -143,34 +146,97 @@ class StoreRepository implements StoreRepositoryInterface
 
     public function addToCart($request)
     {
-        $cart = Cart::where('user_id', auth()->id())->first();
-        if ($cart) {
-            if ($cart->store_id != $request->get('store_id')) {
-                errorResponse('0', 'Something went wrong.!', ['You have an cart in other store please remove it first'], 200);
+        $haveProducts = [];
+        foreach ($request->get('products') as $product) {
+            $product['is_deleted'] = 0;
+            $product['is_quantity_changed'] = 0;
+            $product['is_price_changed'] = 0;
+            $storeProduct = ProductStore::with('product')->find($product['product_store_id']);
+            if ($storeProduct->stock > 0) {
+                if ($storeProduct->stock <= $product['quantity']) {
+                    $product['quantity'] = $storeProduct->stock;
+                    $product['is_quantity_changed'] = 1;
+                }
+                if ($storeProduct->product->discount == 0) {
+                    if ($storeProduct->product->price != $product['price']) {
+                        $product['price'] = $storeProduct->product->price;
+                        $product['is_price_changed'] = 1;
+                    }
+                } else {
+                    if ($storeProduct->product->discount_price != $product['price']) {
+                        $product['price'] = $storeProduct->product->discount_price;
+                        $product['is_price_changed'] = 1;
+                    }
+                }
+
+            } else {
+                $product['is_deleted'] = 1;
             }
-            if (DB::table('cart_items')->where(['cart_id' => $cart->id, 'product_store_id' => $request->get('product_store_id')])->exists()) {
-                errorResponse('0', 'Something went wrong.!', ['Product already added into cart'], 200);
+            $haveProducts[] = $product;
+        }
+
+        if (count($haveProducts) > 0) {
+            $cart = Cart::where('user_id', auth()->id())->first();
+            if ($cart) {
+                DB::table('cart_items')->where('cart_id', $cart->id)->delete();
+                $cart->delete();
             }
-        } else {
             $cart = Cart::create([
                 'user_id' => auth()->id(),
                 'store_id' => $request->get('store_id')
             ]);
+            foreach ($haveProducts as $product) {
+
+                if ($product['is_deleted'] == 0) {
+                    DB::table('cart_items')->insert([
+                        'cart_id' => $cart->id,
+                        'product_store_id' => $product['product_store_id'],
+                        'quantity' => $product['quantity'],
+                        'price' => $product['price'],
+                        'tax' => 0,
+                        'total' => $product['price'] * $product['quantity'],
+                    ]);
+                }
+
+            }
+            $subTotal = DB::table('cart_items')->where('cart_id', $cart->id)->sum('total');
+            $cart->sub_total = $subTotal;
+            $cart->total = $subTotal;
+            $cart->save();
+            return $haveProducts;
         }
-        $storeProduct = ProductStore::findorfail($request->get('product_store_id'));
-        $price = $storeProduct->price * $request->get('quantity');
-        $tax = $storeProduct->tax * $request->get('quantity');
-        $total = $storeProduct->price * $request->get('quantity') - $storeProduct->discount * $request->get('quantity');
-        DB::table('cart_items')->insert([
-            'cart_id' => $cart->id,
-            'product_store_id' => $request->get('product_store_id'),
-            'quantity' => $request->get('quantity'),
-            'price' => $price,
-            'tax' => $tax,
-            'total' => $total,
-        ]);
-        return 1;
+        return 0;
     }
+
+    public function paymentMethods()
+    {
+        return [
+            'images_url' => env('IMAGE_URL'),
+            'paymentMethods' => PaymentMethod::where('status', 1)->get()
+        ];
+    }
+    public function applyVoucher($request)
+    {
+        $cart = Cart::where('user_id', auth()->id())->first();
+        if ($cart->voucher_code !=null){
+            errorResponse('0', 'Something went wrong.!', ['You have already applied voucher'], 200);
+        }
+        $voucher = Voucher::where([['code',$request->code],['no_of_use','>',0],['start_date','<=',date('Y-m-d')],['end_date','>=',date('Y-m-d')]])->first();
+        if (!$voucher){
+            errorResponse('0', 'Something went wrong.!', ['this voucher is not available'], 200);
+        }
+        if($voucher->applied_total >=$cart->total){
+            errorResponse('0', 'Something went wrong.!', ['Apply on minimum amount is '.$voucher->applied_total], 200);
+        }
+        $total= $cart->total - ($voucher->discount/100)*$cart->total;
+        $cart->total=$total;
+        $cart->voucher_code=$voucher->code;
+        $cart->voucher_discount=$voucher->discount;
+        $cart->save();
+
+        return $cart;
+    }
+    
     public function order($request)
     {
        $cart=auth()->user()->cart()->with('cartItems')->get();
