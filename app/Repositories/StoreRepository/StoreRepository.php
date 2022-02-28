@@ -38,7 +38,7 @@ class StoreRepository implements StoreRepositoryInterface
                 'products.discount_price','product_stores.stock','products.is_18_plus')
 
             ->Join('products','products.id','=','product_stores.product_id')
-            ->where(['store_id'=>$store->id,'is_featured'=>1])
+            ->where(['store_id'=>$store->id,'product_stores.is_featured'=>1])
             ->get();
         $categories = Category::getHomeCategories();
         return [
