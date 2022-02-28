@@ -17,6 +17,7 @@ class CreateNutritionsTable extends Migration
             $table->id();
             $table->string('typical_values');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

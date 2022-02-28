@@ -19,12 +19,8 @@ class CreateProductStoresTable extends Migration
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->float('price');
-            $table->integer('min_order');
             $table->integer('stock');
-            $table->decimal('discount')->default(0);
-            $table->string('discount_type', 80)->nullable();
-            $table->boolean('is_featured')->default(0);
+            $table->string('is_featured')->default(0);
             $table->boolean('availability')->default(1);
             $table->boolean('active')->default(true);
             $table->timestamps();

@@ -24,11 +24,12 @@ class CreateOrdersTable extends Migration
             $table->foreign('payment_method_id')->references('id')->on('payment_methods');
             $table->unsignedBigInteger('user_address_id');
             $table->foreign('user_address_id')->references('id')->on('user_addresses');
+            $table->string('voucher_code')->nullable();
+            $table->string('voucher_discount')->nullable();
             $table->double('tax')->nullable();
             $table->double('sub_total')->nullable();
-            $table->double('voucher_code')->nullable();
-            $table->double('voucher_code')->nullable();
             $table->double('total')->nullable();
+            $table->double('schedule_date')->nullable();
             $table->string('order_type')->nullable();
             $table->string('nonce')->nullable();
             $table->string('card_type')->nullable();

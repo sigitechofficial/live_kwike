@@ -20,6 +20,8 @@ class CreateCartsTable extends Migration
             $table->unsignedBigInteger('store_id');
             $table->foreign('store_id')->references('id')->on('stores');
             $table->double('tax')->nullable();
+            $table->string('voucher_code')->nullable();
+            $table->string('voucher_discount')->nullable();
             $table->double('sub_total')->nullable();
             $table->double('total')->nullable();
             $table->timestamps();
