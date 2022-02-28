@@ -102,6 +102,12 @@
                                 <li><a href="{{ route('retailers.index') }}">Retailers</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="#forms" class="has-arrow mb-1"><i class="fa fa-car"></i><span>Settings Management</span></a>
+                            <ul>
+                                <li><a href="">Settings</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
             </div>

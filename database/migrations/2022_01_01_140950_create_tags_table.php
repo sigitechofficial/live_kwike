@@ -18,6 +18,7 @@ class CreateTagsTable extends Migration
             $table->string('name')->nullable();
             $table->string('icon')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

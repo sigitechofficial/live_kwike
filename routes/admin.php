@@ -38,114 +38,128 @@ Route::get('/clear', function() {
 return '<h1>Cache facade value cleared</h1>';
 });
 
-Route::get('/admin', function () {
-    return view('admin.pages.auth.login');
+
+Route::prefix("admin")->group( function (){
+    Route::get('/', function () {
+        return view('admin.pages.auth.login');
+    });
+    
+    Route::get('/login', function () {
+        return view('admin.pages.auth.login');
+    })->name('admin/login');
+    
+    Route::get('/forget_password', function () {
+        return view('admin.pages.auth.forget_password');
+    })->name('forget_password');
+    
+    Route::get('/home', [HomeController::class,'index'])->name('admin/home');
+    
+    Route::get('/users_list', function () {
+        return view('admin.pages.users.users_list');
+    })->name('users_list');
+    
+    
+    Route::prefix('users')->group(function(){
+        Route::get('/', [UserController::class, "index"])->name('user.index');
+        Route::get('/show/{id}', [UserController::class, "show"])->name('user.show');
+        Route::get('/edit/{id}', [UserController::class, "edit"])->name('user.edit');
+        Route::get('/create', [UserController::class, "create"])->name('user.create');
+        Route::post('/update/{id}', [UserController::class, "update"])->name('user.update');
+        Route::post('/store', [UserController::class, "store"])->name('user.store');
+    });
+    
+    Route::prefix('roles')->group(function(){
+        Route::get('/', [RoleController::class, "index"])->name('roles.index');
+        Route::get('/create', [RoleController::class, "create"])->name('roles.create');
+        Route::post('/store', [RoleController::class, "store"])->name('roles.store');
+        Route::get('/edit/{id}', [RoleController::class, "edit"])->name('roles.edit');
+        Route::post('/update/{id}', [RoleController::class, "update"])->name('roles.update');
+        Route::post('/delete', [RoleController::class, "delete"])->name('roles.delete');
+    });
+    
+    Route::prefix('user/roles')->group(function(){
+        Route::get('/create', [UserRoleController::class, "create"])->name('userroles.create');
+        Route::post('/store', [UserRoleController::class, "store"])->name('userroles.store');
+    });
+    
+    Route::get('/change_user_status', [UserController::class, 'change_user_status'])->name('change_user_status');
+    
+    Route::prefix('drivers')->group(function(){
+        Route::get('/', [DriverController::class, "index"])->name('driver.index');
+        Route::get('/edit', [DriverController::class, "edit"])->name('edit_driver');
+        Route::get('/orders', [DriverController::class, "show"])->name('orders_by_drivers');
+        Route::post('/update/{id}', [DriverController::class, "update"])->name('driver.update');
+    });
+    
+    Route::prefix('tags')->group(function (){
+        Route::get('/',[TagController::class, "index"])->name('tags.index');
+        Route::get('/create',[TagController::class, "create"])->name('tags.create');
+        Route::get('/edit/{id}',[TagController::class, "edit"])->name('tags.edit');
+        Route::post('/update/{id}',[TagController::class, "update"])->name('tags.update');
+        Route::post('/destroy/{id}',[TagController::class, "destroy"])->name('tags.destroy');
+        Route::post('/store',[TagController::class, "store"])->name('tags.store');
+    });
+    
+    Route::prefix('category')->group(function (){
+        Route::get('/', [CategoryController::class, "index"])->name('category.index');
+        Route::get('/sub', [CategoryController::class, "get_sub_category"])->name('category.get');
+        Route::get('/sub/sub', [CategoryController::class, "load_sub"])->name('category.load_sub');
+        Route::post('/view/sub', [CategoryController::class, "view_sub"])->name('category.view_sub');
+        Route::get('/change/{id}', [CategoryController::class, "change"])->name('category.change.status');
+        Route::get('/create', [CategoryController::class, "create"])->name('category.create');
+        Route::get('/create/sub', [CategoryController::class, "create_sub"])->name('category.create.sub');
+        Route::get('/create/sub/sub', [CategoryController::class, "create_sub_sub"])->name('category.create.sub.sub');
+        Route::post('/store', [CategoryController::class, "store"])->name('category.store');
+        Route::post('/update/{category}', [CategoryController::class, "update"])->name('category.update');
+        Route::get('/edit/{category}', [CategoryController::class, "edit"])->name('category.edit');
+        Route::get('/{category}', [CategoryController::class, "show"])->name('category.show');
+        Route::get('/{category}/{sub_category}', [CategoryController::class, "show_sub"])->name('category.show.sub');
+    });
+    
+    Route::prefix('products')->group(function(){
+        Route::get('/', [ProductController::class, "index"])->name('products');
+        Route::get('/create', [ProductController::class, "create"])->name('products.create');
+        Route::post('/store', [ProductController::class, "store"])->name('products.store');
+        Route::post('/destroy/{id}', [ProductController::class, "destroy"])->name('products.destroy');
+        Route::get('/edit', [ProductController::class, "edit"])->name('edit_products');
+    });
+    
+    Route::prefix('nutritions')->group(function(){
+        Route::get('/', [NutritionController::class, "index"])->name('nutritions.index');
+        Route::get('/deleted', [NutritionController::class, "deleted"])->name('nutritions.deleted');
+        Route::post('/restore/{id}', [NutritionController::class, "restore"])->name('nutritions.restore');
+        Route::post('/delete/{id}', [NutritionController::class, "hardDelete"])->name('nutritions.hard.delete');
+        Route::get('/create', [NutritionController::class, "create"])->name('nutritions.create');
+        Route::post('/store', [NutritionController::class, "store"])->name('nutritions.store');
+        Route::get('/edit/{id}', [NutritionController::class, "edit"])->name('nutritions.edit');
+        Route::post('/update/{id}', [NutritionController::class, "update"])->name('nutritions.update');
+        Route::post('/destroy/{id}', [NutritionController::class, "destroy"])->name('nutritions.destroy');
+    });
+    
+    Route::prefix('products_nutrition')->group(function(){
+        Route::get('/{product}', [ProductNutritionController::class, "index"])->name('nutrition.index');
+        Route::post('/store', [ProductNutritionController::class, "store"])->name('nutrition.store');
+        Route::post('/destroy', [ProductNutritionController::class, "destroy"])->name('nutrition.destroy');
+    });
+    
+    Route::prefix('products_tag')->group(function(){
+        Route::get('/{product}', [ProductTagController::class, "index"])->name('tag.index');
+        Route::post('/store', [ProductTagController::class, "store"])->name('tag.store');
+        Route::post('/destroy', [ProductTagController::class, "destroy"])->name('tag.destroy');
+    });
+    
+    Route::prefix('retailers')->group(function(){
+        Route::get('/', [StoreController::class, "index"])->name('retailers.index');
+    });
+    
+    
+    
+    Route::get('/edit_user', function () {
+        return view('admin.pages.users.edit_user');
+    })->name('edit_user');
+    
+    Route::get('/view_userorderhistory', function () {
+        return view('admin.pages.users.view_userorderhistory');
+    })->name('view_userorderhistory');
+
 });
-
-Route::get('admin/login', function () {
-    return view('admin.pages.auth.login');
-})->name('admin/login');
-
-Route::get('admin/forget_password', function () {
-    return view('admin.pages.auth.forget_password');
-})->name('forget_password');
-
-Route::get('admin/home', [HomeController::class,'index'])->name('admin/home');
-
-Route::get('admin/users_list', function () {
-    return view('admin.pages.users.users_list');
-})->name('users_list');
-
-
-Route::get('admin/users', [UserController::class, "index"])->name('user.index');
-Route::get('admin/user', [UserController::class, "show"])->name('user.show');
-Route::get('admin/user/edit/{id}', [UserController::class, "edit"])->name('user.edit');
-Route::get('admin/user/create', [UserController::class, "create"])->name('user.create');
-Route::post('admin/update_user/{id}', [UserController::class, "update"])->name('user.update');
-Route::post('admin/user/store', [UserController::class, "store"])->name('user.store');
-
-Route::get('admin/roles', [RoleController::class, "index"])->name('roles.index');
-Route::get('admin/roles/create', [RoleController::class, "create"])->name('roles.create');
-Route::post('admin/roles/store', [RoleController::class, "store"])->name('roles.store');
-Route::get('admin/roles/edit/{id}', [RoleController::class, "edit"])->name('roles.edit');
-Route::post('admin/roles/update/{id}', [RoleController::class, "update"])->name('roles.update');
-Route::post('admin/roles/delete', [RoleController::class, "delete"])->name('roles.delete');
-
-Route::get('admin/user/roles/create', [UserRoleController::class, "create"])->name('userroles.create');
-Route::post('admin/user/roles/store', [UserRoleController::class, "store"])->name('userroles.store');
-
-Route::get('admin/change_user_status', [UserController::class, 'change_user_status'])->name('change_user_status');
-
-Route::get('admin/drivers', [DriverController::class, "index"])->name('driver.index');
-Route::get('admin/edit_driver', [DriverController::class, "edit"])->name('edit_driver');
-Route::get('admin/orders_by_drivers', [DriverController::class, "show"])->name('orders_by_drivers');
-Route::post('admin/update_driver/{id}', [DriverController::class, "update"])->name('driver.update');
-
-Route::get('admin/tags',[TagController::class, "index"])->name('tags.index');
-Route::get('admin/tags/create',[TagController::class, "create"])->name('tags.create');
-Route::get('admin/tags/edit/{id}',[TagController::class, "edit"])->name('tags.edit');
-Route::post('admin/tags/update/{id}',[TagController::class, "update"])->name('tags.update');
-Route::post('admin/tags/destroy/{id}',[TagController::class, "destroy"])->name('tags.destroy');
-Route::post('admin/tags/store',[TagController::class, "store"])->name('tags.store');
-
-Route::get('admin/category', [CategoryController::class, "index"])->name('category.index');
-Route::get('admin/category/change/{id}', [CategoryController::class, "change"])->name('category.change.status');
-
-Route::get('admin/category/create', [CategoryController::class, "create"])->name('category.create');
-Route::get('admin/category/create/sub', [CategoryController::class, "create_sub"])->name('category.create.sub');
-Route::get('admin/category/create/sub/sub', [CategoryController::class, "create_sub_sub"])->name('category.create.sub.sub');
-Route::get('admin/category_get', [CategoryController::class, "get_sub_category"])->name('category.get');
-
-Route::post('admin/category/store', [CategoryController::class, "store"])->name('category.store');
-Route::get('admin/load_sub_category', [CategoryController::class, "load_sub"])->name('category.load_sub');
-Route::post('admin/view_sub_category', [CategoryController::class, "view_sub"])->name('category.view_sub');
-Route::get('admin/category/edit/{category}', [CategoryController::class, "edit"])->name('category.edit');
-Route::post('admin/category/update/{category}', [CategoryController::class, "update"])->name('category.update');
-Route::get('admin/category/{category}', [CategoryController::class, "show"])->name('category.show');
-Route::get('admin/category/{category}/{sub_category}', [CategoryController::class, "show_sub"])->name('category.show.sub');
-
-Route::get('admin/products', [ProductController::class, "index"])->name('products');
-Route::get('admin/products_create', [ProductController::class, "create"])->name('products.create');
-Route::post('admin/products_store', [ProductController::class, "store"])->name('products.store');
-Route::post('admin/products_store/destroy/{id}', [ProductController::class, "destroy"])->name('products.destroy');
-Route::get('admin/edit_products', [ProductController::class, "edit"])->name('edit_products');
-
-Route::get('admin/nutritions', [NutritionController::class, "index"])->name('nutritions.index');
-Route::get('admin/nutritions/deleted', [NutritionController::class, "deleted"])->name('nutritions.deleted');
-Route::post('admin/nutritions/restore/{id}', [NutritionController::class, "restore"])->name('nutritions.restore');
-Route::post('admin/nutritions/delete/{id}', [NutritionController::class, "hardDelete"])->name('nutritions.hard.delete');
-Route::get('admin/nutritions/create', [NutritionController::class, "create"])->name('nutritions.create');
-Route::post('admin/nutritions/store', [NutritionController::class, "store"])->name('nutritions.store');
-Route::get('admin/nutritions/edit/{id}', [NutritionController::class, "edit"])->name('nutritions.edit');
-Route::post('admin/nutritions/update/{id}', [NutritionController::class, "update"])->name('nutritions.update');
-Route::post('admin/nutritions/destroy/{id}', [NutritionController::class, "destroy"])->name('nutritions.destroy');
-
-Route::get('admin/products_nutrition/{product}', [ProductNutritionController::class, "index"])->name('nutrition.index');
-Route::post('admin/products_nutrition/store', [ProductNutritionController::class, "store"])->name('nutrition.store');
-Route::post('admin/products_nutrition/destroy', [ProductNutritionController::class, "destroy"])->name('nutrition.destroy');
-
-Route::get('admin/products_tag/{product}', [ProductTagController::class, "index"])->name('tag.index');
-Route::post('admin/products_tag/store', [ProductTagController::class, "store"])->name('tag.store');
-Route::post('admin/products_tag/destroy', [ProductTagController::class, "destroy"])->name('tag.destroy');
-
-Route::get('admin/retailers', [StoreController::class, "index"])->name('retailers.index');
-
-
-
-Route::get('admin/edit_user', function () {
-    return view('admin.pages.users.edit_user');
-})->name('edit_user');
-
-Route::get('admin/view_userorderhistory', function () {
-    return view('admin.pages.users.view_userorderhistory');
-})->name('view_userorderhistory');
-
-
-
-
-
-
-
-
-
-

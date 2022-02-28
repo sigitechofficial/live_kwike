@@ -119,7 +119,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        $sub_categories = Category::where('parent_id',$category->id)->with('sub_category')->get();
+        $sub_categories = Category::where('parent_id',$category->id)->with('subCategories')->get();
         return view('admin.pages.categorymanagement.sub_category')->with('category',$category)->with('sub_categories',$sub_categories);
     }
     

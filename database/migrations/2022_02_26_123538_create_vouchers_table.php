@@ -22,6 +22,7 @@ class CreateVouchersTable extends Migration
             $table->string('start_date');
             $table->string('end_date');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

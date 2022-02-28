@@ -19,8 +19,13 @@ class CreateUserAddressesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
+            $table->string('title')->nullable();
             $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('flat_no')->nullable();
+            $table->string('postal_code')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

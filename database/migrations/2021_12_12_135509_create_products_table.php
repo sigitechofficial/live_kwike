@@ -20,9 +20,12 @@ class CreateProductsTable extends Migration
             $table->longText('description');
             $table->string('image');
             $table->float('price');
+            $table->integer('discount');
+            $table->float('discount_price');
             $table->string('unit');
             $table->string('items_per_unit');
             $table->string('weight');
+            $table->integer('min_order')->default(1);
             $table->string('ingredients')->nullable();
             $table->string('allergen_information')->nullable();
             $table->string('country_of_origin')->nullable();
@@ -31,6 +34,8 @@ class CreateProductsTable extends Migration
             $table->string('expiration_date')->nullable();
             $table->text('disclaimer')->nullable();
             $table->boolean('active')->default(true);
+            $table->boolean('is_18_plus')->default(0);
+            $table->string('is_featured')->default(0);
             $table->timestamps();
         });
     }
