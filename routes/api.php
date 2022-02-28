@@ -53,5 +53,7 @@ Route::group(['middleware' => [VerifyAPIAccess::class, 'throttle:60,1']], functi
             Route::post('add/card', [StripeController::class, 'addCard']);
             Route::post('remove/card', [StripeController::class, 'removeCard']);
         });
+        Route::get('payment/methods',[StoreController::class,'paymentMethods']);
+        Route::post('apply/voucher',[StoreController::class,'applyVoucher']);
     });
 });

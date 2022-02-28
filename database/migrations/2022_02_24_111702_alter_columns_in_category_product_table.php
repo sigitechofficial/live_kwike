@@ -16,7 +16,6 @@ class AlterColumnsInCategoryProductTable extends Migration
         Schema::table('category_product', function (Blueprint $table) {
             $table->dropForeign(['product_id']);
             $table->dropForeign(['category_id']);
-
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });

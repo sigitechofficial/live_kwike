@@ -25,9 +25,7 @@ class CartRequest extends FormRequest
     public function rules()
     {
         return [
-            'store_id'=>'required',
-            'product_store_id'=>'required',
-            'quantity'=>'required'
+            'products'=>'required',
         ];
     }
     public function failedValidation(Validator $validator)
