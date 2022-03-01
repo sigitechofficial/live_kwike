@@ -10,18 +10,15 @@ use App\Models\Banner;
 use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Category;
-use App\Models\CartItem;
 use App\Models\PaymentMethod;
 use App\Models\Voucher;
 use App\Models\Order;
-use App\Models\PaymentMethod;
 use App\Models\Product;
 
 use App\Models\ProductStore;
 use App\Models\Store;
 
 use App\Models\UserFavorite;
-use App\Models\Voucher;
 use http\Env\Request;
 use Illuminate\Support\Facades\DB;
 use function Symfony\Component\String\s;
@@ -43,7 +40,7 @@ class StoreRepository implements StoreRepositoryInterface
                 'products.price', 'products.min_order', 'products.discount',
                 'products.discount_price', 'product_stores.stock', 'products.is_18_plus')
             ->Join('products', 'products.id', '=', 'product_stores.product_id')
-            ->where(['store_id' => $store->id, 'is_featured' => 1])
+            ->where(['store_id' => $store->id, 'product_stores.is_featured' => 1])
             ->get();
         $categories = Category::getHomeCategories();
         return [
@@ -238,35 +235,6 @@ class StoreRepository implements StoreRepositoryInterface
             return $haveProducts;
         }
         return 0;
-    }
-
-    public function paymentMethods()
-    {
-        return [
-            'images_url' => env('IMAGE_URL'),
-            'paymentMethods' => PaymentMethod::where('status', 1)->get()
-        ];
-    }
-    public function applyVoucher($request)
-    {
-        $cart = Cart::where('user_id', auth()->id())->first();
-        if ($cart->voucher_code !=null){
-            errorResponse('0', 'Something went wrong.!', ['You have already applied voucher'], 200);
-        }
-        $voucher = Voucher::where([['code',$request->code],['no_of_use','>',0],['start_date','<=',date('Y-m-d')],['end_date','>=',date('Y-m-d')]])->first();
-        if (!$voucher){
-            errorResponse('0', 'Something went wrong.!', ['this voucher is not available'], 200);
-        }
-        if($voucher->applied_total >=$cart->total){
-            errorResponse('0', 'Something went wrong.!', ['Apply on minimum amount is '.$voucher->applied_total], 200);
-        }
-        $total= $cart->total - ($voucher->discount/100)*$cart->total;
-        $cart->total=$total;
-        $cart->voucher_code=$voucher->code;
-        $cart->voucher_discount=$voucher->discount;
-        $cart->save();
-
-        return $cart;
     }
 
     public function addToCart($request)
