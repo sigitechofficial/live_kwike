@@ -46,6 +46,13 @@
                     <ul id="main-menu" class="metismenu">
                         <li class="active"><a href="{{route('admin/home')}}"><i class="icon-home"></i><span>Dashboard</span></a></li>
                         <li>
+                            <a href="#forms" class="has-arrow mb-1"><i class="fa fa-users"></i><span>&nbsp; Banners </span></a>
+                            <ul>
+                                <li><a href="{{ route('banners.create') }}">Add Banners</a></li>
+                                <li><a href="{{ route('banners.index') }}">All Banners</a></li>
+                            </ul>
+                        </li>
+                        <li>
                             <a href="#forms" class="has-arrow mb-1"><i class="fa fa-users"></i><span>&nbsp; Users </span></a>
                             <ul>
                                 <li><a href="{{ route('user.create') }}">Add Users</a></li>

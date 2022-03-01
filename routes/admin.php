@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\StoreController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserRoleController;
+use App\Http\Controllers\Admin\BannerController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -62,6 +63,14 @@ Route::prefix("admin")->group( function (){
     Route::prefix('settings')->group(function(){
         Route::get('/',[SettingController::class,'index'])->name('settings.index');
         Route::post('/store',[SettingController::class,'store'])->name('settings.store');
+    });
+
+    Route::prefix('banners')->group(function(){
+        Route::get('/',[BannerController::class,'index'])->name('banners.index');
+        Route::get('/create',[BannerController::class,'create'])->name('banners.create');
+        Route::post('/store',[BannerController::class,'store'])->name('banners.store');
+        Route::get('/edit/{id}',[BannerController::class,'edit'])->name('banners.edit');
+        Route::post('/update/{id}',[BannerController::class,'update'])->name('banners.update');
     });
     
     Route::prefix('users')->group(function(){
