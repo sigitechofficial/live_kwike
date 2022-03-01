@@ -49,7 +49,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function userAddress()
     {
-        $data = auth()->user()->addresses()->select('id', 'address', 'latitude', 'longitude')->get();
+        $data = auth()->user()->addresses()->select('id', 'address', 'latitude', 'longitude','title','address','city','flat_no','postal_code')->get();
         return $data;
     }
 

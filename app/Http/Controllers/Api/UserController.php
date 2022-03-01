@@ -32,12 +32,12 @@ class UserController extends Controller
     public function addAddress(UserAddressRequest $request){
         $data = $this->user->addAddress($request);
         if ($data){
-            ResponseNow('1', 'address added successfully ', null, 200);
+            ResponseNow('1', 'address added successfully ', [], 200);
         }
     }
     public function removeAddress(UserAddressRequest $request){
         $data = $this->user->removeAddress($request);
-            ResponseNow('1', 'address removed successfully ', null, 200);
+            ResponseNow('1', 'address removed successfully ', [], 200);
 
     }
 

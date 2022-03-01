@@ -51,7 +51,7 @@ class  StoreController extends Controller
     {
         $data = $this->store->AddToFavorite($request);
         if ($data) {
-            ResponseNow('1', 'favorite successfully added', null, 200);
+            ResponseNow('1', 'favorite successfully added', [], 200);
         }
     }
 
@@ -59,7 +59,7 @@ class  StoreController extends Controller
     {
         $data = $this->store->removeFavorite($request);
         if ($data) {
-            ResponseNow('1', 'favorite successfully remove', null, 200);
+            ResponseNow('1', 'favorite successfully remove', [], 200);
         }
     }
 
@@ -95,7 +95,7 @@ class  StoreController extends Controller
     {
         $data = $this->store->order($request);
         if ($data) {
-            ResponseNow('1', 'Order placed Successfully', null, 200);
+            ResponseNow('1', 'Order placed Successfully', [], 200);
         }
     }
 
