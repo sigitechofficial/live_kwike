@@ -78,10 +78,3 @@
 <!--Summer Notes JS -->
 <script src="{{asset('public/assets/bundles/mainscripts.bundle.js')}}"></script>
 <script src="{{asset('public/assets/vendor/summernote/dist/summernote.js')}}"></script>
-
-<script>
-    $(function () {
-    // Summernote
-    $('.textarea').summernote()
-  })
-  </script>

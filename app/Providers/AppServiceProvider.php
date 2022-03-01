@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\AppSettingRepository\AppSettingRepository;
+use App\Repositories\AppSettingRepository\AppSettingRepositoryInterface;
 use App\Repositories\AuthRepository\AuthRepository;
 use App\Repositories\AuthRepository\AuthRepositoryInterface;
 use App\Repositories\StoreRepository\StoreRepository;
@@ -39,5 +41,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(AuthRepositoryInterface::class,AuthRepository::class);
         $this->app->singleton(StoreRepositoryInterface::class,StoreRepository::class);
         $this->app->singleton(stripeRepositoryInterface::class,StripeRepository::class);
+        $this->app->singleton(AppSettingRepositoryInterface::class,AppSettingRepository::class);
     }
 }

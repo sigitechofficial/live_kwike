@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductNutritionController;
 use App\Http\Controllers\Admin\ProductTagController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\StoreController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
@@ -58,6 +59,10 @@ Route::prefix("admin")->group( function (){
         return view('admin.pages.users.users_list');
     })->name('users_list');
     
+    Route::prefix('settings')->group(function(){
+        Route::get('/',[SettingController::class,'index'])->name('settings.index');
+        Route::post('/store',[SettingController::class,'store'])->name('settings.store');
+    });
     
     Route::prefix('users')->group(function(){
         Route::get('/', [UserController::class, "index"])->name('user.index');

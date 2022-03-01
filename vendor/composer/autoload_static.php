@@ -7,8 +7,8 @@ namespace Composer\Autoload;
 class ComposerStaticInitd2f1802db31a0aa956802359bf9feea6
 {
     public static $files = array (
-        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
+        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
@@ -20,9 +20,10 @@ class ComposerStaticInitd2f1802db31a0aa956802359bf9feea6
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '23c18046f52bef3eea034657bafda50f' => __DIR__ . '/..' . '/symfony/polyfill-php81/bootstrap.php',
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
-        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
         'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
@@ -198,8 +199,8 @@ class ComposerStaticInitd2f1802db31a0aa956802359bf9feea6
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'Whoops\\' => 
         array (
@@ -351,8 +352,8 @@ class ComposerStaticInitd2f1802db31a0aa956802359bf9feea6
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -570,6 +571,7 @@ class ComposerStaticInitd2f1802db31a0aa956802359bf9feea6
         'App\\Http\\Controllers\\Admin\\ProductNutritionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ProductNutritionController.php',
         'App\\Http\\Controllers\\Admin\\ProductTagController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ProductTagController.php',
         'App\\Http\\Controllers\\Admin\\RoleController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/RoleController.php',
+        'App\\Http\\Controllers\\Admin\\SettingController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/SettingController.php',
         'App\\Http\\Controllers\\Admin\\StoreController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/StoreController.php',
         'App\\Http\\Controllers\\Admin\\TagController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TagController.php',
         'App\\Http\\Controllers\\Admin\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/UserController.php',
@@ -605,6 +607,7 @@ class ComposerStaticInitd2f1802db31a0aa956802359bf9feea6
         'App\\Http\\Requests\\StripeCardRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StripeCardRequest.php',
         'App\\Http\\Requests\\UserAddressRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UserAddressRequest.php',
         'App\\Http\\Requests\\UserLoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UserLoginRequest.php',
+        'App\\Http\\Requests\\VoucherRequest' => __DIR__ . '/../..' . '/app/Http/Requests/VoucherRequest.php',
         'App\\Http\\Resources\\CategoryProductsResource' => __DIR__ . '/../..' . '/app/Http/Resources/CategoryProductsResource.php',
         'App\\Http\\Resources\\ProductResource' => __DIR__ . '/../..' . '/app/Http/Resources/ProductResource.php',
         'App\\Http\\Resources\\StripeCardResource' => __DIR__ . '/../..' . '/app/Http/Resources/StripeCardResource.php',
@@ -636,6 +639,8 @@ class ComposerStaticInitd2f1802db31a0aa956802359bf9feea6
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Providers\\TelescopeServiceProvider' => __DIR__ . '/../..' . '/app/Providers/TelescopeServiceProvider.php',
+        'App\\Repositories\\AppSettingRepository\\AppSettingRepository' => __DIR__ . '/../..' . '/app/Repositories/AppSettingRepository/AppSettingRepository.php',
+        'App\\Repositories\\AppSettingRepository\\AppSettingRepositoryInterface' => __DIR__ . '/../..' . '/app/Repositories/AppSettingRepository/AppSettingRepositoryInterface.php',
         'App\\Repositories\\AuthRepository\\AuthRepository' => __DIR__ . '/../..' . '/app/Repositories/AuthRepository/AuthRepository.php',
         'App\\Repositories\\AuthRepository\\AuthRepositoryInterface' => __DIR__ . '/../..' . '/app/Repositories/AuthRepository/AuthRepositoryInterface.php',
         'App\\Repositories\\StoreRepository\\StoreRepository' => __DIR__ . '/../..' . '/app/Repositories/StoreRepository/StoreRepository.php',

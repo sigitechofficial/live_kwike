@@ -105,7 +105,7 @@
                         <li>
                             <a href="#forms" class="has-arrow mb-1"><i class="fa fa-car"></i><span>Settings Management</span></a>
                             <ul>
-                                <li><a href="">Settings</a></li>
+                                <li><a href="{{ route('settings.index') }}">Settings</a></li>
                             </ul>
                         </li>
                     </ul>
