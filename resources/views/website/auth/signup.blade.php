@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('website.welcome')
 @section('content')
 
 <link rel="stylesheet" href="{{asset('assets/css/dropifynew.min.css')}}">
