@@ -28,7 +28,7 @@
                     <div id="navbar-menu">
                         <ul class="nav navbar-nav">
                             <li><a href=""><i class="icon-settings"></i></a></li>
-                            <li><a href="" class="icon-menu"><i class="icon-power"></i>Logout</a></li>
+                            <li><a href="{{route('admin/logout')}}" class="icon-menu"><i class="icon-power"></i>Logout</a></li>
                         </ul>
                     </div>
                 </div>

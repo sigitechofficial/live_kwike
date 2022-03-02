@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Retailer;
 
 use App\Http\Controllers\Controller;
-use App\Models\Role;
 use App\Models\User;
-use App\Models\UserRole;
 use Illuminate\Http\Request;
 
-class UserRoleController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +15,10 @@ class UserRoleController extends Controller
      */
     public function index()
     {
-        //
+        $total_users = User::count();
+        
+        return view('retailer.pages.home')
+            ->with('total_users',$total_users);
     }
 
     /**
@@ -27,9 +28,7 @@ class UserRoleController extends Controller
      */
     public function create()
     {
-        $roles = Role::all();
-        $users = User::all();
-        return view('admin.pages.userroles.create')->with('roles',$roles)->with('users',$users);
+        //
     }
 
     /**
@@ -40,31 +39,7 @@ class UserRoleController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        $user_role = UserRole::where('user_id',$request->user_id)->first();
-        if($user_role != null){
-            $user_role->role_id = $request->role_id;
-        }
-        else{
-            $user_role = UserRole::create([
-                'user_id' => $request->user_id,
-                'role_id' => $request->role_id,
-            ]);
-        }
-        
-        if($user_role->save()){
-            return redirect()->back()->with('info','role updated');
-        }
-        else{
-            return redirect()->back()->with('danger','something went wrong');
-        }
-        
-        if($user_role){
-            return redirect()->back()->with('info','role added');
-        }
-        else{
-            return redirect()->back()->with('danger','something went wrong');
-        }
+        //
     }
 
     /**
