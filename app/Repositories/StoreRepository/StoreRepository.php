@@ -42,20 +42,20 @@ class StoreRepository implements StoreRepositoryInterface
         //     ->Join('products', 'products.id', '=', 'product_stores.product_id')
         //     ->where(['store_id' => $store->id, 'product_stores.is_featured' => 1])
         //     ->get();
-        $storeProducts = ProductStore::where('is_featured','1')->with('product')->get();
+        $storeProducts = ProductStore::where('is_featured','1')->with('products')->get();
         $featureProducts = (array) null;
         foreach($storeProducts as $storeProduct){
             $data['product_store_id'] = $storeProduct->id;
             $data['store_id'] = $storeProduct->store_id;
-            $data['title'] = $storeProduct->product->title;
-            $data['image'] = $storeProduct->product->image;
-            $data['unit'] = $storeProduct->product->unit;
-            $data['items_per_unit'] = $storeProduct->product->items_per_unit;
-            $data['min_order'] = $storeProduct->product->min_order;
-            $data['discount'] = $storeProduct->product->discount;
-            $data['discount_price'] = $storeProduct->product->discount_price;
+            $data['title'] = $storeProduct->products->title;
+            $data['image'] = $storeProduct->products->image;
+            $data['unit'] = $storeProduct->products->unit;
+            $data['items_per_unit'] = $storeProduct->products->items_per_unit;
+            $data['min_order'] = $storeProduct->products->min_order;
+            $data['discount'] = $storeProduct->products->discount;
+            $data['discount_price'] = $storeProduct->products->discount_price;
             $data['stock'] = (string)$storeProduct->stock;
-            $data['is_18_plus'] = $storeProduct->product->is_18_plus;
+            $data['is_18_plus'] = $storeProduct->products->is_18_plus;
 
             array_push($featureProducts, $data);
         }

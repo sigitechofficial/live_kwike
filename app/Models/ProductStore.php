@@ -13,7 +13,7 @@ class ProductStore extends Model
     protected $casts = [
         'discount'=>'integer'
     ];
-    public function product(){
+    public function products(){
         return $this->belongsTo(Product::class,'product_id','id');
     }
 }
