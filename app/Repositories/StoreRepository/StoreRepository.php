@@ -54,7 +54,7 @@ class StoreRepository implements StoreRepositoryInterface
             $data['min_order'] = $storeProduct->products->min_order;
             $data['discount'] = $storeProduct->products->discount;
             $data['discount_price'] = $storeProduct->products->discount_price;
-            $data['stock'] = (string)$storeProduct->stock;
+            $data['stock'] = $storeProduct->stock;
             $data['is_18_plus'] = $storeProduct->products->is_18_plus;
 
             array_push($featureProducts, $data);
@@ -111,15 +111,44 @@ class StoreRepository implements StoreRepositoryInterface
     public function productDetail($product_store_id)
     {
         $products = ProductStore::with('products.tags', 'products.nutrition')->findOrFail($product_store_id);
-        $storeProducts = DB::table("product_stores")
-            ->select('product_stores.id as product_store_id',
-                'product_stores.store_id as store_id', 'products.title',
-                'products.image', 'products.unit', 'products.items_per_unit',
-                'products.price', 'products.min_order', 'products.discount',
-                'products.discount_price', 'product_stores.stock', 'products.is_18_plus')
-            ->Join('products', 'products.id', '=', 'product_stores.product_id')
-            ->where(['store_id' => $products->store_id])
-            ->get();
+        // $storeProducts = DB::table("product_stores")
+        //     ->select(
+        //         'product_stores.id as product_store_id',
+        //         'product_stores.store_id as store_id', 
+        //         'products.title',
+        //         'products.image', 
+        //         'products.unit', 
+        //         'products.items_per_unit',
+        //         'products.price', 
+        //         'products.min_order', 
+        //         'products.discount',
+        //         'products.discount_price', 
+        //         'product_stores.stock', 
+        //         'products.is_18_plus'
+        //         )
+        //     ->Join('products', 'products.id', '=', 'product_stores.product_id')
+        //     ->where(['store_id' => $products->store_id])
+        //     ->get();
+
+            $storeProducts = ProductStore::where('store_id',$products->store_id)->with('products')->get();
+            $relatedProducts = (array) null;
+            foreach($storeProducts as $storeProduct){
+                $data['product_store_id'] = $storeProduct->id;
+                $data['store_id'] = $storeProduct->store_id;
+                $data['title'] = $storeProduct->products->title;
+                $data['image'] = $storeProduct->products->image;
+                $data['unit'] = $storeProduct->products->unit;
+                $data['items_per_unit'] = $storeProduct->products->items_per_unit;
+                $data['min_order'] = $storeProduct->products->min_order;
+                $data['discount'] = $storeProduct->products->discount;
+                $data['discount_price'] = $storeProduct->products->discount_price;
+                $data['stock'] = $storeProduct->stock;
+                $data['is_18_plus'] = $storeProduct->products->is_18_plus;
+
+                array_push($relatedProducts, $data);
+            }
+
+            $storeProducts = $relatedProducts;
         return [
             'images_url' => env('IMAGE_URL'),
             'product_detail' => ProductResource::make($products),
