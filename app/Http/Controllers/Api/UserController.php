@@ -20,10 +20,6 @@ class UserController extends Controller
         $this->user=$user;
     }
 
-    public function createDriver(RegisterRequest $request){
-        $data=$this->user->createDriver($request);
-        ResponseNow('1','Account Created Successfully.',$data,200);
-    }
     public function store(RegisterRequest $request){
         $data=$this->user->CreateUser($request);
         ResponseNow('1','Account Created Successfully.',$data,200);

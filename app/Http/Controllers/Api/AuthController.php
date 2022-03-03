@@ -19,4 +19,9 @@ class AuthController extends Controller
 
         ResponseNow('1','Account Successfully Log in.',$data,200);
     }
+    public function loginDriver(UserLoginRequest $request){
+        $data=$this->auth->ifDriverExists($request);
+
+        ResponseNow('1','Account Successfully Log in.',$data,200);
+    }
 }

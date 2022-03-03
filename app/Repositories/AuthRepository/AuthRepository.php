@@ -22,4 +22,18 @@ class AuthRepository implements AuthRepositoryInterface{
             return $user;
         }
     }
+    public function ifDriverExists(UserLoginRequest $request){
+        if($request->has('phone')){
+            $user= User::Where("phone", $request->phone)->first();
+            
+            if(!$user || !$user->hasRole('Driver')){
+                errorResponse('0','User Not Found.!',['User Does Not Exist. Please Sign up'],200);
+            }
+            $user->device_token=$request->device_token;
+            $user->save();
+            $user['token']=$user->createToken('kwikemart')->plainTextToken;
+            $user=UserResource::make($user);
+            return $user;
+        }
+    }
 }

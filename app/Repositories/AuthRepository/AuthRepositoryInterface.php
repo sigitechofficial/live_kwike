@@ -7,6 +7,7 @@ use App\Http\Requests\UserLoginRequest;
 interface AuthRepositoryInterface{
 
     public function ifUserExists(UserLoginRequest $request);
+    public function ifDriverExists(UserLoginRequest $request);
 
 
 }
