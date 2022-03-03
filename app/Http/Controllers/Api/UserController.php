@@ -20,6 +20,10 @@ class UserController extends Controller
         $this->user=$user;
     }
 
+    public function update(RegisterRequest $request){
+        $data=$this->user->updateUser($request);
+        ResponseNow('1','Account Updated Successfully.',$data,200);
+    }
     public function store(RegisterRequest $request){
         $data=$this->user->CreateUser($request);
         ResponseNow('1','Account Created Successfully.',$data,200);

@@ -17,6 +17,13 @@ class UserRepository implements UserRepositoryInterface
 
     use CreateStripeCustomerTrait;
 
+    public function updateUser($request){
+        $id = $request->id;
+        $user = User::find($id);
+        $user->update($request->all());
+        return $user;
+    }
+
     public function CreateUser($request)
     {
         $refer_receiver_coins = null;
