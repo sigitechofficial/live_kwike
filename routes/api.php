@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => [VerifyAPIAccess::class, 'throttle:60,1']], function () {
 
     Route::post('register', [UserController::class, 'store']);
+    Route::post('register/driver', [UserController::class, 'createDriver']);
     Route::post('login', [AuthController::class, 'login']);
 
     Route::prefix('guest/user')->group(function () {
