@@ -8,6 +8,8 @@ use App\Repositories\AuthRepository\AuthRepository;
 use App\Repositories\AuthRepository\AuthRepositoryInterface;
 use App\Repositories\BannerRepository\BannerRepository;
 use App\Repositories\BannerRepository\BannerRepositoryInterface;
+use App\Repositories\ProductRepository\ProductRepository;
+use App\Repositories\ProductRepository\ProductRepositoryInterface;
 use App\Repositories\StoreRepository\StoreRepository;
 use App\Repositories\StoreRepository\StoreRepositoryInterface;
 use App\Repositories\StripeRepository\StripeRepository;
@@ -45,5 +47,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(stripeRepositoryInterface::class,StripeRepository::class);
         $this->app->singleton(AppSettingRepositoryInterface::class,AppSettingRepository::class);
         $this->app->singleton(BannerRepositoryInterface::class,BannerRepository::class);
+        $this->app->singleton(ProductRepositoryInterface::class,ProductRepository::class);
     }
 }

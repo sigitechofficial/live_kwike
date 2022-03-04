@@ -5,13 +5,6 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4 col-lg-4">
-                                <a href="{{route('products.create')}}" class="btn btn-primary" >
-                                    Add Product
-                                </a>
-                            </div>
-                        </div>
                         <div class="row mt-5">
                         </div>
                         <div class="row">
@@ -59,15 +52,15 @@
                                             <td>{{ $product->country_of_origin }}</td>
                                             <td>{{ $product->manufacturer }}</td>
                                             <td>
-                                                <div style="display: flex;">
-                                                    <a href="{{route('nutrition.index',['product'=>$product])}}" class="btn btn-primary">Add Nutritions</a>
-                                                    <a href="{{route('tag.index',['product'=>$product])}}" class="btn btn-primary">Add Tags</a>
-                                                    <a href="{{ route('edit_products',['product'=>$product]) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-                                                    <form action="{{ route('products.destroy',['id'=>$product->id]) }}" method="POST">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                                    </form>
-                                                </div>
+                                                @if ($product->productStore->first() != null && $product->productStore->first()->store_id == $store_id)
+                                                    <a href="{{route('retailer.products.deselect',['product_id'=>$product->id])}}" class="btn btn-danger">
+                                                        Deselect
+                                                    </a>
+                                                @else
+                                                <a href="{{route('retailer.products.select',['product_id'=>$product->id])}}" class="btn btn-primary">
+                                                    Select
+                                                </a>
+                                                @endif
                                             </td>
                                     </tr>
                                     @php($count++)

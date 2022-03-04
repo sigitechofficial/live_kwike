@@ -61,8 +61,8 @@
                         <li>
                             <a href="#forms" class="has-arrow mb-1"><i class="icon-pencil"></i><span>Product Management</span></a>
                             <ul>
-                                <li><a href="">Products</a></li>
-                                <li><a href="">Add Product</a></li>
+                                <li><a href="{{route('retailer.products.selected')}}">My Products</a></li>
+                                <li><a href="{{route('retailer.products.index')}}">All Products</a></li>
                             </ul>
                         </li>
                     </ul>
