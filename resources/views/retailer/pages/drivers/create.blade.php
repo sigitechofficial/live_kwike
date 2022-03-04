@@ -21,7 +21,14 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Add User</h5>
-                            <form action="{{ route('user.store') }}" method="POST">
+                            @if(Session::has('messages'))
+                            <div class="alert {{ Session::get('alert-class', 'alert-info') }}">
+                                @foreach (Session::get('messages') as $message)
+                                    <li>{{$message}}</li>
+                                @endforeach
+                            </div>
+                            @endif
+                            <form action="{{ route('drivers.store') }}" method="POST">
                                 @csrf
                                 <div class="row mt-5">
                                     <div class="col-md-6 col-lg-6">

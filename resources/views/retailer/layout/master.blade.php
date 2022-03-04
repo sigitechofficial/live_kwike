@@ -54,9 +54,8 @@
                         <li>
                             <a href="#forms" class="has-arrow mb-1"><i class="icon-pencil"></i><span>Driver Management</span></a>
                             <ul>
-                                <li><a href="">All Drivers</a></li>
-                                <li><a href="">Add Driver</a></li>
-                                <li><a href="">Driver Wise Order</a></li>
+                                <li><a href="{{route('drivers.index')}}">All Drivers</a></li>
+                                <li><a href="{{route('drivers.create')}}">Add Driver</a></li>
                             </ul>
                         </li>
                         <li>

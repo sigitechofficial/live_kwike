@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Retailer\AuthController;
+use App\Http\Controllers\Retailer\DriverController;
 use App\Http\Controllers\Retailer\HomeController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -37,5 +38,11 @@ Route::prefix("retailer")->group( function (){
     Route::middleware('retailer')->group(function(){
         Route::get('/logout', [AuthController::class,'logout'])->name('retailer/logout');
         Route::get('/', [HomeController::class,'index'])->name('retailer/home');
+
+        Route::prefix('drivers')->group( function (){
+            Route::get('/',[DriverController::class,'index'])->name('drivers.index');
+            Route::get('/create',[DriverController::class,'create'])->name('drivers.create');
+            Route::post('/store',[DriverController::class,'store'])->name('drivers.store');
+        });
     });
 });

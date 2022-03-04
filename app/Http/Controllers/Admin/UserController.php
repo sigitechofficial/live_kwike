@@ -5,10 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Repositories\UserRepository\UserRepositoryInterface;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public $user;
+    public function __construct(UserRepositoryInterface $user){
+
+        $this->user=$user;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -47,6 +53,7 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
+
         if($user){
             return redirect()->back()->with('info','user created');
         }
