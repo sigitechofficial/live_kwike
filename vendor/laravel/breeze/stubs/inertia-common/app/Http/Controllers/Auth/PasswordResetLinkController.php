@@ -13,7 +13,7 @@ class PasswordResetLinkController extends Controller
     /**
      * Display the password reset link request view.
      *
-     * @return \Inertia\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {

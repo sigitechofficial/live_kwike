@@ -15,12 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/clear', function () {
-    Artisan::call('cache:clear');
+    Artisan::call('optimize:clear');
     echo 'clear cache';
 });
 Route::get('/migrate', function () {
     Artisan::call('migrate');
-    Artisan::call('db:seed');
+//    Artisan::call('db:seed');
     echo 'migrate run';
 });
 Route::get('/', function () {

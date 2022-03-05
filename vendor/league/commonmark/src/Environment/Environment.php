@@ -329,7 +329,10 @@ final class Environment implements EnvironmentInterface, EnvironmentBuilderInter
         return $this;
     }
 
-    public function dispatch(object $event): object
+    /**
+     * {@inheritDoc}
+     */
+    public function dispatch(object $event)
     {
         if (! $this->extensionsInitialized) {
             $this->initializeExtensions();

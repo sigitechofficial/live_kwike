@@ -5,8 +5,6 @@ namespace Laravel\Telescope\Watchers;
 use Illuminate\Mail\Events\MessageSent;
 use Laravel\Telescope\IncomingEntry;
 use Laravel\Telescope\Telescope;
-use Symfony\Component\Mime\Address;
-use Symfony\Component\Mime\Part\AbstractPart;
 
 class MailWatcher extends Watcher
 {
@@ -33,18 +31,16 @@ class MailWatcher extends Watcher
             return;
         }
 
-        $body = $event->message->getBody();
-
         Telescope::recordMail(IncomingEntry::make([
             'mailable' => $this->getMailable($event),
             'queued' => $this->getQueuedStatus($event),
-            'from' => $this->formatAddresses($event->message->getFrom()),
-            'replyTo' => $this->formatAddresses($event->message->getReplyTo()),
-            'to' => $this->formatAddresses($event->message->getTo()),
-            'cc' => $this->formatAddresses($event->message->getCc()),
-            'bcc' => $this->formatAddresses($event->message->getBcc()),
+            'from' => $event->message->getFrom(),
+            'replyTo' => $event->message->getReplyTo(),
+            'to' => $event->message->getTo(),
+            'cc' => $event->message->getCc(),
+            'bcc' => $event->message->getBcc(),
             'subject' => $event->message->getSubject(),
-            'html' => $body instanceof AbstractPart ? ($event->message->getHtmlBody() ?? $event->message->getTextBody()) : $body,
+            'html' => $event->message->getBody(),
             'raw' => $event->message->toString(),
         ])->tags($this->tags($event->message, $event->data)));
     }
@@ -77,27 +73,6 @@ class MailWatcher extends Watcher
         }
 
         return $event->data['__telescope_queued'] ?? false;
-    }
-
-    /**
-     * Convert the given addresses into a readable format.
-     *
-     * @param  array|null  $addresses
-     * @return array|null
-     */
-    protected function formatAddresses(?array $addresses)
-    {
-        if (is_null($addresses)) {
-            return null;
-        }
-
-        return collect($addresses)->flatMap(function ($address, $key) {
-            if ($address instanceof Address) {
-                return [$address->getAddress() => $address->getName()];
-            }
-
-            return [$key => $address];
-        })->all();
     }
 
     /**

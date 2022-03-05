@@ -160,7 +160,7 @@ class QueryCollector extends PDOCollector
                 if (!is_int($binding) && !is_float($binding)) {
                     if ($pdo) {
                         try {
-                            $binding = $pdo->quote((string) $binding);
+                            $binding = $pdo->quote($binding);
                         } catch (\Exception $e) {
                             $binding = $this->emulateQuote($binding);
                         }
@@ -211,7 +211,7 @@ class QueryCollector extends PDOCollector
         $search = ["\\",  "\x00", "\n",  "\r",  "'",  '"', "\x1a"];
         $replace = ["\\\\","\\0","\\n", "\\r", "\'", '\"', "\\Z"];
 
-        return "'" . str_replace($search, $replace, (string) $value) . "'";
+        return "'" . str_replace($search, $replace, $value) . "'";
     }
 
     /**

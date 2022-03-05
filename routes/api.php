@@ -23,11 +23,9 @@ Route::group(['middleware' => [VerifyAPIAccess::class, 'throttle:60,1']], functi
     Route::post('login', [AuthController::class, 'login']);
 
     Route::prefix('guest/user')->group(function () {
-
         Route::post('home', [StoreController::class, 'homeCategories']);
         Route::get('product/detail/{product_store_id}', [StoreController::class, 'productDetail']);
         Route::post('category/products', [StoreController::class, 'subCategoriesProduct']);
-
     });
 
     Route::group(['middleware' => ['auth:sanctum']], function () {

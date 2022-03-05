@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('stripe_customer_id')->nullable();
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('coins')->nullable();
+            $table->string('refer_code')->nullable();
             $table->string('email')->unique();
             $table->string('phone')->unique();
             $table->timestamp('email_verified_at')->nullable();

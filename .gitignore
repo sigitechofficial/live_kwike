@@ -20,12 +20,9 @@ vendor/
 # Package files
 *.jar
 
-# env files
-*.env
-
 # Maven
 target/
-dist/
+
 
 # JetBrains IDE
 .idea/
