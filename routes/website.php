@@ -71,9 +71,9 @@ Route::get('/', function () {
     return view('website.home');
 })->name('home');
 
-Route::get('signup', function () {
-    return view('website.auth.signup');
-})->name('signup');
+// Route::get('signup', function () {
+//     return view('website.auth.signup');
+// })->name('signup');
 
 
 Route::get('signin', function () {

@@ -3,13 +3,104 @@
 namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
+use App\Models\UserAddress;
+use App\Models\UserRole;
+use App\Models\VehicleDetail;
+use App\Models\VehicleType;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+    public function show_driver_signup_form(){
+        $vehicle_types = VehicleType::all();
+        return view('website.auth.signup')->with('vehicle_types',$vehicle_types);
+    }
+    public function driver_signup(Request $request){
+        $validator = Validator::make($request->all(), [
+            'first_name'=> 'required',
+            'last_name'=> 'required',
+            'email'=> 'required|email|unique:users',
+            'phone'=> 'required|unique:users',
+            'password'=> 'required',
+            'license_no'=> 'required',
+            'license_front_image'=> 'required',
+            'license_back_image'=> 'required',
+            'address'=> 'required',
+            'building'=> 'required',
+            'postal_code'=> 'required',
+            'city'=> 'required',
+            'make'=> 'required',
+            'model'=> 'required',
+            'year'=> 'required',
+            'license_plate'=> 'required',
+            'vehicle_color'=> 'required',
+            'vehicle_type'=> 'required',
+        ]);
+        
+        if($validator->fails()){
+            return redirect()->back()->with("error",implode("<br>",$validator->messages()->all()));
+        }
+
+        $destinationPath = 'public/signupimage';
+
+        $data = $request->except('_token');
+
+        $license_front_image = $request->file('license_front_image');
+        $license_front_image_name = "license_front_image-".time().".".$license_front_image->getClientOriginalExtension();
+        $license_front_image->move($destinationPath,$license_front_image_name);
+        
+        $license_back_image = $request->file('license_back_image');
+        $license_back_image_name = "license_back_image-".time().".".$license_back_image->getClientOriginalExtension();
+        $license_back_image->move($destinationPath,$license_back_image_name);
+
+        $data['license_front_image'] = $license_front_image_name;
+        $data['license_back_image'] = $license_back_image_name;
+
+        // create driver
+        $user = User::create([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'password' => Hash::make($data['password']),
+        ]);
+
+        // assign role
+        $role = Role::where('name','Driver')->first();
+        $user_role = UserRole::create([
+            'user_id' => $user->id,
+            'role_id' => $role->id,
+        ]);
+
+        // add address
+        $address = UserAddress::create([
+            'user_id' => $user->id,
+            'title' => 'home',
+            'address' => $data['address'],
+            'flat_no' => $data['building'],
+            'postal_code' => $data['postal_code'],
+            'city' => $data['city'],
+        ]);
+
+        // vehicle detail
+        $vehicle_detail = VehicleDetail::create([
+            'user_id' => $user->id,
+            'make' => $data['make'],
+            'model' => $data['model'],
+            'year' => $data['year'],
+            'license_plate' => $data['license_plate'],
+            'vehicle_color' => $data['vehicle_color'],
+            'vehicle_type' => $data['vehicle_type'],
+            'license_front_image' => $data['license_front_image'],
+            'license_back_image' => $data['license_back_image']
+        ]);
+
+        return redirect()->back()->with("info","Application Sent for Approval.");
+    }
     public function create(Request $request)
     {
         
