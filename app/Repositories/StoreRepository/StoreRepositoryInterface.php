@@ -19,5 +19,6 @@ interface StoreRepositoryInterface {
     public function order($request);
     public function paymentMethods();
     public function applyVoucher($request);
+    public function storeSearch($request);
 
 }

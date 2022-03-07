@@ -61,6 +61,14 @@ class StoreRepository implements StoreRepositoryInterface
 
         ];
     }
+    public function storeSearch($request)
+    {
+        $store = Store::getNearestStore($request->get('latitude'), $request->get('longitude'));
+        if (!$store) {
+            errorResponse('0', 'Something went wrong.!', ['there is no Store in your location'], 200);
+        }
+        return $store;
+    }
 
     public function subCategoriesProduct($request)
     {

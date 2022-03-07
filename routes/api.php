@@ -24,6 +24,7 @@ Route::group(['middleware' => [VerifyAPIAccess::class, 'throttle:60,1']], functi
 
     Route::prefix('guest/user')->group(function () {
         Route::post('home', [StoreController::class, 'homeCategories']);
+        Route::post('store/search', [StoreController::class, 'storeSearch']);
         Route::get('product/detail/{product_store_id}', [StoreController::class, 'productDetail']);
         Route::post('category/products', [StoreController::class, 'subCategoriesProduct']);
     });

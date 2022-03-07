@@ -28,6 +28,10 @@ class  StoreController extends Controller
         $data = $this->store->getNearestStore($request);
         ResponseNow('1', 'welcome to ' . $data['store']->name, $data, 200);
     }
+    public function storeSearch(HomeRequest $request){
+        $data = $this->store->getNearestStore($request);
+        ResponseNow('1', 'Store exists', $data, 200);
+    }
 
     public function subCategoriesProduct(Request $request)
     {
