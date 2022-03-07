@@ -6,6 +6,8 @@ use App\Repositories\AppSettingRepository\AppSettingRepository;
 use App\Repositories\AppSettingRepository\AppSettingRepositoryInterface;
 use App\Repositories\AuthRepository\AuthRepository;
 use App\Repositories\AuthRepository\AuthRepositoryInterface;
+use App\Repositories\BankRepository\BankRepository;
+use App\Repositories\BankRepository\BankRepositoryInterface;
 use App\Repositories\BannerRepository\BannerRepository;
 use App\Repositories\BannerRepository\BannerRepositoryInterface;
 use App\Repositories\ProductRepository\ProductRepository;
@@ -48,5 +50,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(AppSettingRepositoryInterface::class,AppSettingRepository::class);
         $this->app->singleton(BannerRepositoryInterface::class,BannerRepository::class);
         $this->app->singleton(ProductRepositoryInterface::class,ProductRepository::class);
+        $this->app->singleton(BankRepositoryInterface::class,BankRepository::class);
     }
 }

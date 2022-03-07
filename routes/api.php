@@ -34,6 +34,7 @@ Route::group(['middleware' => [VerifyAPIAccess::class, 'throttle:60,1']], functi
     
     Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::post('change_password', [AuthController::class, 'changePassword']);
+        Route::post('addbank', [BankController::class, 'store']);
         Route::prefix('favorites')->group(function (){
             Route::post('/', [StoreController::class, 'favorites']);
             Route::post('add', [StoreController::class, 'addToFavorite']);
