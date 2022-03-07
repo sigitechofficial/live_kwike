@@ -17,6 +17,10 @@
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="{{asset('public/assets/css/main.css')}}">
     <link rel="stylesheet" href="{{asset('public/assets/css/color_skins.css')}}">
+     <!--toastr-->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 </head>
 
 <body class="theme-orange">
@@ -54,14 +58,15 @@
                         <p class="lead">Login to your account</p>
                     </div>
                     <div class="body">
-                        <form class="form-auth-small" action="index.html">
+                        <form class="form-auth-small" action="{{route('admin/login/check')}}" method="POST">
+                            @csrf
                             <div class="form-group">
                                 <label for="signin-email" class="control-label sr-only">Email</label>
-                                <input type="email" class="form-control" id="signin-email" value="user@domain.com" placeholder="Email">
+                                <input type="email" class="form-control" id="signin-email" value="email@email.com" name="email" placeholder="Email">
                             </div>
                             <div class="form-group">
                                 <label for="signin-password" class="control-label sr-only">Password</label>
-                                <input type="password" class="form-control" id="signin-password" value="thisisthepassword" placeholder="Password">
+                                <input type="password" class="form-control" id="signin-password" value="password" name="password" placeholder="Password">
                             </div>
                             <div class="form-group clearfix">
                                 <label class="fancy-checkbox element-left">
@@ -69,7 +74,7 @@
                                     <span>Remember me</span>
                                 </label>
                             </div>
-                            <a href="{{route('admin/home')}}" type="submit" class="btn btn-primary btn-lg btn-block" style="background: linear-gradient(-60deg, #3DA9FC 50%, #FF8C67 50%); border: none;">LOGIN</a>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block" style="background: linear-gradient(-60deg, #3DA9FC 50%, #FF8C67 50%); border: none;">LOGIN</button>
                             <div class="bottom">
                                 <span class="helper-text m-b-10"><i class="fa fa-lock"></i><a href="{{route('forget_password')}}">Forgot password?</a></span>   
                             </div>
@@ -81,7 +86,58 @@
     </div>
 </div>
 <!-- END WRAPPER -->
-
+<script>
+    @if(Session::has('message'))
+    toastr.options =
+    {
+        "closeButton" : true,
+        "progressBar" : true
+    }
+            toastr.warning("{{ session('message') }}");
+    @endif
+  
+    @if(Session::has('error'))
+    toastr.options =
+    {
+        "closeButton" : true,
+        "progressBar" : true
+    }
+            toastr.error("{!! session('error') !!}");
+    @endif
+  
+    @if(Session::has('info'))
+    toastr.options =
+    {
+        "closeButton" : true,
+        "progressBar" : true,
+        "positionClass": "toast-bottom-full-width"
+    }
+            toastr.info("{{ session('info') }}");
+    @endif
+    
+    @if (Session::has('success'))
+          toastr.options.positionClass = 'toast-bottom-right';
+          toastr.success("{{ Session::get('success') }}");
+    @endif
+    
+    
+    @if (Session::has('alert'))
+          toastr.options.positionClass = 'toast-bottom-right';
+          toastr.alert("{{ Session::get('alert') }}");
+    @endif
+  
+  
+    @if(Session::has('warning'))
+    toastr.options =
+    {
+        "closeButton" : true,
+        "progressBar" : true,
+        "positionClass": "toast-bottom-right"
+    }
+            toastr.warning("{{ session('warning') }}");
+    @endif
+    
+  </script>
 <script src="{{asset('public/assets/bundles/libscripts.bundle.js')}}"></script>
 <script src="{{asset('public/assets/bundles/vendorscripts.bundle.js')}}"></script>
 

@@ -8,6 +8,8 @@ use App\Models\Role;
 use App\Models\User;
 use App\Repositories\UserRepository\UserRepositoryInterface;
 use App\Http\Requests\RegisterRequest;
+use App\Models\UserRole;
+use App\Models\UserStore;
 use App\Traits\CreateStripeCustomerTrait;
 use Illuminate\Support\Str;
 
@@ -16,6 +18,49 @@ class UserRepository implements UserRepositoryInterface
 {
 
     use CreateStripeCustomerTrait;
+    public function assignDriverToStore($driver,$store){
+        UserStore::create([
+            'user_id' => $driver,
+            'store_id' => $store,
+        ]);
+        return [$driver, $store];
+    }
+    public function assignRole($user, $role){
+        
+        $user_role = UserRole::create([
+            'user_id' => $user,
+            'role_id' => $role,
+        ]);
+
+        return $user_role;
+    }
+    public function getDriversByUser($user){
+        $user_id = $user->id;
+        $store_id = User::where('id',$user_id)->has('store')->with('store')->first()->store->first()->id;
+        $users_ids = UserStore::where('store_id',$store_id)->pluck('user_id')->toarray();
+        // return $users_ids;
+        $drivers = User::whereIn('id',$users_ids)->has('roles')->with('roles')->whereHas('roles',function ($r){
+            $r->where('roles.name','driver');
+        })->get();
+        return $drivers;
+    }
+    public function getDrivers(){
+        $drivers = User::has('roles')->with('roles')->get();
+        $data = (array) null;
+        foreach($drivers as $driver){
+            if($driver->roles[0]->name == 'Driver'){
+                $data[] = $driver;
+            }
+        }
+        return $data;
+    }
+
+    public function updateUser($request){
+        $id = $request->id;
+        $user = User::find($id);
+        $user->update($request->all());
+        return $user;
+    }
 
     public function CreateUser($request)
     {
@@ -49,7 +94,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function userAddress()
     {
-        $data = auth()->user()->addresses()->select('id', 'address', 'latitude', 'longitude')->get();
+        $data = auth()->user()->addresses()->select('id', 'address', 'latitude', 'longitude','title','address','city','flat_no','postal_code')->get();
         return $data;
     }
 

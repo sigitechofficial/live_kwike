@@ -31,6 +31,7 @@ class RegisterRequest extends FormRequest
             'last_name' => 'required',
             'email' => 'required|unique:users',
             'phone' => 'required|unique:users',
+            'id' => 'nullable|exists:users',
             'device_token'=>'required',
             'refer_code'=>'nullable|min:6|max:6',
         ];

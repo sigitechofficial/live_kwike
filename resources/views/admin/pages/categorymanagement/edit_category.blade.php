@@ -10,7 +10,7 @@
                         @endif
                         <a href="{{ route('category.index') }}" class="btn btn-success">Back</a>
                         <h5>Edit Category</h5>
-                        <form action="{{ route('category.update',['category'=>$category]) }}" method="post">
+                        <form action="{{ route('category.update',['category'=>$category]) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-2">
                                 @if(isset($category->parent_category) && $category->parent_category->count() > 0)

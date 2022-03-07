@@ -28,7 +28,7 @@
                     <div id="navbar-menu">
                         <ul class="nav navbar-nav">
                             <li><a href=""><i class="icon-settings"></i></a></li>
-                            <li><a href="" class="icon-menu"><i class="icon-power"></i>Logout</a></li>
+                            <li><a href="{{route('admin/logout')}}" class="icon-menu"><i class="icon-power"></i>Logout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -45,6 +45,13 @@
                 <nav id="left-sidebar-nav" class="sidebar-nav">
                     <ul id="main-menu" class="metismenu">
                         <li class="active"><a href="{{route('admin/home')}}"><i class="icon-home"></i><span>Dashboard</span></a></li>
+                        <li>
+                            <a href="#forms" class="has-arrow mb-1"><i class="fa fa-users"></i><span>&nbsp; Banners </span></a>
+                            <ul>
+                                <li><a href="{{ route('banners.create') }}">Add Banners</a></li>
+                                <li><a href="{{ route('banners.index') }}">All Banners</a></li>
+                            </ul>
+                        </li>
                         <li>
                             <a href="#forms" class="has-arrow mb-1"><i class="fa fa-users"></i><span>&nbsp; Users </span></a>
                             <ul>
@@ -105,7 +112,7 @@
                         <li>
                             <a href="#forms" class="has-arrow mb-1"><i class="fa fa-car"></i><span>Settings Management</span></a>
                             <ul>
-                                <li><a href="">Settings</a></li>
+                                <li><a href="{{ route('settings.index') }}">Settings</a></li>
                             </ul>
                         </li>
                     </ul>

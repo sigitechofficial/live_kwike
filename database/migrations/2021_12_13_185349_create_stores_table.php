@@ -19,8 +19,6 @@ class CreateStoresTable extends Migration
             $table->longText('description');
             $table->string('email')->unique();
             $table->string('mobile')->unique();
-            $table->string('order_commission')->nullable();
-            $table->double('amount')->default(0);
             $table->double('latitude');
             $table->double('longitude');
             $table->double('zip_code');

@@ -6,21 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CartRequest;
 use App\Http\Requests\FavoriteRequest;
 use App\Http\Requests\HomeRequest;
-use App\Http\Requests\OrderRequest;
 use App\Http\Requests\VoucherRequest;
 use App\Models\Category;
 use App\Repositories\StoreRepository\StoreRepositoryInterface;
 use Illuminate\Http\Request;
-use stdClass;
 
 class  StoreController extends Controller
 {
     public $store;
+
     public function __construct(StoreRepositoryInterface $store)
     {
         $this->store = $store;
-
-
     }
 
     public function homeCategories(HomeRequest $request)
@@ -58,7 +55,7 @@ class  StoreController extends Controller
     {
         $data = $this->store->AddToFavorite($request);
         if ($data) {
-            ResponseNow('1', 'favorite successfully added',  new stdClass(), 200);
+            ResponseNow('1', 'favorite successfully added', [], 200);
         }
     }
 
@@ -66,7 +63,7 @@ class  StoreController extends Controller
     {
         $data = $this->store->removeFavorite($request);
         if ($data) {
-            ResponseNow('1', 'favorite successfully remove',  new stdClass(), 200);
+            ResponseNow('1', 'favorite successfully remove', [], 200);
         }
     }
 
@@ -98,12 +95,11 @@ class  StoreController extends Controller
 
     }
 
-    public function order(OrderRequest $request)
+    public function order(Request $request)
     {
-
         $data = $this->store->order($request);
         if ($data) {
-            ResponseNow('1', 'Order placed Successfully',  new stdClass(), 200);
+            ResponseNow('1', 'Order placed Successfully', [], 200);
         }
     }
 

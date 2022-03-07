@@ -20,16 +20,22 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => [VerifyAPIAccess::class, 'throttle:60,1']], function () {
 
     Route::post('register', [UserController::class, 'store']);
+    Route::post('update/user', [UserController::class, 'update']);
     Route::post('login', [AuthController::class, 'login']);
-
+    Route::post('login/driver', [AuthController::class, 'loginDriver']);
+    
     Route::prefix('guest/user')->group(function () {
+        
         Route::post('home', [StoreController::class, 'homeCategories']);
         Route::post('store/search', [StoreController::class, 'storeSearch']);
         Route::get('product/detail/{product_store_id}', [StoreController::class, 'productDetail']);
         Route::post('category/products', [StoreController::class, 'subCategoriesProduct']);
+        
     });
-
+    
     Route::group(['middleware' => ['auth:sanctum']], function () {
+        Route::post('change_password', [AuthController::class, 'changePassword']);
+        Route::post('addbank', [BankController::class, 'store']);
         Route::prefix('favorites')->group(function (){
             Route::post('/', [StoreController::class, 'favorites']);
             Route::post('add', [StoreController::class, 'addToFavorite']);

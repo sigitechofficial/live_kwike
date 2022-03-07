@@ -46,7 +46,7 @@ class UserRoleController extends Controller
             $user_role->role_id = $request->role_id;
         }
         else{
-            $userrole = UserRole::create([
+            $user_role = UserRole::create([
                 'user_id' => $request->user_id,
                 'role_id' => $request->role_id,
             ]);
@@ -59,7 +59,7 @@ class UserRoleController extends Controller
             return redirect()->back()->with('danger','something went wrong');
         }
         
-        if($userrole){
+        if($user_role){
             return redirect()->back()->with('info','role added');
         }
         else{

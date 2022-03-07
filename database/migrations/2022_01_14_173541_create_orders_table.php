@@ -17,13 +17,11 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->string('order_no');
             $table->string('user_id');
-
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('store_id');
             $table->foreign('store_id')->references('id')->on('stores');
-            $table->Integer('driver_id')->nullable();
-//            $table->unsignedBigInteger('payment_method_id');
-//            $table->foreign('payment_method_id')->references('id')->on('payment_methods');
+            $table->unsignedBigInteger('payment_method_id');
+            $table->foreign('payment_method_id')->references('id')->on('payment_methods');
             $table->unsignedBigInteger('user_address_id');
             $table->foreign('user_address_id')->references('id')->on('user_addresses');
             $table->string('voucher_code')->nullable();
@@ -32,7 +30,6 @@ class CreateOrdersTable extends Migration
             $table->double('sub_total')->nullable();
             $table->double('total')->nullable();
             $table->double('schedule_date')->nullable();
-            $table->string('payment_method')->nullable();
             $table->string('order_type')->nullable();
             $table->string('nonce')->nullable();
             $table->string('card_type')->nullable();

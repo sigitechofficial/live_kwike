@@ -4,9 +4,9 @@
 #     https://www.atlassian.com/git/tutorials/saving-changes/gitignore
 
 # Node artifact files
-node_modules/
-dist/
-vendor/
+/node_modules/
+/dist/
+/vendor
 
 # Compiled Java class files
 *.class
@@ -20,9 +20,12 @@ vendor/
 # Package files
 *.jar
 
+# env files
+*.env
+
 # Maven
 target/
-
+dist/
 
 # JetBrains IDE
 .idea/

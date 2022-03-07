@@ -37,6 +37,10 @@ class UserAddressRequest extends FormRequest
                 'latitude'   =>  'required',
                 'longitude'     =>  'required',
                 'address'      =>  'required',
+                'title'      =>  'required',
+                'city'      =>  'nullable',
+                'flat_no'      =>  'nullable',
+                'postal_code'      =>  'required',
             ];
         }
 
