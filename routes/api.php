@@ -23,16 +23,17 @@ Route::group(['middleware' => [VerifyAPIAccess::class, 'throttle:60,1']], functi
     Route::post('update/user', [UserController::class, 'update']);
     Route::post('login', [AuthController::class, 'login']);
     Route::post('login/driver', [AuthController::class, 'loginDriver']);
-
+    
     Route::prefix('guest/user')->group(function () {
-
+        
         Route::post('home', [StoreController::class, 'homeCategories']);
         Route::get('product/detail/{product_store_id}', [StoreController::class, 'productDetail']);
         Route::post('category/products', [StoreController::class, 'subCategoriesProduct']);
-
+        
     });
-
+    
     Route::group(['middleware' => ['auth:sanctum']], function () {
+        Route::post('change_password', [AuthController::class, 'changePassword']);
         Route::prefix('favorites')->group(function (){
             Route::post('/', [StoreController::class, 'favorites']);
             Route::post('add', [StoreController::class, 'addToFavorite']);
