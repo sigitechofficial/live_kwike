@@ -157,7 +157,10 @@ class CategoryController extends Controller
             $data['parent_id'] = $request->parent_id;
         }
         if(isset($request->image)){
-            $data['image'] = $request->image;
+            // $data['image'] = $request->image;
+            $image = "category-".time().'.'.$request->image->extension();  
+            $request->image->move(storage_path('app/public/images/categories'),$image);
+            $data['image'] = 'categories/'.$image;
         }
         if(isset($request->name)){
             $data['name'] = $request->name;
