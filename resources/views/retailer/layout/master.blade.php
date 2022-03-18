@@ -46,9 +46,9 @@
                     <ul id="main-menu" class="metismenu">
                         <li class="active"><a href="{{route('retailer/home')}}"><i class="icon-home"></i><span>Retailer Dashboard</span></a></li>
                         <li>
-                            <a href="#forms" class="has-arrow mb-1"><i class="fa fa-users"></i><span>&nbsp; Curstomers </span></a>
+                            <a href="#forms" class="has-arrow mb-1"><i class="fa fa-users"></i><span>&nbsp; Orders </span></a>
                             <ul>
-                                <li><a href="">All Costomer</a></li>
+                                <li><a href="{{route('orders.index')}}">All Orders</a></li>
                             </ul>
                         </li>
                         <li>
@@ -63,6 +63,13 @@
                             <ul>
                                 <li><a href="{{route('retailer.products.selected')}}">My Products</a></li>
                                 <li><a href="{{route('retailer.products.index')}}">All Products</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#forms" class="has-arrow mb-1"><i class="icon-pencil"></i><span>Store Management</span></a>
+                            <ul>
+                                <li><a href="{{route('store.create')}}">Create Store</a></li>
+                                <li><a href="{{route('store.index')}}">Store Profile</a></li>
                             </ul>
                         </li>
                     </ul>

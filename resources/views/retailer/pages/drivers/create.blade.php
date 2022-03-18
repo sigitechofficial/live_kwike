@@ -56,6 +56,12 @@
                                         <label for="formFile" class="form-label">Mobile No.</label>
                                         <input type="text" class="form-control shadow-sm" placeholder="" aria-label="" name="phone">
                                     </div>
+                                    <div class="col-md-6 col-lg-6">
+                                        <label class="form-label">Time Zone</label>
+                                        <select name="time_zone" class="form-control form-control-lg" >
+                                            <option value="Asia/Karachi">Asia/Karachi</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 
                                 <div class="row mt-5">

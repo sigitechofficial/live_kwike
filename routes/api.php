@@ -67,8 +67,9 @@ Route::group(['middleware' => [VerifyAPIAccess::class, 'throttle:60,1']], functi
             Route::get('/getorders', [DriverController::class, 'getorders']);
             Route::post('/order/detail', [DriverController::class, 'order_detail']);
             Route::get('/order/accept', [DriverController::class, 'order_accept']);
-            Route::get('/order/picked', [DriverController::class, 'order_picked']);
-            Route::get('/order/completed', [DriverController::class, 'order_completed']);
+            Route::post('/order/picked', [DriverController::class, 'order_picked']);
+            Route::post('/order/started', [DriverController::class, 'order_started']);
+            Route::post('/order/completed', [DriverController::class, 'order_completed']);
         });
         Route::get('payment/methods', [CustomerController::class, 'paymentMethods']);
         Route::post('apply/voucher', [CustomerController::class, 'applyVoucher']);

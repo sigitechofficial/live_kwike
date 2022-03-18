@@ -28,6 +28,9 @@
                             </div>
                         </div>
                         <h2 class="card-title">All Drivers</h2>
+                        @if ($drivers == null)
+                            {{__('Store not Created!')}}
+                        @else
                         <div class="table-responsive">
                             @if (isset($drivers) && sizeof($drivers) > 0)
                                 <table class="table table-bordered table-hover js-basic-example dataTable table-custom">
@@ -65,6 +68,7 @@
                             {{__("No Driver Found")}}
                             @endif
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>

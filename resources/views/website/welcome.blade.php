@@ -97,6 +97,7 @@
                         <li class="nav-item"> <a class="nav-link" href="{{route('home')}}">Home</a> </li>
                         <li class="nav-item"> <a class="nav-link" href="#about">Download the App</a> </li>
                         <li class="nav-item"> <a class="nav-link" href="#driver">Become Driver</a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="#retailer">Become Retailer</a> </li>
                         <li class="nav-item"><a href="#testinomials" class="nav-link" style="border: 1px solid #002A5C; padding: 8px 35px;">Testinomials</a></li>
                     </ul>
                 </div>
@@ -281,7 +282,114 @@
     <script src="{{asset('assets/js/scrolltotop_arrow_code.js')}}" type="text/javascript"></script>
     <script src="{{asset('assets/js/dropifynew.min.js')}}"></script>
 
-
+    <script>
+        function initMap() {
+            var lati=40.7778327801576;
+            var long=-73.91037719952388;
+    
+            var myLatlng = new google.maps.LatLng(Number(lati),Number(long));
+            var geocoder = new google.maps.Geocoder();
+    
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: Number(lati), lng: Number(long)},
+               
+                zoom: 15
+            });
+            
+        
+            //
+            var input = document.getElementById('address');
+    
+            var autocomplete = new google.maps.places.Autocomplete(input);
+            autocomplete.bindTo('bounds', map);
+    
+            var infowindow = new google.maps.InfoWindow();
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                draggable:true
+    
+            });
+    
+            
+    
+            autocomplete.addListener('place_changed', function() {
+                //infowindow.close();
+    
+                marker.setVisible(true);
+                var place = autocomplete.getPlace();
+    
+                /* If the place has a geometry, then present it on a map. */
+                if (place.geometry.viewport) {
+                    map.fitBounds(place.geometry.viewport);
+                } else {
+                    map.setCenter(place.geometry.location);
+                    map.setZoom(17);
+                }
+    
+                marker.setPosition(place.geometry.location);
+                marker.setVisible(true);
+  
+                console.log(place.address_components);
+              for(x=0;x<place.address_components.length;x++){
+                    if(place.address_components[x].types[0]=="postal_code"){
+                          document.getElementById('zip').value = place.address_components[x].long_name;
+                    }
+              }
+                
+                var address = '';
+                if (place.address_components) {
+                    address = [
+                        (place.address_components[0] && place.address_components[0].short_name || ''),
+                        (place.address_components[1] && place.address_components[1].short_name || ''),
+                        (place.address_components[2] && place.address_components[2].short_name || '')
+                    ].join(' ');
+                }
+                document.getElementById('address').innerHTML=place.name;
+                document.getElementById('lat').value = place.geometry.location.lat();
+                document.getElementById('lang').value = place.geometry.location.lng();
+                
+                infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+                infowindow.open(map, marker);
+            
+                /* Location details */
+            });
+            // draggabled address /* Start
+    
+            google.maps.event.addListener(marker, 'dragend',function(marker){
+                    var latLng = marker.latLng;
+                    currentLatitude = latLng.lat();
+                    currentLongitude = latLng.lng();
+                  
+                    geocoder.geocode({'latLng': latLng }, function(results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[0]) {
+                                document.getElementById('address').value = results[0].formatted_address;
+                                document.getElementById('lat').value = currentLatitude;
+                                document.getElementById('lang').value = currentLongitude;
+                                console.log(results[0].address_components);
+                                for(x=0;x<results[0].address_components.length;x++){
+                                    if(results[0].address_components[x].types[0]=="postal_code"){
+                                        document.getElementById('zip').value = results[0].address_components[x].long_name;
+                                    }
+                                    
+                                }
+                                
+                                infowindow.setContent('<div>' + results[0].formatted_address + '<br>');
+                                infowindow.open(map, marker);
+                            }
+                        }
+                    });
+                });
+    
+            // draggabled address /* End
+    
+            // draggabled address /* End
+    
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBT3JsPzZXXXhlUHLAIkY9REQeZIJ9Lheo&libraries=places&callback=initMap" async defer></script>
+  
 
         <script>
             // wow animations
@@ -292,7 +400,59 @@
             }
         </script>
 
+    
+<script>
+  @if(Session::has('message'))
+  toastr.options =
+  {
+  	"closeButton" : true,
+  	"progressBar" : true
+  }
+  		toastr.warning("{{ session('message') }}");
+  @endif
 
+  @if(Session::has('error'))
+  toastr.options =
+  {
+  	"closeButton" : true,
+  	"progressBar" : true
+  }
+  		toastr.error("{!! session('error') !!}");
+  @endif
+
+  @if(Session::has('info'))
+  toastr.options =
+  {
+  	"closeButton" : true,
+  	"progressBar" : true,
+  	"positionClass": "toast-bottom-full-width"
+  }
+  		toastr.info("{{ session('info') }}");
+  @endif
+  
+  @if (Session::has('success'))
+        toastr.options.positionClass = 'toast-bottom-right';
+        toastr.success("{{ Session::get('success') }}");
+  @endif
+  
+  
+  @if (Session::has('alert'))
+        toastr.options.positionClass = 'toast-bottom-right';
+        toastr.alert("{{ Session::get('alert') }}");
+  @endif
+
+
+  @if(Session::has('warning'))
+  toastr.options =
+  {
+  	"closeButton" : true,
+  	"progressBar" : true,
+  	"positionClass": "toast-bottom-right"
+  }
+  		toastr.warning("{{ session('warning') }}");
+  @endif
+  
+</script>
 
     </body>
 </html>

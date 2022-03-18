@@ -67,6 +67,10 @@
 <script src="{{asset('public/assets/js/pages/tables/jquery-datatable.js')}}"></script>
 
 
+<!--Summer Notes JS -->
+<script src="{{asset('public/assets/bundles/mainscripts.bundle.js')}}"></script>
+<script src="{{asset('public/assets/vendor/summernote/dist/summernote.js')}}"></script>
+
 <!--Image Uplaod And View JS -->
 <script src="{{asset('public/assets/vendor/dropify/js/dropify.min.js')}}"></script>
 <script src="{{asset('public/assets/js/pages/forms/dropify.js')}}"></script>
@@ -74,7 +78,3 @@
 <!--Multi Select JS -->
 <script src="{{asset('public/assets/vendor/multi-select/js/jquery.multi-select.js')}}"></script><!-- Multi Select Plugin Js -->
 <script src="{{asset('public/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js')}}"></script>
-
-<!--Summer Notes JS -->
-<script src="{{asset('public/assets/bundles/mainscripts.bundle.js')}}"></script>
-<script src="{{asset('public/assets/vendor/summernote/dist/summernote.js')}}"></script>

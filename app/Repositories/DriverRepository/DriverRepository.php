@@ -37,14 +37,21 @@ class DriverRepository implements DriverRepositoryInterface
     }
     public function order_picked($request){
         $order_id = $request->id;
-        $order = Order::find('id',$order_id);
+        $order = Order::find($order_id);
         $order->status = "picked";
+        $order->save();
+        return $order;
+    }
+    public function order_started($request){
+        $order_id = $request->id;
+        $order = Order::find($order_id);
+        $order->status = "started";
         $order->save();
         return $order;
     }
     public function order_completed($request){
         $order_id = $request->id;
-        $order = Order::find('id',$order_id);
+        $order = Order::find($order_id);
         $order->status = "completed";
         $order->save();
         return $order;

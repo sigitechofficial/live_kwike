@@ -12,7 +12,7 @@
                                     <label>Name</label>
                                     <input type="text" class="form-control" name="name" value="{{ $tag->name }}" required>
                                     <label>Icon</label>
-                                    <img src="{{ asset($tag->icon) }}" class="img-fluid" width="120">
+                                    <img src="{{ asset('storage/app/public/images/'.$tag->icon) }}" class="img-fluid" width="120">
                                     <input type="file" class="form-control" name="icon">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>

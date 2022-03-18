@@ -13,81 +13,85 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="table-responsive">
-                            @if(isset($products) && $products->count() > 0)
-                            @php($count = 1)
-                            <table class="table table-bordered table-hover js-basic-example dataTable table-custom" style="width: 100%;">
-                                <thead>
-                                    <tr>
-                                        <th>Sr. No.</th>
-                                        <th>Name</th>
-                                        <th>Image</th>
-                                        <th>Price</th>
-                                        <th>Discount</th>
-                                        <th>Discount Price</th>
-                                        <th>Unit</th>
-                                        <th>Item Per Unit</th>
-                                        <th>Weight</th>
-                                        <th>Min. Order</th>
-                                        <th>Origin of Country</th>
-                                        <th>Manufacturer</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($products as $product)
+                        @if ($store_id == null)
+                            {{__("Store Not Created Yet.! Please First create store")}}
+                        @else
+                            <div class="table-responsive">
+                                @if(isset($products) && $products->count() > 0)
+                                @php($count = 1)
+                                <table class="table table-bordered table-hover js-basic-example dataTable table-custom" style="width: 100%;">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $count }}</td>
-                                            <td>{{ $product->title }}</td>
-                                            <td>
-                                                <img src="{{ asset('storage/app/public/images/'.$product->image) }}" class="img-fluid" width="120">
-                                            </td>
-                                            <td>{{ $product->price }}</td>
-                                            <td>{{ $product->discount }}</td>
-                                            <td>{{ $product->discount_price }}</td>
-                                            <td>{{ $product->unit }}</td>
-                                            <td>{{ $product->items_per_unit }}</td>
-                                            <td>{{ $product->weight }}</td>
-                                            <td>{{ $product->min_order }}</td>
-                                            <td>{{ $product->country_of_origin }}</td>
-                                            <td>{{ $product->manufacturer }}</td>
-                                            <td>
-                                                @if ($product->productStore->first() != null && $product->productStore->first()->store_id == $store_id)
-                                                    <a href="{{route('retailer.products.deselect',['product_id'=>$product->id])}}" class="btn btn-danger">
-                                                        Deselect
+                                            <th>Sr. No.</th>
+                                            <th>Name</th>
+                                            <th>Image</th>
+                                            <th>Price</th>
+                                            <th>Discount</th>
+                                            <th>Discount Price</th>
+                                            <th>Unit</th>
+                                            <th>Item Per Unit</th>
+                                            <th>Weight</th>
+                                            <th>Min. Order</th>
+                                            <th>Origin of Country</th>
+                                            <th>Manufacturer</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($products as $product)
+                                            <tr>
+                                                <td>{{ $count }}</td>
+                                                <td>{{ $product->title }}</td>
+                                                <td>
+                                                    <img src="{{ asset('storage/app/public/images/'.$product->image) }}" class="img-fluid" width="120">
+                                                </td>
+                                                <td>{{ $product->price }}</td>
+                                                <td>{{ $product->discount }}</td>
+                                                <td>{{ $product->discount_price }}</td>
+                                                <td>{{ $product->unit }}</td>
+                                                <td>{{ $product->items_per_unit }}</td>
+                                                <td>{{ $product->weight }}</td>
+                                                <td>{{ $product->min_order }}</td>
+                                                <td>{{ $product->country_of_origin }}</td>
+                                                <td>{{ $product->manufacturer }}</td>
+                                                <td>
+                                                    @if ($product->productStore->first() != null && $product->productStore->first()->store_id == $store_id)
+                                                        <a href="{{route('retailer.products.deselect',['product_id'=>$product->id])}}" class="btn btn-danger">
+                                                            Deselect
+                                                        </a>
+                                                    @else
+                                                    <a href="{{route('retailer.products.select',['product_id'=>$product->id])}}" class="btn btn-primary">
+                                                        Select
                                                     </a>
-                                                @else
-                                                <a href="{{route('retailer.products.select',['product_id'=>$product->id])}}" class="btn btn-primary">
-                                                    Select
-                                                </a>
-                                                @endif
-                                            </td>
-                                    </tr>
-                                    @php($count++)
-                                    @endforeach
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Sr. No.</th>
-                                        <th>Name</th>
-                                        <th>Image</th>
-                                        <th>Price</th>
-                                        <th>Discount</th>
-                                        <th>Discount Price</th>
-                                        <th>Unit</th>
-                                        <th>Item Per Unit</th>
-                                        <th>Weight</th>
-                                        <th>Min. Order</th>
-                                        <th>Origin of Country</th>
-                                        <th>Manufacturer</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                            @else
-                            {{__('No Product Found')}}
-                            @endif
-                        </div>
+                                                    @endif
+                                                </td>
+                                        </tr>
+                                        @php($count++)
+                                        @endforeach
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Sr. No.</th>
+                                            <th>Name</th>
+                                            <th>Image</th>
+                                            <th>Price</th>
+                                            <th>Discount</th>
+                                            <th>Discount Price</th>
+                                            <th>Unit</th>
+                                            <th>Item Per Unit</th>
+                                            <th>Weight</th>
+                                            <th>Min. Order</th>
+                                            <th>Origin of Country</th>
+                                            <th>Manufacturer</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                @else
+                                {{__('No Product Found')}}
+                                @endif
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
