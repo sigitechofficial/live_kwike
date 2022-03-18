@@ -64,17 +64,17 @@ class StripeRepository implements StripeRepositoryInterface
             return $message;
 
         } catch (\Stripe\Exception\RateLimitException $e) {
-            errorResponse('0', 'Validation error.!', $e->getError()->message, 200);
+            errorResponse('0', 'Validation error.!', [$e->getError()->message], 200);
         } catch (\Stripe\Exception\InvalidRequestException $e) {
-            errorResponse('0', 'Validation error.!', $e->getError()->message, 200);
+            errorResponse('0', 'Validation error.!', [$e->getError()->message], 200);
         } catch (\Stripe\Exception\AuthenticationException $e) {
-            errorResponse('0', 'Validation error.!', $e->getError()->message, 200);
+            errorResponse('0', 'Validation error.!', [$e->getError()->message], 200);
         } catch (\Stripe\Exception\ApiConnectionException $e) {
-            errorResponse('0', 'Validation error.!', $e->getError()->message, 200);
+            errorResponse('0', 'Validation error.!', [$e->getError()->message], 200);
         } catch (\Stripe\Exception\ApiErrorException $e) {
-            errorResponse('0', 'Validation error.!', $e->getError()->message, 200);
-        } catch (Exception $e) {
-            errorResponse('0', 'Validation error.!', $e->getError()->message, 200);
+            errorResponse('0', 'Validation error.!', [$e->getError()->message], 200);
+        } catch (\Exception $e) {
+            errorResponse('0', 'Validation error.!', [$e->getMessage()], 200);
         }
 
     }
@@ -116,17 +116,17 @@ class StripeRepository implements StripeRepositoryInterface
                 return 0;
             }
         } catch (\Stripe\Exception\RateLimitException $e) {
-            errorResponse('0', 'Validation error.!', $e->getError()->message, 200);
+            errorResponse('0', 'Validation error.!', [$e->getError()->message], 200);
         } catch (\Stripe\Exception\InvalidRequestException $e) {
-            errorResponse('0', 'Validation error.!', $e->getError()->message, 200);
+            errorResponse('0', 'Validation error.!', [$e->getError()->message], 200);
         } catch (\Stripe\Exception\AuthenticationException $e) {
-            errorResponse('0', 'Validation error.!', $e->getError()->message, 200);
+            errorResponse('0', 'Validation error.!', [$e->getError()->message], 200);
         } catch (\Stripe\Exception\ApiConnectionException $e) {
-            errorResponse('0', 'Validation error.!', $e->getError()->message, 200);
+            errorResponse('0', 'Validation error.!', [$e->getError()->message], 200);
         } catch (\Stripe\Exception\ApiErrorException $e) {
-            errorResponse('0', 'Validation error.!', $e->getError()->message, 200);
-        } catch (Exception $e) {
-            errorResponse('0', 'Validation error.!', $e->getError()->message, 200);
+            errorResponse('0', 'Validation error.!', [$e->getError()->message], 200);
+        } catch (\Exception $e) {
+            errorResponse('0', 'Validation error.!', [$e->getMessage()], 200);
         }
     }
 
@@ -166,17 +166,17 @@ class StripeRepository implements StripeRepositoryInterface
                 return null;
             }
         } catch (\Stripe\Exception\RateLimitException $e) {
-            errorResponse('0', 'Validation error.!', $e->getError()->message, 200);
+            errorResponse('0', 'Validation error.!', [$e->getError()->message], 200);
         } catch (\Stripe\Exception\InvalidRequestException $e) {
-            errorResponse('0', 'Validation error.!', $e->getError()->message, 200);
+            errorResponse('0', 'Validation error.!', [$e->getError()->message], 200);
         } catch (\Stripe\Exception\AuthenticationException $e) {
-            errorResponse('0', 'Validation error.!', $e->getError()->message, 200);
+            errorResponse('0', 'Validation error.!', [$e->getError()->message], 200);
         } catch (\Stripe\Exception\ApiConnectionException $e) {
-            errorResponse('0', 'Validation error.!', $e->getError()->message, 200);
+            errorResponse('0', 'Validation error.!', [$e->getError()->message], 200);
         } catch (\Stripe\Exception\ApiErrorException $e) {
-            errorResponse('0', 'Validation error.!', $e->getError()->message, 200);
-        } catch (Exception $e) {
-            errorResponse('0', 'Validation error.!', $e->getError()->message, 200);
+            errorResponse('0', 'Validation error.!', [$e->getError()->message], 200);
+        } catch (\Exception $e) {
+            errorResponse('0', 'Validation error.!', [$e->getMessage()], 200);
         }
     }
 

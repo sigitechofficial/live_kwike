@@ -8,6 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Store extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'description',
+        'email',
+        'mobile',
+        'latitude',
+        'longitude',
+        'zip_code',
+        'image_url',
+        'address',
+        'logo',
+        'opening_Closing_time',
+        'active',
+        'pause_orders',
+        'busy_mode',
+        'forever_open'
+    ];
 
     public function CategoryProducts(){
         return $this->hasMany(ProductStore::class)->with('products');

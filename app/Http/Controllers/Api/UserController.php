@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\UserAddressRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
@@ -20,7 +21,7 @@ class UserController extends Controller
         $this->user=$user;
     }
 
-    public function update(RegisterRequest $request){
+    public function update(UpdateUserRequest $request){
         $data=$this->user->updateUser($request);
         ResponseNow('1','Account Updated Successfully.',$data,200);
     }

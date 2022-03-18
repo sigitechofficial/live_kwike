@@ -34,7 +34,12 @@ class ProductController extends Controller
     public function selected(){
         $store = Auth::user()->store->first();
         $products = Product::has('productStore')->with('productStore')->with('productStore.products')->get();
-        $store_id = $store->id;
+        if($store != null){
+            $store_id = $store->id;
+        }
+        else{
+            $store_id = null;
+        }
         return view('retailer.pages.products.index')->with('products',$products)->with('store_id',$store_id);
     }
     /**
@@ -45,7 +50,12 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with('productStore')->with('productStore.products')->get();
-        $store_id = Auth::user()->store->first()->id;
+        if(Auth::user()->store->first() != null){
+            $store_id = Auth::user()->store->first()->id;
+        }
+        else{
+            $store_id = null;
+        }
         return view('retailer.pages.products.index')->with('products',$products)->with('store_id',$store_id);
     }
 

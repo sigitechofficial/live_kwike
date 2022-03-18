@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DeleteBankRequest;
+use App\Http\Requests\UpdateBankRequest;
 use Illuminate\Http\Request;
 use App\Repositories\BankRepository\BankRepositoryInterface;
 
@@ -21,7 +23,8 @@ class BankController extends Controller
      */
     public function index()
     {
-        //
+        $data = $this->bank->getBanks();
+        ResponseNow('1', 'Banks.!', $data, 200);
     }
 
     /**
@@ -44,7 +47,7 @@ class BankController extends Controller
     {
         ResponseNow('1', 'Bank Added.!', $this->bank->addBank($request), 200);
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -55,7 +58,7 @@ class BankController extends Controller
     {
         //
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -74,9 +77,11 @@ class BankController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateBankRequest $request)
     {
         //
+        $data = $this->bank->update($request);
+        ResponseNow('1', 'Bank Added.!', $data, 200);
     }
 
     /**
@@ -85,8 +90,10 @@ class BankController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DeleteBankRequest $request)
     {
         //
+        $data = $this->bank->destroy($request->bank_id);
+        ResponseNow('1', 'Bank Deleted!', $data, 200);
     }
 }

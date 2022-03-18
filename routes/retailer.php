@@ -4,6 +4,7 @@ use App\Http\Controllers\Retailer\AuthController;
 use App\Http\Controllers\Retailer\DriverController;
 use App\Http\Controllers\Retailer\HomeController;
 use App\Http\Controllers\Retailer\ProductController;
+use App\Http\Controllers\Retailer\StoreController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -52,6 +53,11 @@ Route::prefix("retailer")->group( function (){
             Route::get('/select/{product_id}',[ProductController::class,'select'])->name('retailer.products.select');
             Route::get('/deselect/{product_id}',[ProductController::class,'deselect'])->name('retailer.products.deselect');
             Route::post('/store',[ProductController::class,'store'])->name('retailer.products.store');
+        });
+
+        Route::prefix('store')->group( function (){
+            Route::get('/create',[StoreController::class,'create'])->name('store.create');
+            Route::get('/',[StoreController::class,'index'])->name('store.index');
         });
 
     });

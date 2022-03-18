@@ -84,8 +84,9 @@ class ProductController extends Controller
      */
     public function edit(Request $request)
     {
-        $product = Product::find($request->product);
-        return view('admin.pages.inventoryproducts.edit_products')->with('product',$product);
+        $product = Product::find($request->product)->with('categories')->first();
+        $parent_categories = Category::where('parent_id','=',null)->where('active','1')->with('subCategories')->with('subCategories.subCategories')->get();
+        return view('admin.pages.inventoryproducts.edit_products')->with('product',$product)->with('parent_categories',$parent_categories);
     }
 
     /**
@@ -98,6 +99,19 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         //
+        $data = $request->except('_token');
+
+        if(isset($request->image)){
+            $image = $product->id."image-".time().'.'.$request->image->extension();  
+            $request->image->move(storage_path('app/public/images/products'),$image);
+            $data['image'] = 'products/'.$image;
+        }
+
+        $product->update($data);
+        if($product->save()){
+            return redirect()->back()->with('info','Product updated');
+        }
+        
     }
 
     /**
@@ -109,7 +123,6 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::find($id);
-        unlink($product->image);
         if($product->delete()){
             return redirect()->back()->with('info','product deleted');
         }

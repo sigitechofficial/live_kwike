@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Retailer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\Store;
 use App\Models\User;
 use App\Models\UserStore;
@@ -27,7 +28,7 @@ class DriverController extends Controller
     public function index()
     {
         $data = $this->driver->getDriversByUser(Auth::user());
-        // dd($data);
+        // dd($data == null);
         return view('retailer.pages.drivers.index')->with('drivers',$data);
     }
 
@@ -66,7 +67,8 @@ class DriverController extends Controller
             $store = User::where('id',$user_id)->has('store')->with('store')->first()->store->first();
 
             $driver = $this->driver->CreateUser($request);
-            $role_assigned = $this->driver->assignRole($driver->id,3);
+            $role_id = Role::where('name','Driver')->first()->id;
+            $role_assigned = $this->driver->assignRole($driver->id,$role_id);
             $driver_assigned = $this->driver->assignDriverToStore($driver->id,$store->id);
 
             return redirect()->back()->with('info',"Driver Added Successfully");

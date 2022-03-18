@@ -11,9 +11,11 @@ class ProductStore extends Model
 {
     use HasFactory, SoftDeletes;
 
+
     protected $fillable = ['product_id','store_id','stock','active'];
     protected $casts = [
-        'discount'=>'integer'
+        'discount'=>'integer',
+        'price'=>'string'
     ];
     public function products(){
         return $this->belongsTo(Product::class,'product_id','id');

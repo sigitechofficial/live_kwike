@@ -4,7 +4,9 @@ namespace App\Repositories\AuthRepository;
 
 use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\DriverLoginRequest;
+use App\Http\Resources\RetailerResource;
 use App\Http\Resources\UserResource;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -20,6 +22,7 @@ class AuthRepository implements AuthRepositoryInterface{
                 errorResponse('0','User Not Found.!',['User Does Not Exist. Please Sign up'],200);
             }
             $user->device_token=$request->device_token;
+            $user->time_zone=$request->time_zone;
             $user->save();
             $user['token']=$user->createToken('kwikemart')->plainTextToken;
             $user=UserResource::make($user);
@@ -34,9 +37,31 @@ class AuthRepository implements AuthRepositoryInterface{
             }
             if(Hash::check($request->password,$user->password)){
                 $user->device_token=$request->device_token;
+                $user->time_zone=$request->time_zone;
                 $user->save();
                 $user['token']=$user->createToken('kwikemart')->plainTextToken;
+                $user->profile_image = $request->getHttpHost()."/signupimage/".$user->profile_image;
                 $user=UserResource::make($user);
+                return $user;
+            }
+            else{
+                errorResponse('0','Password Mismatched',['Password Mismatched'],200);
+            }
+        }
+    }
+    public function ifRetailerExists(DriverLoginRequest $request){
+        if($request->has('phone')){
+            $user= User::Where("phone", $request->phone)->first();
+            if(!$user || !$user->hasRole('Retailer')){
+                errorResponse('0','User Not Found.!',['User Does Not Exist. Please Sign up'],200);
+            }
+            if(Hash::check($request->password,$user->password)){
+                $user->device_token=$request->device_token;
+                $user->time_zone=$request->time_zone;
+                $user->save();
+                $user['token']=$user->createToken('kwikemart')->plainTextToken;
+                $user->store_id=$user->store()->first()->id;
+                $user=RetailerResource::make($user);
                 return $user;
             }
             else{
@@ -61,5 +86,19 @@ class AuthRepository implements AuthRepositoryInterface{
         else{
             return "Old Password Mismatched";
         }
+    }
+
+    public function resetPassword($request){
+        $user = User::where('phone',$request->phone)->first();
+        $user->update([
+            'password' => Hash::make($request->password)
+        ]);
+        $user->save();
+        return 'Password Changed.';
+    }
+
+    public function logout(){
+        Auth::user()->tokens()->delete();
+        return "Logout Successfull";
     }
 }

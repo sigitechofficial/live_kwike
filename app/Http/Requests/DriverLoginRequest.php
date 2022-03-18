@@ -28,7 +28,8 @@ class DriverLoginRequest extends FormRequest
         return [
             'phone' => 'required',
             'password' => 'required',
-            'device_token' => 'required'
+            'device_token' => 'required',
+            'time_zone'=>'required'
 
         ];
     }

@@ -30,4 +30,20 @@ class BankRepository implements BankRepositoryInterface
         ]);
         return $bank;
     }
+    public function update($request){
+        $bank = Bank::where('user_id',Auth::id())->where('id',$request->bank_id)->first();
+        $bank->update($request->all());
+        $bank->save();
+        // return $request->all();
+        return $bank;
+    }
+    public function getBanks(){
+        $bank = Bank::where('user_id',Auth::id())->get();
+        return $bank;
+    }
+    public function destroy($bank_id){
+        $bank = Bank::find($bank_id);
+        $bank->delete();
+        return 1;
+    }
 }

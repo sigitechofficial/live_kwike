@@ -27,7 +27,8 @@ class UserLoginRequest extends FormRequest
     {
         return [
             'phone' => 'required',
-            'device_token' => 'required'
+            'device_token' => 'required',
+            'time_zone'=>'required'
 
         ];
     }

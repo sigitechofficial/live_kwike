@@ -19,6 +19,7 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
+        'profile_image',
         'stripe_customer_id',
         'first_name',
         'last_name',
@@ -26,9 +27,12 @@ class User extends Authenticatable
         'email',
         'password',
         'device_token',
+        'time_zone',
         'coins',
-        'refer_code'
+        'refer_code',
+        'profile_image'
     ];
+
     protected static function boot()
     {
         parent::boot();
@@ -53,6 +57,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'created_at',
+        'updated_at'
     ];
 
     /**

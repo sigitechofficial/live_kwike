@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserRoleController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\RetailerController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -82,6 +83,15 @@ Route::prefix("admin")->group( function (){
             Route::post('/store', [UserController::class, "store"])->name('user.store');
         });
         
+        Route::prefix('retailers')->group(function(){
+            Route::get('/', [RetailerController::class, "index"])->name('retailer.index');
+            Route::get('/show/{id}', [RetailerController::class, "show"])->name('retailer.show');
+            Route::get('/edit/{id}', [RetailerController::class, "edit"])->name('retailer.edit');
+            Route::get('/create', [RetailerController::class, "create"])->name('retailer.create');
+            Route::post('/update/{id}', [RetailerController::class, "update"])->name('retailer.update');
+            Route::post('/store', [RetailerController::class, "store"])->name('retailer.store');
+        });
+        
         Route::prefix('roles')->group(function(){
             Route::get('/', [RoleController::class, "index"])->name('roles.index');
             Route::get('/create', [RoleController::class, "create"])->name('roles.create');
@@ -136,6 +146,7 @@ Route::prefix("admin")->group( function (){
             Route::post('/store', [ProductController::class, "store"])->name('products.store');
             Route::post('/destroy/{id}', [ProductController::class, "destroy"])->name('products.destroy');
             Route::get('/edit', [ProductController::class, "edit"])->name('edit_products');
+            Route::post('/update/{product}', [ProductController::class, "update"])->name('products.update');
         });
         
         Route::prefix('nutritions')->group(function(){

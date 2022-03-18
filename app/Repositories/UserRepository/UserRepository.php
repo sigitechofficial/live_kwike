@@ -11,6 +11,8 @@ use App\Http\Requests\RegisterRequest;
 use App\Models\UserRole;
 use App\Models\UserStore;
 use App\Traits\CreateStripeCustomerTrait;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 
@@ -36,13 +38,17 @@ class UserRepository implements UserRepositoryInterface
     }
     public function getDriversByUser($user){
         $user_id = $user->id;
-        $store_id = User::where('id',$user_id)->has('store')->with('store')->first()->store->first()->id;
-        $users_ids = UserStore::where('store_id',$store_id)->pluck('user_id')->toarray();
-        // return $users_ids;
-        $drivers = User::whereIn('id',$users_ids)->has('roles')->with('roles')->whereHas('roles',function ($r){
-            $r->where('roles.name','driver');
-        })->get();
-        return $drivers;
+        $store = User::where('id',$user_id)->has('store')->with('store')->first();
+        if($store != null){
+            $store_id = User::where('id',$user_id)->has('store')->with('store')->first()->store->first()->id;
+            $users_ids = UserStore::where('store_id',$store_id)->pluck('user_id')->toarray();
+            // return $users_ids;
+            $drivers = User::whereIn('id',$users_ids)->has('roles')->with('roles')->whereHas('roles',function ($r){
+                $r->where('roles.name','driver');
+            })->get();
+            return $drivers;
+
+        }
     }
     public function getDrivers(){
         $drivers = User::has('roles')->with('roles')->get();
@@ -56,7 +62,7 @@ class UserRepository implements UserRepositoryInterface
     }
 
     public function updateUser($request){
-        $id = $request->id;
+        $id = Auth::id();
         $user = User::find($id);
         $user->update($request->all());
         return $user;
@@ -80,6 +86,7 @@ class UserRepository implements UserRepositoryInterface
         }
         $request['coins'] = $refer_receiver_coins;
         $request['refer_code'] = Str::random(6);
+        $request['password'] = Hash::make($request->password);
         $user = User::create($request->all());
         $stripe_customer_id = $this->createStripeCustomer($user);
         $user->update([

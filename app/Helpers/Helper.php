@@ -33,7 +33,7 @@ class Helper
         ];
         $headers = [
             // 'Authorization: key= '.'AAAA89lzn8c:APA91bHBfcfnea-rsxxLrJeYIlomC7Sv10-cTi6_xDihtUn1QxzlRQm2FF3BvO7Odmu2UGOHauJ34D1tvzvkyek1eLlwMNh1dKD3u4sYQ99gN1MqbVF_YI_9RDgoBusBp890oRqdlpg7',
-            'Authorization: key= '.'AAAA7KG6QUs:APA91bFh_82IkU0tU1JpUh5zwzfv7ubv0kNGuHrgC1W6NihhZrNtvezsY-dls0jlYlOK1ysaZcDHimYw9-UlK9W0piP6CnVw6sXFRLLO6F6De7m0fSstomW45c2-DxlC14vSyzsqjwJE',
+            'Authorization: key= '.'AAAAFMtqPwk:APA91bGXUUoTzYmiHqjpDRSC2mUpP6n8qRM7tAY0rsZJQJgzamcXCbJIvDn348iCAeJobuj6EU0hRDDdBkv_9mR2V8Gdd4mYvi5C_5ZA8gZKNfvaRSfpJlx_lJgw7GeKf9DZm8p14wt7',
             'Content-Type: application/json'
         ];
         $ch = curl_init();
@@ -123,15 +123,8 @@ class Helper
     }
     
     public static function getOnlineDrivers(){
-        $online_drivers = file_get_contents('https://ubolt-f2720-default-rtdb.firebaseio.com/online_driver.json');
-        $online_drivers = json_decode($online_drivers);
-        
-        // remove object node to array
-        foreach($online_drivers as $online_driver){
-            $data[] = $online_driver;
-        }
-        
-        return $data;
+        $online_drivers = file_get_contents('https://kwikemartuser-default-rtdb.firebaseio.com/online_driver.json');
+        return $online_drivers = json_decode($online_drivers);
     }
     
     public static function getHomePage(){
@@ -161,8 +154,8 @@ class Helper
             }
             
             $data = [
-                'distance'=>$distance,
-                'duration'=>$duration,
+                'distance_km'=>round($distance,2),
+                'duration_min'=>round($duration,2),
                 'esttime'=>$esttime,
                 'status'=>$json_response->status
                 ];

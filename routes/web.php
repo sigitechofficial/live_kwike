@@ -21,7 +21,7 @@ Route::get('/clear', function () {
 });
 Route::get('/migrate', function () {
     Artisan::call('migrate');
-    Artisan::call('db:seed');
+//    Artisan::call('db:seed');
     echo 'migrate run';
 });
 
@@ -49,7 +49,9 @@ Route::get('signin', function () {
 
 Route::post('signup', [UserController::class, 'create'])->name('signup1');
 Route::get('signup', [UserController::class, 'show_driver_signup_form'])->name('signup');
+Route::get('signup/retailer', [UserController::class, 'show_retailer_signup_form'])->name('signup.retailer');
 Route::post('driver/signup', [UserController::class, 'driver_signup'])->name('signup.driver');
+Route::post('retailer/signup', [UserController::class, 'retailer_signup'])->name('signup.retailer.store');
 Route::post('terms_conditions', [FrontEndSettingsController::class, 'create_tnc'])->name('terms_conditions1');
 Route::get('terms_conditions', [FrontEndSettingsController::class, 'show_tnc'])->name('terms_conditions');
 Route::post('privacy_policy', [FrontEndSettingsController::class, 'create_privacy'])->name('privacy_policy1');

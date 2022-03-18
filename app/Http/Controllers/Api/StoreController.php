@@ -6,13 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CartRequest;
 use App\Http\Requests\FavoriteRequest;
 use App\Http\Requests\HomeRequest;
+use App\Http\Requests\OrderDetailRequest;
+use App\Http\Requests\OrderListRequest;
 use App\Http\Requests\VoucherRequest;
 use App\Models\Category;
 use App\Repositories\StoreRepository\StoreRepositoryInterface;
+use App\Traits\TimeZoneToUTC;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use stdClass;
 
 class  StoreController extends Controller
 {
+    use TimeZoneToUTC;
     public $store;
 
     public function __construct(StoreRepositoryInterface $store)
@@ -20,87 +26,29 @@ class  StoreController extends Controller
         $this->store = $store;
     }
 
-    public function homeCategories(HomeRequest $request)
-    {
-        $data = $this->store->getNearestStore($request);
-        ResponseNow('1', 'welcome to ' . $data['store']->name, $data, 200);
-    }
-    public function storeSearch(HomeRequest $request){
-        $data = $this->store->getNearestStore($request);
-        ResponseNow('1', 'Store exists', $data, 200);
-    }
-
-    public function subCategoriesProduct(Request $request)
-    {
-
-        $data = $this->store->subCategoriesProduct($request);
-        ResponseNow('1', 'Category with products ', $data, 200);
+    public function orders(OrderListRequest $request){
+       $orders=$this->store->orders($request);
+        ResponseNow('1', 'List for '.$request->status.' orders', $orders, 200);
 
     }
-
-    public function productDetail($product_store_id)
-    {
-        $data = $this->store->productDetail($product_store_id);
-        ResponseNow('1', 'Product detail ', $data, 200);
+    public function orderDetail(OrderDetailRequest $request){
+       $order=$this->store->orderDetail($request);
+        ResponseNow('1', 'Order detail is', $order, 200);
+    }
+    public function busyMode(Request $request){
+        auth()->user()->store()->update(['busy_mode'=>Carbon::now()->addMinutes($request->busy_mode)]);
+        ResponseNow('1', 'Sore Orders busy mode status changed successfully', new stdClass(), 200);
+    }
+    public function pauseOrders(Request $request){
+        auth()->user()->store()->update(['pause_orders'=>$request->pause_orders]);
+        ResponseNow('1', 'Sore Orders paused status changed successfully', new stdClass(), 200);
+    }
+    public function foreverOpen(Request $request){
+        auth()->user()->store()->update(['forever_open'=>$request->forever_open]);
+        ResponseNow('1', 'Sore Orders forever open status changed successfully', new stdClass(), 200);
     }
 
-    public function favorites(FavoriteRequest $request)
-    {
-        $data = $this->store->favorites($request);
 
-        ResponseNow('1', 'Favorite list is ', $data, 200);
-    }
 
-    public function addToFavorite(Request $request)
-    {
-        $data = $this->store->AddToFavorite($request);
-        if ($data) {
-            ResponseNow('1', 'favorite successfully added', [], 200);
-        }
-    }
-
-    public function removeFavorite(Request $request)
-    {
-        $data = $this->store->removeFavorite($request);
-        if ($data) {
-            ResponseNow('1', 'favorite successfully remove', [], 200);
-        }
-    }
-
-    public function cart()
-    {
-        $cart = $this->store->cart();
-        ResponseNow('1', 'Cart Detail is ', $cart, 200);
-    }
-
-    public function addToCart(CartRequest $request)
-    {
-
-        $data = $this->store->AddToCart($request);
-        if ($data == 0) {
-            errorResponse('0', 'Something went wrong', ['No product in the list'], 200);
-        }
-        ResponseNow('1', 'products added to cart successfully', $data, 200);
-    }
-
-    public function applyVoucher(VoucherRequest $request){
-        $data = $this->store->applyVoucher($request);
-        ResponseNow('1', 'Voucher applied successfully', $data, 200);
-    }
-
-    public function paymentMethods()
-    {
-        $data = $this->store->paymentMethods();
-        ResponseNow('1', 'Applicable payment methods list', $data, 200);
-
-    }
-
-    public function order(Request $request)
-    {
-        $data = $this->store->order($request);
-        if ($data) {
-            ResponseNow('1', 'Order placed Successfully', [], 200);
-        }
-    }
 
 }

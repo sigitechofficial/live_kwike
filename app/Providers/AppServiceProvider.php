@@ -10,6 +10,10 @@ use App\Repositories\BankRepository\BankRepository;
 use App\Repositories\BankRepository\BankRepositoryInterface;
 use App\Repositories\BannerRepository\BannerRepository;
 use App\Repositories\BannerRepository\BannerRepositoryInterface;
+use App\Repositories\DriverRepository\DriverRepository;
+use App\Repositories\DriverRepository\DriverRepositoryInterface;
+use App\Repositories\CustomerRepository\CustomerRepository;
+use App\Repositories\CustomerRepository\CustomerRepositoryInterface;
 use App\Repositories\ProductRepository\ProductRepository;
 use App\Repositories\ProductRepository\ProductRepositoryInterface;
 use App\Repositories\StoreRepository\StoreRepository;
@@ -51,5 +55,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(BannerRepositoryInterface::class,BannerRepository::class);
         $this->app->singleton(ProductRepositoryInterface::class,ProductRepository::class);
         $this->app->singleton(BankRepositoryInterface::class,BankRepository::class);
+        $this->app->singleton(DriverRepositoryInterface::class,DriverRepository::class);
+        $this->app->singleton(CustomerRepositoryInterface::class,CustomerRepository::class);
     }
 }

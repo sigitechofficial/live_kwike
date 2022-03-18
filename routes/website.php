@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Website\FrontEndSettingsController;
+use App\Http\Controllers\Website\UserController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -89,8 +91,8 @@ Route::get('signin', function () {
 // })->name('privacy_policy');
 
 
-Route::post('signup', [App\Http\Controllers\UserController::class, 'create'])->name('signup1');
-Route::post('terms_conditions', [App\Http\Controllers\FrontEndSettingsController::class, 'create_tnc'])->name('terms_conditions1');
-Route::get('terms_conditions', [App\Http\Controllers\FrontEndSettingsController::class, 'show_tnc'])->name('terms_conditions');
-Route::post('privacy_policy', [App\Http\Controllers\FrontEndSettingsController::class, 'create_privacy'])->name('privacy_policy1');
-Route::get('privacy_policy', [App\Http\Controllers\FrontEndSettingsController::class, 'show_privacy'])->name('privacy_policy');
+Route::post('signup', [UserController::class, 'create'])->name('signup1');
+Route::post('terms_conditions', [FrontEndSettingsController::class, 'create_tnc'])->name('terms_conditions1');
+Route::get('terms_conditions', [FrontEndSettingsController::class, 'show_tnc'])->name('terms_conditions');
+Route::post('privacy_policy', [FrontEndSettingsController::class, 'create_privacy'])->name('privacy_policy1');
+Route::get('privacy_policy', [FrontEndSettingsController::class, 'show_privacy'])->name('privacy_policy');
