@@ -60,6 +60,18 @@
                             </ul>
                         </li>
                         <li>
+                            <a href="#forms" class="has-arrow mb-1"><i class="fa fa-users"></i><span>&nbsp; Drivers </span></a>
+                            <ul>
+                                <li><a href="{{ route('driver.index') }}">All Drivers</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#forms" class="has-arrow mb-1"><i class="fa fa-users"></i><span>&nbsp; Retailers </span></a>
+                            <ul>
+                                <li><a href="{{ route('retailers.index') }}">All Retailers</a></li>
+                            </ul>
+                        </li>
+                        <li>
                             <a href="#forms" class="has-arrow mb-1"><i class="icon-pencil"></i><span>Category Management</span></a>
                             <ul>
                                 <li><a href="{{ route('category.index') }}">Main Categories</a></li>

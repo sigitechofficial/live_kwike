@@ -59,15 +59,20 @@
                                             <td>{{ $product->country_of_origin }}</td>
                                             <td>{{ $product->manufacturer }}</td>
                                             <td>
-                                                <div style="display: flex;">
-                                                    <a href="{{route('nutrition.index',['product'=>$product])}}" class="btn btn-primary">Add Nutritions</a>
-                                                    <a href="{{route('tag.index',['product'=>$product])}}" class="btn btn-primary">Add Tags</a>
-                                                    <a href="{{ route('edit_products',['product'=>$product]) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-                                                    <form action="{{ route('products.destroy',['id'=>$product->id]) }}" method="POST">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                                    </form>
-                                                </div>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                      Option
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a href="{{route('nutrition.index',['product'=>$product])}}" class="dropdown-item">Add Nutritions</a>
+                                                        <a href="{{route('tag.index',['product'=>$product])}}" class="dropdown-item">Add Tags</a>
+                                                        <a href="{{ route('edit_products',['product'=>$product]) }}" class="dropdown-item"><i class="fa fa-edit"></i>Edit</a>
+                                                        <form action="{{ route('products.destroy',['id'=>$product->id]) }}" method="POST">
+                                                            @csrf
+                                                            <button type="submit" class="dropdown-item"><i class="fa fa-trash"></i>Delete</button>
+                                                        </form>
+                                                    </div>
+                                                  </div>
                                             </td>
                                     </tr>
                                     @php($count++)

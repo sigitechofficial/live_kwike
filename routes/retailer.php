@@ -3,6 +3,7 @@
 use App\Http\Controllers\Retailer\AuthController;
 use App\Http\Controllers\Retailer\DriverController;
 use App\Http\Controllers\Retailer\HomeController;
+use App\Http\Controllers\Retailer\OrderController;
 use App\Http\Controllers\Retailer\ProductController;
 use App\Http\Controllers\Retailer\StoreController;
 use Illuminate\Support\Facades\Artisan;
@@ -58,6 +59,13 @@ Route::prefix("retailer")->group( function (){
         Route::prefix('store')->group( function (){
             Route::get('/create',[StoreController::class,'create'])->name('store.create');
             Route::get('/',[StoreController::class,'index'])->name('store.index');
+        });
+
+        Route::prefix('orders')->group( function (){
+            Route::get('/create',[OrderController::class,'create'])->name('orders.create');
+            Route::get('/',[OrderController::class,'index'])->name('orders.index');
+            Route::get('/assignDriver',[OrderController::class,'assignDriver'])->name('orders.assignDriver');
+            Route::get('/show/{order_id}',[OrderController::class,'show'])->name('orders.show');
         });
 
     });

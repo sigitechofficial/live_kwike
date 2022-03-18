@@ -15,7 +15,6 @@
                                                 <th>Name</th>
                                                 <th>Email</th>
                                                 <th>Phone</th>
-                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -24,13 +23,6 @@
                                                     <td>{{ $driver->first_name }} {{ $driver->last_name }}</td>
                                                     <td>{{ $driver->email }}</td>
                                                     <td>{{ $driver->phone }}</td>
-                                                    <td>
-                                                        <div style="display: flex;">
-                                                            <a href="{{route('orders_by_drivers',['id'=>$driver->id])}}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
-                                                            &nbsp;
-                                                            <a href="{{route('edit_driver',['id'=>$driver->id])}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-                                                        </div>
-                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -38,7 +30,6 @@
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Phone</th>
-                                            <th>Action</th>
                                         </tr>
                                         </tfoot>
                                     </table>

@@ -414,7 +414,7 @@
                         <p><h3>Start Selling Now</h3>
                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. 
                         </p>
-                        <button class="mt-5" style="background-color: #FDE24F; padding: 10px 30px;">Become a Seller</button>
+                        <a href="{{route('signup.retailer')}}" class="mt-5" style="background-color: #FDE24F; padding: 10px 30px;">Become a Seller</a>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6">

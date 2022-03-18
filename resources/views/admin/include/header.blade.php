@@ -13,14 +13,12 @@
         <!-- VENDOR CSS -->
     <link rel="stylesheet" href="{{asset('public/assets/vendor/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('public/assets/vendor/font-awesome/css/font-awesome.min.css')}}">
-    <link rel="stylesheet" href="{{asset('public/assets/vendor/charts-c3/plugin.css')}}"/>
-    <link rel="stylesheet" href="{{asset('public/assets/vendor/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/vendor/dropify/css/dropify.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('public/assets/vendor/summernote/dist/summernote.css')}}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" />
     <link rel="stylesheet" href="{{asset('public/assets/vendor/jquery-datatable/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('public/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css')}}">
     <link rel="stylesheet" href="{{asset('public/assets/vendor/multi-select/css/multi-select.css')}}">
-    <link rel="stylesheet" href="{{asset('public/assets/vendor/dropify/css/dropify.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('public/assets/vendor/summernote/dist/summernote.css')}}" />
-    
     
         <!-- MAIN CSS -->
     <link rel="stylesheet" href="{{asset('public/assets/css/main.css')}}">

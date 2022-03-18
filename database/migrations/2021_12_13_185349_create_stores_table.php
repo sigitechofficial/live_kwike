@@ -26,6 +26,9 @@ class CreateStoresTable extends Migration
             $table->string('logo');
             $table->string('image_url');
             $table->string('opening_Closing_time');
+            $table->dateTime('busy_mode')->nullable();
+            $table->string('pause_orders')->default(0);
+            $table->string('forever_open')->default(0);
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

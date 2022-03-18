@@ -174,7 +174,7 @@ class Helper
     
     public static function payStripeOld($user_id, $total, $pm_id){
         
-        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET_KEY'));
     
         $userdetail = User::find($user_id);
         $customer_id = $userdetail->stripe_customer_id;
@@ -205,7 +205,7 @@ class Helper
         $userdetail = User::find($user_id);
         $customer_id = $userdetail->stripe_customer_id;
         
-        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET_KEY'));
         $token= $stripe->tokens->create([
                                         'card' => [
                                                     'number' => $card_number,

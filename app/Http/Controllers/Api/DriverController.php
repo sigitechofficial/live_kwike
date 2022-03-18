@@ -31,6 +31,11 @@ class DriverController extends Controller
         $data = $this->driver->order_picked($request);
         ResponseNow('1', 'Order Picked', $data, 200);
     }
+    public function order_started(OrderDetailRequest $request){
+        
+        $data = $this->driver->order_started($request);
+        ResponseNow('1', 'Order Started', $data, 200);
+    }
     public function order_completed(OrderDetailRequest $request){
         
         $data = $this->driver->order_completed($request);

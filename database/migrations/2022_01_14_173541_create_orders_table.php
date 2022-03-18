@@ -32,6 +32,9 @@ class CreateOrdersTable extends Migration
             $table->double('schedule_date')->nullable();
             $table->string('order_type')->nullable();
             $table->string('nonce')->nullable();
+            $table->string('call_at_door')->nullable();
+            $table->string('ring_bell')->nullable();
+            $table->string('description')->nullable();
             $table->string('card_type')->nullable();
             $table->string('status')->default('pending');
             $table->string('is_paid')->nullable();

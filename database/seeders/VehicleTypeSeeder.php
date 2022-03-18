@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\VehicleType;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,13 +15,14 @@ class VehicleTypeSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('vehicle_types')->insert([
+        VehicleType::create([
             'title' => 'Car',
             'image' => 'car.png',
         ]);
-        DB::table('vehicle_types')->insert([
+        VehicleType::create([
             'title' => 'Van',
             'image' => 'van.png',
+            
         ]);
     }
 }
